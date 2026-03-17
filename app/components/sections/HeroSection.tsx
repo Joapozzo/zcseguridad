@@ -1,18 +1,74 @@
 'use client'
 
+import { useEffect, useRef, useState } from 'react'
 import { Home, Clock, Star } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { Button } from '../ui/Button'
 import { useContact } from '@/app/hooks/useContact'
 
-const heroStats = [
-  { value: '+200', label: 'instalaciones', icon: Home },
-  { value: '24/7', label: 'monitoreo', icon: Clock },
-  { value: '5', label: 'calificación', icon: Star },
-] as const
+type StatConfig = {
+  end: number
+  prefix?: string
+  suffix?: string
+  label: string
+  icon: typeof Home
+}
+
+const heroStats: StatConfig[] = [
+  { end: 200, prefix: '+', label: 'instalaciones', icon: Home },
+  { end: 24, suffix: '/7', label: 'monitoreo', icon: Clock },
+  { end: 5, label: 'calificación', icon: Star },
+]
 
 export function HeroSection() {
   const contact = useContact()
+  const contentRef = useRef<HTMLDivElement>(null)
+  const statsRef = useRef<HTMLDivElement>(null)
+  const [displayValues, setDisplayValues] = useState<number[]>(heroStats.map(() => 0))
+
+  useEffect(() => {
+    let mounted = true
+    const run = async () => {
+      const { gsap } = await import('gsap')
+
+      const content = contentRef.current
+      const statsWrap = statsRef.current
+      if (!content || !statsWrap || !mounted) return
+
+      const title = content.querySelector('h1')
+      const subtitle = content.querySelector('p')
+      const buttons = content.querySelector('div:last-child')
+
+      gsap.set([title, subtitle, buttons], { opacity: 0, y: 24 })
+      gsap.to(title, { opacity: 1, y: 0, duration: 0.6, delay: 0.2, ease: 'power2.out' })
+      gsap.to(subtitle, { opacity: 1, y: 0, duration: 0.6, delay: 0.35, ease: 'power2.out' })
+      gsap.to(buttons, { opacity: 1, y: 0, duration: 0.6, delay: 0.5, ease: 'power2.out' })
+
+      const startDelay = 0.7
+      const countDuration = 1.4
+      heroStats.forEach((stat, i) => {
+        const obj = { val: 0 }
+        gsap.to(obj, {
+          val: stat.end,
+          duration: countDuration,
+          delay: startDelay + i * 0.15,
+          ease: 'power2.out',
+          onUpdate: () => {
+            if (!mounted) return
+            setDisplayValues((prev) => {
+              const next = [...prev]
+              next[i] = Math.round(obj.val)
+              return next
+            })
+          },
+        })
+      })
+    }
+    run()
+    return () => {
+      mounted = false
+    }
+  }, [])
 
   return (
     <section className="flex overflow-hidden relative flex-col justify-center items-center w-full h-screen min-h-dvh">
@@ -34,7 +90,7 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-black/55" aria-hidden />
 
       {/* Contenido centrado — minimalista, el video es protagonista */}
-      <div className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center">
+      <div ref={contentRef} className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center">
         <h1 className="font-display font-semibold text-[clamp(1.25rem,3.5vw,1.75rem)] tracking-[0.25em] uppercase text-white mb-4 max-w-xl">
           Seguridad inteligente para tu empresa o negocio
         </h1>
@@ -63,17 +119,26 @@ export function HeroSection() {
         </div>
       </div>
 
-      {/* Stats — pie del hero, minimalista con iconos. Mobile: columna y más chicas; desktop: fila */}
-      <div className="flex flex-col gap-3 absolute right-0 left-0 bottom-6 z-10 justify-center items-center text-center md:flex-row md:gap-16">
-        {heroStats.map(({ value, label, icon: Icon }) => (
-          <div key={label} className="flex flex-row gap-1.5 items-center md:gap-2">
-            <Icon strokeWidth={1.5} className="w-4 h-4 shrink-0 text-white/50 md:w-5 md:h-5" aria-hidden />
-            <div className="flex flex-col items-start text-left">
-              <span className="text-xs font-medium tracking-wide font-display text-white/90 md:text-sm">{value}</span>
-              <span className="text-[9px] text-white/50 uppercase tracking-[0.12em] md:text-[10px] md:tracking-[0.15em]">{label}</span>
+      {/* Stats — pie del hero con count-up */}
+      <div ref={statsRef} className="flex flex-row gap-4 md:gap-16 absolute right-0 left-0 bottom-6 z-10 justify-center items-center text-center">
+        {heroStats.map((stat, i) => {
+          const Icon = stat.icon
+          const value =
+            (stat.prefix ?? '') + displayValues[i] + (stat.suffix ?? '')
+          return (
+            <div key={stat.label} className="flex flex-col gap-1 items-center text-center">
+              <Icon strokeWidth={1.5} className="w-4 h-4 shrink-0 text-white/50 md:w-5 md:h-5" aria-hidden />
+              <div className="flex flex-col items-center text-center">
+                <span data-stat-value className="text-xs font-medium tracking-wide font-display text-white/90 md:text-sm min-w-[2ch] tabular-nums">
+                  {value}
+                </span>
+                <span className="text-[9px] text-white/50 uppercase tracking-[0.12em] md:text-[10px] md:tracking-[0.15em]">
+                  {stat.label}
+                </span>
+              </div>
             </div>
-          </div>
-        ))}
+          )
+        })}
       </div>
     </section>
   )

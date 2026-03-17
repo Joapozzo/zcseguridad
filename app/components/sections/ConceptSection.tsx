@@ -77,7 +77,7 @@ export function ConceptSection() {
               Un sistema. Una app. Protección total.
             </h2>
           </div>
-          <p className="mx-auto max-w-xl font-medium tracking-wide text-center text-md text-black/50">
+          <p className="mx-auto max-w-xl font-normal tracking-wide text-center text-sm text-black/50 px-4 sm:px-0">
             AJAX es el sistema de seguridad inalámbrico más avanzado. Instalamos, configuramos y monitoreamos todo por vos.
           </p>
         </div>
@@ -99,17 +99,14 @@ export function ConceptSection() {
               <div className="absolute inset-0 bg-gradient-to-t to-transparent opacity-80 transition-opacity duration-300 from-black/70 via-black/20 group-hover:opacity-90" />
 
               {/* Título y subtítulo minimalista abajo */}
-              <div className="absolute right-0 bottom-0 left-0 p-6 text-white lg:p-8">
+              <div className="absolute right-0 bottom-0 left-0 p-4 text-white sm:p-6 lg:p-8">
                 <h3 className="mb-1 text-xl font-bold tracking-tight font-display lg:text-2xl">
                   {pillar.title}
                 </h3>
-                <p className="text-sm font-medium lg:text-base text-white/80">
+                <p className="text-xs font-normal lg:text-sm text-white/80">
                   {pillar.subtitle}
                 </p>
               </div>
-
-              {/* Efecto hover: borde/brillo sutil */}
-              <div className="absolute inset-0 border-2 transition-colors duration-300 pointer-events-none border-white/0 group-hover:border-white/20" />
             </a>
           ))}
         </div>

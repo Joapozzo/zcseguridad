@@ -105,16 +105,16 @@ export function AppSection() {
               </a>
             </div>
 
-            {/* Features completas */}
-            <div className="grid grid-cols-1 gap-3 sm:grid-cols-2">
+            {/* Features: 2 cols en mobile sin subtitle; desktop con desc */}
+            <div className="grid grid-cols-2 gap-2 sm:gap-3">
               {benefits.map((b) => (
-                <div key={b.title} className="benefit-item opacity-0 flex gap-3 p-4 rounded-[var(--radius-md)] bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-strong)] transition-colors">
-                  <div className="w-8 h-8 rounded-md bg-[var(--color-primary-accent-muted)] text-[var(--color-primary-accent)] flex items-center justify-center shrink-0 mt-0.5">
+                <div key={b.title} className="benefit-item opacity-0 flex items-center gap-2 sm:gap-3 p-3 sm:p-4 rounded-[var(--radius-md)] bg-[var(--color-surface)] border border-[var(--color-border)] hover:border-[var(--color-border-strong)] transition-colors">
+                  <div className="w-7 h-7 sm:w-8 sm:h-8 rounded-md bg-[var(--color-primary-accent-muted)] text-[var(--color-primary-accent)] flex items-center justify-center shrink-0">
                     {b.icon}
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm font-display font-semibold text-[var(--color-text-primary)] mb-0.5">{b.title}</p>
-                    <p className="text-xs text-[var(--color-text-muted)] leading-relaxed">{b.desc}</p>
+                    <p className="text-xs sm:text-sm font-display font-normal text-[var(--color-text-primary)] mb-0.5">{b.title}</p>
+                    <p className="hidden sm:block text-xs text-[var(--color-text-muted)] leading-relaxed">{b.desc}</p>
                   </div>
                 </div>
               ))}
