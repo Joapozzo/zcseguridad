@@ -1,0 +1,147 @@
+@import "tailwindcss";
+@config "../tailwind.config.js";
+
+/* Variables primero para que existan antes de cualquier capa */
+/* Paleta: negro/blanco como base. Marca azul/amarillo solo uso secundario. Sin rojo. */
+:root {
+  --color-background: #000000;
+  --color-surface: #0a0a0a;
+  --color-surface-elevated: #111111;
+  --color-surface-light: #fafafa;
+  --color-text-primary: #ffffff;
+  --color-text-secondary: #a3a3a3;
+  --color-text-muted: #737373;
+  --color-text-inverse: #000000;
+  --color-border: rgba(255, 255, 255, 0.08);
+  --color-border-strong: rgba(255, 255, 255, 0.15);
+  /* Acento UI: blanco/gris (contraste), no color de marca */
+  --color-primary-accent: #ffffff;
+  --color-primary-accent-hover: #e5e5e5;
+  --color-primary-accent-muted: rgba(255, 255, 255, 0.1);
+  /* Marca: uso muy secundario */
+  --color-brand-primary: #0053a8;
+  --color-brand-secondary: #ffb900;
+  --font-display: var(--font-poppins, "Poppins"), sans-serif;
+  --font-body: var(--font-poppins, "Poppins"), sans-serif;
+  --section-padding-y: 6rem;
+  --container-max: 1200px;
+  --container-padding: 1.5rem;
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.04);
+}
+
+/* Nuestros base styles en @layer base para que ganen sobre el preflight de Tailwind */
+@layer base {
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    background-color: var(--color-background);
+    color: var(--color-text-primary);
+    font-family: var(--font-body);
+    font-size: 16px;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    overflow-x: hidden;
+    min-height: 100vh;
+    width: 100%;
+  }
+
+  main {
+    display: block;
+    width: 100%;
+    min-height: 100vh;
+  }
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 4px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-background);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-border-strong);
+  border-radius: 2px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--color-text-muted);
+}
+
+/* Utilidades propias */
+@layer components {
+  .font-display {
+    font-family: var(--font-display);
+  }
+  .text-accent {
+    color: var(--color-text-primary);
+  }
+  .text-brand-primary {
+    color: var(--color-brand-primary);
+  }
+  .text-brand-secondary {
+    color: var(--color-brand-secondary);
+  }
+  /* Frase "de seguridad" en CTA */
+  .text-cta-security {
+    color: var(--color-brand-secondary);
+  }
+  .bg-surface {
+    background-color: var(--color-surface);
+  }
+  .bg-surface-elevated {
+    background-color: var(--color-surface-elevated);
+  }
+}
+
+/* Reveal animation base */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+}
+
+/* Bloque light: texto oscuro sobre fondo claro (secciones Capabilities + Process) */
+.section-light-block {
+  --color-text-primary: #0a0a0a;
+  --color-text-secondary: #525252;
+  --color-text-muted: #737373;
+  --color-border: rgba(0, 0, 0, 0.08);
+  --color-border-strong: rgba(0, 0, 0, 0.18);
+  --color-surface: #ffffff;
+  --color-surface-elevated: #f5f5f5;
+  --color-primary-accent: #171717;
+  --color-primary-accent-hover: #262626;
+  --color-primary-accent-muted: rgba(0, 0, 0, 0.06);
+}
+
+/* Títulos de sección: Poppins, uppercase + letter-spacing */
+.section-title {
+  font-family: var(--font-display);
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+}
+
+/* Noise texture overlay */
+.noise::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");
+  pointer-events: none;
+  z-index: 1;
+  opacity: 0.4;
+}
