@@ -92,7 +92,7 @@ export function HeroSection() {
       {/* Contenido centrado — minimalista, el video es protagonista */}
       <div ref={contentRef} className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center">
         <h1 className="font-display font-semibold text-[clamp(1.25rem,3.5vw,1.75rem)] tracking-[0.25em] uppercase text-white mb-4 max-w-xl">
-          Seguridad inteligente para tu empresa o negocio
+          Seguridad inteligente para tu casa empresa o negocio
         </h1>
         <p className="mb-8 max-w-md text-sm font-light tracking-wide md:text-base text-white/80">
           Tecnología AJAX instalada por especialistas en Córdoba
@@ -120,7 +120,7 @@ export function HeroSection() {
       </div>
 
       {/* Stats — pie del hero con count-up */}
-      <div ref={statsRef} className="flex flex-row gap-4 md:gap-16 absolute right-0 left-0 bottom-6 z-10 justify-center items-center text-center">
+      <div ref={statsRef} className="flex absolute right-0 left-0 bottom-6 z-10 flex-row gap-4 justify-center items-center text-center md:gap-16">
         {heroStats.map((stat, i) => {
           const Icon = stat.icon
           const value =

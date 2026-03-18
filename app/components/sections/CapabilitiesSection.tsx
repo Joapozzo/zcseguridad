@@ -4,13 +4,66 @@ import Image from 'next/image'
 import { ShieldAlert, Cctv, Flame, Zap } from 'lucide-react'
 import { Container, Section } from '../ui/Layout'
 
+function CapabilityVideo({
+  src,
+  start,
+  end,
+  alt,
+}: {
+  src: string
+  start: number
+  end: number
+  alt: string
+}) {
+  const videoRef = useRef<HTMLVideoElement>(null)
+
+  useEffect(() => {
+    const video = videoRef.current
+    if (!video) return
+
+    const seekToStart = () => {
+      video.currentTime = start
+    }
+
+    const onTimeUpdate = () => {
+      if (video.currentTime >= end) seekToStart()
+    }
+
+    const onLoadedMetadata = () => {
+      seekToStart()
+      video.play().catch(() => {})
+    }
+
+    video.addEventListener('timeupdate', onTimeUpdate)
+    video.addEventListener('loadedmetadata', onLoadedMetadata)
+    if (video.readyState >= 1) onLoadedMetadata()
+
+    return () => {
+      video.removeEventListener('timeupdate', onTimeUpdate)
+      video.removeEventListener('loadedmetadata', onLoadedMetadata)
+    }
+  }, [start, end])
+
+  return (
+    <video
+      ref={videoRef}
+      src={src}
+      muted
+      playsInline
+      autoPlay
+      className="absolute inset-0 w-full h-full object-cover"
+      aria-label={alt}
+    />
+  )
+}
+
 const capabilities = [
   {
     icon: <ShieldAlert size={28} />,
     title: 'Protección contra intrusiones',
     description: 'Sensores de movimiento, apertura y vibración de alta precisión. Detección perimetral e interior con zonas configurables para máxima cobertura.',
     detail: 'Sensores inalámbricos · Cifrado AES-128 · Anti-jamming',
-    image: '/assets/intrusion.avif',
+    image: '/assets/intrusion.png',
   },
   {
     icon: <Cctv size={28} />,
@@ -32,6 +85,7 @@ const capabilities = [
     description: 'Integración con dispositivos inteligentes para automatizar acciones ante eventos de seguridad. Luces, cerraduras y más desde la misma app.',
     detail: 'Smart home · Cerraduras · Iluminación',
     image: '/assets/mobile.jpg',
+    video: { src: '/videos/mobile.mp4', start: 4, end: 8 },
   },
 ]
 
@@ -71,7 +125,7 @@ export function CapabilitiesSection() {
   return (
     <Section variant="transparent" id="capacidades">
       <Container ref={sectionRef}>
-        <div className="cap-heading opacity-0 text-center mb-12 md:mb-16 max-w-xl mx-auto">
+        <div className="mx-auto mb-12 max-w-xl text-center opacity-0 cap-heading md:mb-16">
           <h2 className="section-title font-display font-extrabold text-[clamp(1.5rem,2.8vw,2.25rem)] leading-tight text-[var(--color-text-primary)] mb-4">
             Todo lo que necesitás,
             <br />
@@ -114,19 +168,28 @@ export function CapabilitiesSection() {
                   </div>
                 </div>
 
-                {/* Image block — orden según alternancia */}
+                {/* Image/Video block — orden según alternancia */}
                 <div
                   className={`relative w-full aspect-[4/3] md:aspect-auto md:h-full min-h-[200px] ${
                     textFirst ? 'md:order-2' : 'md:order-1'
                   } order-2`}
                 >
-                  <Image
-                    src={cap.image}
-                    alt={cap.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+                  {'video' in cap && cap.video ? (
+                    <CapabilityVideo
+                      src={cap.video.src}
+                      start={cap.video.start}
+                      end={cap.video.end}
+                      alt={cap.title}
+                    />
+                  ) : (
+                    <Image
+                      src={cap.image}
+                      alt={cap.title}
+                      fill
+                      className="object-cover"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  )}
                 </div>
               </article>
             )

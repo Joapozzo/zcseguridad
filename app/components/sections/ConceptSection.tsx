@@ -5,7 +5,7 @@ import { Section } from '../ui/Layout'
 
 const pillars = [
   {
-    image: '/assets/alarma.jpg',
+    image: '/assets/alarma.png',
     title: 'Alarmas',
     subtitle: 'Sensores inalámbricos de última generación.',
   },
@@ -77,7 +77,7 @@ export function ConceptSection() {
               Un sistema. Una app. Protección total.
             </h2>
           </div>
-          <p className="mx-auto max-w-xl font-normal tracking-wide text-center text-sm text-black/50 px-4 sm:px-0">
+          <p className="px-4 mx-auto max-w-xl text-sm font-normal tracking-wide text-center text-black/50 sm:px-0">
             AJAX es el sistema de seguridad inalámbrico más avanzado. Instalamos, configuramos y monitoreamos todo por vos.
           </p>
         </div>

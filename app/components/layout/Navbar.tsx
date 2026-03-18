@@ -81,17 +81,17 @@ export function Navbar() {
               <Image
                 src="/logo-positivo.png"
                 alt="ZC Seguridad"
-                width={120}
-                height={32}
-                className="w-auto h-7 transition-opacity sm:h-8 md:h-8 md:hidden"
+                width={140}
+                height={58}
+                className="w-auto h-12 transition-opacity sm:h-10 md:hidden"
                 priority
               />
               <Image
                 src={scrolled ? '/logo.png' : '/logo-positivo.png'}
                 alt="ZC Seguridad"
-                width={120}
-                height={32}
-                className="hidden w-auto h-8 transition-opacity md:block"
+                width={140}
+                height={38}
+                className="hidden w-auto h-10 transition-opacity md:block"
                 priority
               />
             </a>
@@ -148,9 +148,9 @@ export function Navbar() {
             <Image
               src="/logo-positivo.png"
               alt=""
-              width={100}
-              height={28}
-              className="w-auto h-6 opacity-90"
+              width={120}
+              height={34}
+              className="w-auto h-8 opacity-90"
             />
             <button
               type="button"
