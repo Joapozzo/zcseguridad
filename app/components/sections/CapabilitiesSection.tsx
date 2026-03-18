@@ -4,53 +4,14 @@ import Image from 'next/image'
 import { ShieldAlert, Cctv, Flame, Zap } from 'lucide-react'
 import { Container, Section } from '../ui/Layout'
 
-function CapabilityVideo({
-  src,
-  start,
-  end,
-  alt,
-}: {
-  src: string
-  start: number
-  end: number
-  alt: string
-}) {
-  const videoRef = useRef<HTMLVideoElement>(null)
-
-  useEffect(() => {
-    const video = videoRef.current
-    if (!video) return
-
-    const seekToStart = () => {
-      video.currentTime = start
-    }
-
-    const onTimeUpdate = () => {
-      if (video.currentTime >= end) seekToStart()
-    }
-
-    const onLoadedMetadata = () => {
-      seekToStart()
-      video.play().catch(() => {})
-    }
-
-    video.addEventListener('timeupdate', onTimeUpdate)
-    video.addEventListener('loadedmetadata', onLoadedMetadata)
-    if (video.readyState >= 1) onLoadedMetadata()
-
-    return () => {
-      video.removeEventListener('timeupdate', onTimeUpdate)
-      video.removeEventListener('loadedmetadata', onLoadedMetadata)
-    }
-  }, [start, end])
-
+function CapabilityVideo({ src, alt }: { src: string; alt: string }) {
   return (
     <video
-      ref={videoRef}
       src={src}
       muted
       playsInline
       autoPlay
+      loop
       className="absolute inset-0 w-full h-full object-cover"
       aria-label={alt}
     />
@@ -85,7 +46,7 @@ const capabilities = [
     description: 'Integración con dispositivos inteligentes para automatizar acciones ante eventos de seguridad. Luces, cerraduras y más desde la misma app.',
     detail: 'Smart home · Cerraduras · Iluminación',
     image: '/assets/mobile.jpg',
-    video: { src: '/videos/mobile.mp4', start: 4, end: 8 },
+    video: { src: '/videos/mobile.mp4' },
   },
 ]
 
@@ -175,12 +136,7 @@ export function CapabilitiesSection() {
                   } order-2`}
                 >
                   {'video' in cap && cap.video ? (
-                    <CapabilityVideo
-                      src={cap.video.src}
-                      start={cap.video.start}
-                      end={cap.video.end}
-                      alt={cap.title}
-                    />
+                    <CapabilityVideo src={cap.video.src} alt={cap.title} />
                   ) : (
                     <Image
                       src={cap.image}
