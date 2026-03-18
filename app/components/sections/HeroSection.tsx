@@ -15,7 +15,7 @@ type StatConfig = {
 }
 
 const heroStats: StatConfig[] = [
-  { end: 200, prefix: '+', label: 'instalaciones', icon: Home },
+  { end: 1000, prefix: '+', label: 'instalaciones', icon: Home },
   { end: 24, suffix: '/7', label: 'monitoreo', icon: Clock },
   { end: 5, label: 'calificación', icon: Star },
 ]
