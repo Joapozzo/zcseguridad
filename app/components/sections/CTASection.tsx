@@ -75,14 +75,25 @@ export function CTASection() {
           <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-2 lg:gap-12 mb-12">
             <div className="opacity-0 cta-reveal order-2 lg:order-1">
               {submitted ? (
-                <div className="flex flex-col items-center justify-center text-center py-12 bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6">
-                  <div className="w-14 h-14 rounded-full bg-[var(--color-primary-accent-muted)] border border-[var(--color-primary-accent)] flex items-center justify-center mb-4">
+                <div className="flex w-full flex-col items-center justify-center gap-4 text-center bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6 aspect-[4/3] min-h-[240px]">
+                  <div className="w-14 h-14 shrink-0 rounded-full bg-[var(--color-primary-accent-muted)] border border-[var(--color-primary-accent)] flex items-center justify-center">
                     <CheckCircle size={24} className="text-[var(--color-primary-accent)]" />
                   </div>
-                  <h3 className="font-display font-bold text-lg text-[var(--color-text-primary)] mb-2">¡Listo!</h3>
-                  <p className="text-sm text-[var(--color-text-secondary)]">
-                    Tu solicitud fue enviada por WhatsApp. Te responderemos a la brevedad.
-                  </p>
+                  <div className="min-w-0 px-1">
+                    <h3 className="font-display font-bold text-lg text-[var(--color-text-primary)] mb-2">¡Listo!</h3>
+                    <p className="text-sm text-[var(--color-text-secondary)]">
+                      Tu solicitud fue enviada por WhatsApp. Te responderemos a la brevedad.
+                    </p>
+                  </div>
+                  <Button
+                    type="button"
+                    variant="outline"
+                    size="md"
+                    className="shrink-0"
+                    onClick={() => setSubmitted(false)}
+                  >
+                    Volver a enviar otro mensaje
+                  </Button>
                 </div>
               ) : (
                 <form
