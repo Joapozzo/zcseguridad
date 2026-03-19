@@ -5,6 +5,7 @@ import { Home, Clock, Star } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { Button } from '../ui/Button'
 import { useContact } from '@/app/hooks/useContact'
+import { VIDEO_PATHS, mediaVideoUrl } from '@/app/constants/media'
 
 type StatConfig = {
   end: number
@@ -82,7 +83,7 @@ export function HeroSection() {
           className="object-cover absolute inset-0 w-full h-full"
           aria-hidden
         >
-          <source src="/videos/hero.mp4" type="video/mp4" />
+          <source src={mediaVideoUrl(VIDEO_PATHS.hero)} type="video/mp4" />
         </video>
       </div>
 
@@ -92,7 +93,7 @@ export function HeroSection() {
       {/* Contenido centrado — minimalista, el video es protagonista */}
       <div ref={contentRef} className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center">
         <h1 className="font-display font-semibold text-[clamp(1.25rem,3.5vw,1.75rem)] tracking-[0.25em] uppercase text-white mb-4 max-w-xl">
-          Seguridad inteligente para tu casa empresa o negocio
+          Seguridad inteligente para tu casa, empresa o negocio
         </h1>
         <p className="mb-8 max-w-md text-sm font-light tracking-wide md:text-base text-white/80">
           Tecnología AJAX instalada por especialistas en Córdoba

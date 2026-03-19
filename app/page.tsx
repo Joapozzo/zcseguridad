@@ -4,6 +4,7 @@ import { HeroSection } from './components/sections/HeroSection'
 import { ConceptSection } from './components/sections/ConceptSection'
 import { AppSection } from './components/sections/AppSection'
 import { CapabilitiesSection } from './components/sections/CapabilitiesSection'
+import { SuccessVideosSection } from './components/sections/SuccessVideosSection'
 import { ProcessSection } from './components/sections/ProcessSection'
 import { FeaturesBarSection } from './components/sections/FeaturesBarSection'
 import { CTASection } from './components/sections/CTASection'
@@ -19,6 +20,7 @@ export default function Home() {
         <FeaturesBarSection />
         <div className="w-full bg-gradient-to-b from-[#fafafa] via-[#f5f5f5] to-[#f0f0f0] section-light-block">
           <CapabilitiesSection />
+          <SuccessVideosSection />
           <ProcessSection />
         </div>
         <CTASection />

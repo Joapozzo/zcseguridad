@@ -100,7 +100,7 @@ export function CTASection() {
                   <Input
                     id="telefono"
                     label="Teléfono de contacto"
-                    placeholder="Ej: 351 000-0000"
+                    placeholder="Ej: 351 326-8219"
                     type="tel"
                     required
                     value={form.telefono}

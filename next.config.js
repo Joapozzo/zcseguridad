@@ -1,7 +1,10 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
   images: {
-    domains: [],
+    remotePatterns: [
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi/**' },
+      { protocol: 'https', hostname: 'i.ytimg.com', pathname: '/vi_webp/**' },
+    ],
   },
 }
 module.exports = nextConfig

@@ -72,18 +72,18 @@ export function Navbar() {
               </nav>
             </div>
 
-            {/* Logo centrado — mobile: siempre positivo; desktop: positivo sin scroll, normal con scroll */}
+            {/* Logo centrado — mobile: siempre logo azul (original); desktop: positivo sin scroll, normal con scroll */}
             <a
               href="#"
               className="flex absolute top-1/2 left-1/2 items-center -translate-x-1/2 -translate-y-1/2"
               aria-label="ZC Seguridad"
             >
               <Image
-                src="/logo-positivo.png"
+                src="/logo.png"
                 alt="ZC Seguridad"
-                width={140}
-                height={58}
-                className="w-auto h-12 transition-opacity sm:h-10 md:hidden"
+                width={100}
+                height={27}
+                className="h-7 w-auto max-h-7 transition-opacity sm:h-8 sm:max-h-8 md:hidden"
                 priority
               />
               <Image
@@ -146,11 +146,11 @@ export function Navbar() {
           {/* Cabecera del menú */}
           <div className="flex justify-between items-center px-4 h-14 border-b border-white/5 sm:h-16 sm:px-5">
             <Image
-              src="/logo-positivo.png"
+              src="/logo.png"
               alt=""
-              width={120}
-              height={34}
-              className="w-auto h-8 opacity-90"
+              width={100}
+              height={27}
+              className="h-7 w-auto max-h-7 opacity-95 sm:h-8 sm:max-h-8"
             />
             <button
               type="button"

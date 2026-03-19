@@ -2,6 +2,7 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import { ShieldAlert, Cctv, Flame, Zap } from 'lucide-react'
+import { VIDEO_PATHS, mediaVideoUrl } from '@/app/constants/media'
 import { Container, Section } from '../ui/Layout'
 
 function CapabilityVideo({ src, alt }: { src: string; alt: string }) {
@@ -46,7 +47,7 @@ const capabilities = [
     description: 'Integración con dispositivos inteligentes para automatizar acciones ante eventos de seguridad. Luces, cerraduras y más desde la misma app.',
     detail: 'Smart home · Cerraduras · Iluminación',
     image: '/assets/mobile.jpg',
-    video: { src: '/videos/mobile.mp4' },
+    video: { path: VIDEO_PATHS.mobile },
   },
 ]
 
@@ -136,7 +137,7 @@ export function CapabilitiesSection() {
                   } order-2`}
                 >
                   {'video' in cap && cap.video ? (
-                    <CapabilityVideo src={cap.video.src} alt={cap.title} />
+                    <CapabilityVideo src={mediaVideoUrl(cap.video.path)} alt={cap.title} />
                   ) : (
                     <Image
                       src={cap.image}

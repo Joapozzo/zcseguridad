@@ -2,11 +2,12 @@
 export const CONTACT = {
   address: 'Maestro Vidal 998, Córdoba',
   addressForMap: 'Maestro Vidal 998, Córdoba, Argentina',
-  phone: '0810-268-2626',
+  phone: '+54 9 351 326-8219',
   /** Sin espacios ni + para wa.me y tel: */
-  phoneRaw: '08102682626',
-  whatsappNumber: '543510000000',
-  whatsappLink: 'https://wa.me/543510000000?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20un%20diagn%C3%B3stico%20de%20seguridad.',
+  phoneRaw: '5493513268219',
+  whatsappNumber: '5493513268219',
+  whatsappLink:
+    'https://wa.me/5493513268219?text=Hola%2C%20me%20gustar%C3%ADa%20solicitar%20un%20diagn%C3%B3stico%20de%20seguridad.',
   email: 'info@zcingenieria.com',
   instagram: 'https://instagram.com/zcseguridad',
   instagramHandle: '@zcseguridad',
