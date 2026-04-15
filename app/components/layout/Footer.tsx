@@ -10,7 +10,7 @@ export function Footer() {
         className="flex-1 px-6 py-12 mx-auto w-full lg:px-8 lg:py-16"
         style={{ maxWidth: 'var(--container-max)' }}
       >
-        <div className="grid grid-cols-1 gap-10 md:grid-cols-3 md:gap-12">
+        <div className="grid grid-cols-1 gap-10 md:grid-cols-5 md:gap-4 lg:gap-8 xl:gap-12">
           {/* Brand: logo + descripción */}
           <div className="flex flex-col gap-4 items-start">
             <Image
@@ -18,10 +18,9 @@ export function Footer() {
               alt="ZC Seguridad"
               width={200}
               height={200}
-              className="object-contain object-left w-auto h-12 sm:h-16 md:h-20"
+              className="object-contain object-left w-auto h-12 sm:h-16 md:h-20 shrink-0"
             />
             <p className="text-[11px] text-[var(--color-text-muted)]">Córdoba, Argentina</p>
-
           </div>
 
           {/* Navegación */}
@@ -57,6 +56,30 @@ export function Footer() {
                 {CONTACT.instagramHandle}
               </a>
             </div>
+          </div>
+
+          {/* Autorización AFIP (blanco) */}
+          <div className="flex flex-col items-start min-w-0">
+            <Image
+              src="/ajax_auth.png"
+              alt="Autorización electrónica"
+              width={400}
+              height={80}
+              sizes="(max-width: 768px) 100vw, 18vw"
+              className="object-contain object-left w-full max-w-full h-12 sm:h-16 md:h-20 shrink-0 brightness-0 invert"
+            />
+          </div>
+
+          {/* CESEC (blanco) */}
+          <div className="flex flex-col items-start min-w-0">
+            <Image
+              src="/logo-cesec.png"
+              alt="Logo CESEC — Cámara de Empresas de Seguridad Electrónica del Centro"
+              width={360}
+              height={140}
+              sizes="(max-width: 768px) 100vw, 18vw"
+              className="object-contain object-left w-full max-w-full h-12 sm:h-14 md:h-20 shrink-0 brightness-0 invert"
+            />
           </div>
         </div>
       </div>
