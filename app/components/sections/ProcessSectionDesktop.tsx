@@ -2,7 +2,8 @@
 import { useEffect, useRef } from 'react'
 import { Button } from '../ui/Button'
 import {
-  steps,
+  type ProcessContent,
+  securityProcessContent,
   LINE_DURATION,
   STEP_ACTIVATE_TIMES,
   INITIAL_DELAY,
@@ -16,11 +17,16 @@ import {
   addStepCompletedTweens,
 } from './processSteps'
 
-export function ProcessSectionDesktop() {
+export function ProcessSectionDesktop({
+  content = securityProcessContent,
+}: {
+  content?: ProcessContent
+}) {
   const containerRef = useRef<HTMLDivElement>(null)
   const lineRef = useRef<HTMLDivElement>(null)
   const lineGlowRef = useRef<HTMLDivElement>(null)
   const gsapRef = useRef<typeof import('gsap').gsap | null>(null)
+  const { steps, ctaPrompt, ctaLabel, ctaHref = '#contacto' } = content
 
   const handleStepMouseEnter = (index: number) => {
     const g = gsapRef.current
@@ -72,7 +78,6 @@ export function ProcessSectionDesktop() {
 
       const runLoop = () => {
         const tl = gsap.timeline({ repeat: -1 })
-        // Line grows over full duration
         tl.to(
           [line, lineGlow].filter(Boolean),
           { scaleX: 1, duration: LINE_DURATION, ease: 'none', transformOrigin: 'left center' },
@@ -86,7 +91,6 @@ export function ProcessSectionDesktop() {
         addStepCompletedTweens(tl, stepItems[2], stepIcons[2], stepNumbers[2], stepTitles[2], STEP_ACTIVATE_TIMES[3])
         addStepActiveTweens(tl, stepItems[3], stepIcons[3], stepNumbers[3], stepTitles[3], STEP_ACTIVATE_TIMES[3])
         addStepCompletedTweens(tl, stepItems[3], stepIcons[3], stepNumbers[3], stepTitles[3], LINE_DURATION)
-        // Reset at very end of cycle (invisible) so repeat starts clean and step 0 at 0 is not overwritten
         tl.set([line, lineGlow].filter(Boolean), { scaleX: 0, transformOrigin: 'left center' }, '>-0.01')
         tl.set(stepItems, { opacity: OPACITY_COMPLETED }, '>-0.01')
         tl.set(stepIcons, { scale: 1, borderColor: BORDER_DEFAULT, boxShadow: 'none' }, '>-0.01')
@@ -95,7 +99,7 @@ export function ProcessSectionDesktop() {
       gsap.delayedCall(INITIAL_DELAY, runLoop)
     }
     init()
-  }, [])
+  }, [steps])
 
   return (
     <div ref={containerRef} className="w-full px-6 lg:px-8">
@@ -110,7 +114,8 @@ export function ProcessSectionDesktop() {
           className="absolute top-8 left-0 w-full h-px pointer-events-none"
           style={{
             transformOrigin: 'left center',
-            background: 'linear-gradient(to right, transparent 0%, transparent 85%, var(--color-primary-accent) 92%, var(--color-primary-accent) 100%)',
+            background:
+              'linear-gradient(to right, transparent 0%, transparent 85%, var(--color-primary-accent) 92%, var(--color-primary-accent) 100%)',
             opacity: 0.8,
           }}
         />
@@ -136,9 +141,9 @@ export function ProcessSectionDesktop() {
           ))}
         </div>
         <div className="mt-16 flex flex-col items-center gap-4">
-          <p className="text-sm text-[var(--color-text-muted)]">¿Tenés dudas sobre qué sistema necesitás?</p>
-          <Button href="#contacto" variant="outline" size="sm">
-            Consultá con un asesor
+          <p className="text-sm text-[var(--color-text-muted)]">{ctaPrompt}</p>
+          <Button href={ctaHref} variant="outline" size="sm">
+            {ctaLabel}
           </Button>
         </div>
       </div>

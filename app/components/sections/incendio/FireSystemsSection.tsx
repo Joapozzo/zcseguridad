@@ -39,7 +39,6 @@ const systems = [
   },
 ]
 
-const HOVER_DELAY_MS = 100
 const PREVIEW_FADE_MS = 280
 
 /** Progress needed to advance INTO step 1/2/3 (holds step 0 longer). */
@@ -50,42 +49,28 @@ const STEP_LEAVE = [0, 0.22, 0.47, 0.72] as const
 export function FireSystemsSection() {
   const trackRef = useRef<HTMLDivElement>(null)
   const stickyRef = useRef<HTMLDivElement>(null)
-  const hoverTimer = useRef<ReturnType<typeof setTimeout> | null>(null)
   const activeStepRef = useRef(0)
   const [active, setActive] = useState(0)
-  const [hovered, setHovered] = useState<number | null>(null)
   const [display, setDisplay] = useState(0)
   const [previewVisible, setPreviewVisible] = useState(true)
 
-  const spotlight = hovered ?? active
   const preview = systems[display]
   const PreviewIcon = preview.icon
 
   useEffect(() => {
-    if (spotlight === display) {
+    if (active === display) {
       setPreviewVisible(true)
       return
     }
 
     setPreviewVisible(false)
     const t = setTimeout(() => {
-      setDisplay(spotlight)
+      setDisplay(active)
       setPreviewVisible(true)
     }, PREVIEW_FADE_MS)
 
     return () => clearTimeout(t)
-  }, [spotlight, display])
-
-  useEffect(() => {
-    return () => {
-      if (hoverTimer.current) clearTimeout(hoverTimer.current)
-    }
-  }, [])
-
-  const scheduleHover = (next: number | null) => {
-    if (hoverTimer.current) clearTimeout(hoverTimer.current)
-    hoverTimer.current = setTimeout(() => setHovered(next), HOVER_DELAY_MS)
-  }
+  }, [active, display])
 
   useEffect(() => {
     let disposed = false
@@ -233,17 +218,15 @@ export function FireSystemsSection() {
               <div className="flex flex-col border-t border-[var(--color-border)] lg:h-full">
                 {systems.map((item, i) => {
                   const Icon = item.icon
-                  const isOn = spotlight === i
+                  const isOn = active === i
                   return (
                     <article
                       key={item.number}
                       className={`sys-panel opacity-0 group border-b border-[var(--color-border)] transition-[padding,min-height,background-color,border-color] duration-500 ease-in-out cursor-default flex flex-col justify-center ${
                         isOn
                           ? 'min-h-[9.5rem] md:min-h-[11rem] py-12 md:py-14 bg-[var(--color-surface)]/40 border-[var(--color-border-strong)]'
-                          : 'min-h-[6.5rem] md:min-h-[7.5rem] py-8 md:py-10 hover:bg-[var(--color-surface)]/20'
+                          : 'min-h-[6.5rem] md:min-h-[7.5rem] py-8 md:py-10'
                       }`}
-                      onMouseEnter={() => scheduleHover(i)}
-                      onMouseLeave={() => scheduleHover(null)}
                     >
                       <div className="flex gap-6 md:gap-8 items-start">
                         <div

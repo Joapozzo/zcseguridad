@@ -2,7 +2,8 @@
 import { useEffect, useRef } from 'react'
 import { Button } from '../ui/Button'
 import {
-  steps,
+  type ProcessContent,
+  securityProcessContent,
   STEP_ACTIVATE_FRACTIONS,
   OPACITY_COMPLETED,
   addStepActiveTweens,
@@ -12,8 +13,15 @@ import {
 
 const DURATION = 1 // timeline duration for scrub (progress 0–1)
 
-export function ProcessSectionMobile({ sectionRef }: { sectionRef: React.RefObject<HTMLDivElement | null> }) {
+export function ProcessSectionMobile({
+  sectionRef,
+  content = securityProcessContent,
+}: {
+  sectionRef: React.RefObject<HTMLDivElement | null>
+  content?: ProcessContent
+}) {
   const containerRef = useRef<HTMLDivElement>(null)
+  const { steps, ctaPrompt, ctaLabel, ctaHref = '#contacto' } = content
 
   useEffect(() => {
     const section = sectionRef.current
@@ -69,7 +77,7 @@ export function ProcessSectionMobile({ sectionRef }: { sectionRef: React.RefObje
       addStepDotTweens(tl, stepDots[3], false, 1)
     }
     init()
-  }, [sectionRef])
+  }, [sectionRef, steps])
 
   return (
     <div ref={containerRef} className="w-full px-6 lg:px-8">
@@ -83,10 +91,7 @@ export function ProcessSectionMobile({ sectionRef }: { sectionRef: React.RefObje
             {steps.map((step, i) => {
               const isLeft = i % 2 === 0
               return (
-                <div
-                  key={step.number}
-                  className="step-item flex flex-row w-full relative"
-                >
+                <div key={step.number} className="step-item flex flex-row w-full relative">
                   {isLeft ? null : <div className="flex-1 min-w-0" aria-hidden />}
                   <div
                     className={`w-[45%] shrink-0 flex flex-col ${
@@ -106,7 +111,9 @@ export function ProcessSectionMobile({ sectionRef }: { sectionRef: React.RefObje
                     <h3 className="step-title section-title font-display font-bold text-base mb-3 tracking-widest text-[var(--color-text-primary)]">
                       {step.title}
                     </h3>
-                    <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">{step.description}</p>
+                    <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                      {step.description}
+                    </p>
                   </div>
                   {isLeft ? <div className="flex-1 min-w-0" aria-hidden /> : null}
                   <div
@@ -119,9 +126,9 @@ export function ProcessSectionMobile({ sectionRef }: { sectionRef: React.RefObje
           </div>
         </div>
         <div className="mt-16 flex flex-col items-center gap-4">
-          <p className="text-sm text-[var(--color-text-muted)]">¿Tenés dudas sobre qué sistema necesitás?</p>
-          <Button href="#contacto" variant="outline" size="sm">
-            Consultá con un asesor
+          <p className="text-sm text-[var(--color-text-muted)]">{ctaPrompt}</p>
+          <Button href={ctaHref} variant="outline" size="sm">
+            {ctaLabel}
           </Button>
         </div>
       </div>

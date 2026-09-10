@@ -3,8 +3,9 @@ import { useEffect, useRef } from 'react'
 import { Container, Section } from '../ui/Layout'
 import { ProcessSectionDesktop } from './ProcessSectionDesktop'
 import { ProcessSectionMobile } from './ProcessSectionMobile'
+import { type ProcessContent, securityProcessContent } from './processSteps'
 
-export function ProcessSection() {
+export function ProcessSection({ content = securityProcessContent }: { content?: ProcessContent }) {
   const sectionRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
@@ -29,21 +30,17 @@ export function ProcessSection() {
         <Container className="pb-8">
           <div className="process-heading text-center mb-8 max-w-xl mx-auto">
             <h2 className="section-title font-display font-extrabold text-[clamp(1.5rem,2.8vw,2.25rem)] leading-tight text-[var(--color-text-primary)] mb-4">
-              Simple, prolijo
-              <br />
-              <span className="text-[var(--color-text-secondary)]">y sin complicaciones</span>
+              {content.title}
             </h2>
-            <p className="text-[var(--color-text-secondary)]">
-              De la consulta a la instalación, acompañamos cada paso del proceso.
-            </p>
+            <p className="text-[var(--color-text-secondary)]">{content.subtitle}</p>
           </div>
         </Container>
 
         <div className="hidden md:block">
-          <ProcessSectionDesktop />
+          <ProcessSectionDesktop content={content} />
         </div>
         <div className="md:hidden">
-          <ProcessSectionMobile sectionRef={sectionRef} />
+          <ProcessSectionMobile sectionRef={sectionRef} content={content} />
         </div>
       </div>
     </Section>
