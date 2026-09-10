@@ -63,3 +63,31 @@ export function Select({ label, options, className = '', id, ...props }: SelectP
     </div>
   )
 }
+
+interface TextareaProps extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {
+  label?: string
+}
+
+export function Textarea({ label, className = '', id, ...props }: TextareaProps) {
+  return (
+    <div className="flex flex-col gap-1.5">
+      {label && (
+        <label htmlFor={id} className="text-sm font-medium text-[var(--color-text-secondary)] font-display">
+          {label}
+        </label>
+      )}
+      <textarea
+        id={id}
+        className={`
+          w-full px-4 py-3 rounded-[var(--radius-sm)] text-sm min-h-[100px] resize-y
+          bg-[var(--color-surface-elevated)] border border-[var(--color-border)]
+          text-[var(--color-text-primary)] placeholder-[var(--color-text-muted)]
+          focus:outline-none focus:border-[var(--color-text-muted)] focus:ring-1 focus:ring-[var(--color-border-strong)]
+          transition-all duration-200
+          ${className}
+        `}
+        {...props}
+      />
+    </div>
+  )
+}

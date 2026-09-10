@@ -1,7 +1,8 @@
 'use client'
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
-import { ShieldAlert, Cctv, Flame, Zap } from 'lucide-react'
+import Link from 'next/link'
+import { ShieldAlert, Cctv, Flame, Zap, ArrowUpRight } from 'lucide-react'
 import { VIDEO_PATHS, mediaVideoUrl } from '@/app/constants/media'
 import { Container, Section } from '../ui/Layout'
 
@@ -37,9 +38,11 @@ const capabilities = [
   {
     icon: <Flame size={28} />,
     title: 'Detección de incendios',
-    description: 'Detectores de humo y temperatura con alarma sonora y notificación inmediata. Integrados al panel principal para respuesta coordinada.',
-    detail: 'Detector de humo · Sensor de temperatura',
+    description:
+      'Proyecto e instalación de sistemas de detección y alarma de incendio en Córdoba: detectores, centrales y puesta en marcha para edificios e industrias.',
+    detail: 'Ingeniería · INIM · Autocall · Simplex',
     image: '/assets/fire.avif',
+    href: '/incendios',
   },
   {
     icon: <Zap size={28} />,
@@ -128,6 +131,15 @@ export function CapabilitiesSection() {
                       </span>
                     ))}
                   </div>
+                  {'href' in cap && cap.href ? (
+                    <Link
+                      href={cap.href}
+                      className="inline-flex items-center gap-1.5 mt-5 text-sm font-medium text-[var(--color-text-primary)] hover:opacity-70 transition-opacity"
+                    >
+                      Detección de incendios en Córdoba
+                      <ArrowUpRight size={16} />
+                    </Link>
+                  ) : null}
                 </div>
 
                 {/* Image/Video block — orden según alternancia */}

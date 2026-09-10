@@ -44,11 +44,13 @@ export const META = {
     'AJAX Systems Argentina',
     'barrios privados Córdoba',
     'empresa instaladora alarmas',
+    'detección de incendios Córdoba',
   ] as const,
   /** 1200×630 JPG/PNG en /public (previews en WhatsApp, Meta, LinkedIn) */
   ogImage: '/og-image.jpg',
   ogImageAlt:
     'ZC Seguridad — sistemas de alarma y videovigilancia AJAX en Córdoba',
+  logo: '/logo-positivo.png',
   siteUrl: 'https://zcseguridad.com',
   locale: 'es_AR',
   language: 'es-AR',

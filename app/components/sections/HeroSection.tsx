@@ -5,6 +5,7 @@ import { Home, Clock, Star } from 'lucide-react'
 import { FaWhatsapp } from 'react-icons/fa'
 import { Button } from '../ui/Button'
 import { useContact } from '@/app/hooks/useContact'
+import { useHeroReveal } from '@/app/hooks/useHeroReveal'
 import { VIDEO_PATHS, mediaVideoUrl } from '@/app/constants/media'
 
 type StatConfig = {
@@ -27,23 +28,13 @@ export function HeroSection() {
   const statsRef = useRef<HTMLDivElement>(null)
   const [displayValues, setDisplayValues] = useState<number[]>(heroStats.map(() => 0))
 
+  useHeroReveal(contentRef)
+
   useEffect(() => {
     let mounted = true
     const run = async () => {
       const { gsap } = await import('gsap')
-
-      const content = contentRef.current
-      const statsWrap = statsRef.current
-      if (!content || !statsWrap || !mounted) return
-
-      const title = content.querySelector('h1')
-      const subtitle = content.querySelector('p')
-      const buttons = content.querySelector('div:last-child')
-
-      gsap.set([title, subtitle, buttons], { opacity: 0, y: 24 })
-      gsap.to(title, { opacity: 1, y: 0, duration: 0.6, delay: 0.2, ease: 'power2.out' })
-      gsap.to(subtitle, { opacity: 1, y: 0, duration: 0.6, delay: 0.35, ease: 'power2.out' })
-      gsap.to(buttons, { opacity: 1, y: 0, duration: 0.6, delay: 0.5, ease: 'power2.out' })
+      if (!statsRef.current || !mounted) return
 
       const startDelay = 0.7
       const countDuration = 1.4
@@ -92,13 +83,13 @@ export function HeroSection() {
 
       {/* Contenido centrado — minimalista, el video es protagonista */}
       <div ref={contentRef} className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center">
-        <h1 className="font-display font-semibold text-[clamp(1.25rem,3.5vw,1.75rem)] tracking-[0.25em] uppercase text-white mb-4 max-w-xl">
-          Seguridad inteligente para tu casa, empresa o negocio
+        <h1 className="hero-reveal font-display font-semibold text-[clamp(1.25rem,3.5vw,1.75rem)] tracking-[0.25em] uppercase text-white mb-4 max-w-xl">
+          Alarmas y seguridad inteligente para tu casa, empresa o negocio
         </h1>
-        <p className="mb-8 max-w-md text-sm font-light tracking-wide md:text-base text-white/80">
+        <p className="hero-reveal mb-8 max-w-md text-sm font-light tracking-wide md:text-base text-white/80">
           Tecnología AJAX instalada por especialistas en Córdoba
         </p>
-        <div className="flex flex-col gap-3 items-center w-full max-w-sm sm:flex-row sm:w-auto sm:max-w-none">
+        <div className="hero-reveal flex flex-col gap-3 items-center w-full max-w-sm sm:flex-row sm:w-auto sm:max-w-none">
           <Button
             variant="primary"
             size="md"

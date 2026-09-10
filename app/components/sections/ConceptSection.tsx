@@ -68,16 +68,13 @@ export function ConceptSection() {
     <Section variant="light" id="sistema" className="flex flex-col p-0 min-h-screen bg-white">
       <div ref={sectionRef} className="w-full bg-white flex flex-col min-h-[100vh]">
         {/* Título full width, fondo blanco — minimalista */}
-        <div className="py-20 w-full bg-white opacity-0 concept-title shrink-0 lg:py-20">
-          <div className="flex gap-3 justify-center items-center mb-2">
-            <h2
-              className="font-display font-semibold text-[clamp(1.125rem,2.5vw,1.5rem)] text-black text-center tracking-[0.2em] uppercase"
-              style={{ letterSpacing: '0.2em' }}
-            >
+        <div className="concept-title w-full shrink-0 bg-white px-6 py-20 opacity-0 sm:px-8 lg:py-20">
+          <div className="mb-2 flex items-center justify-center gap-3">
+            <h2 className="text-center font-display text-[clamp(1.125rem,2.5vw,1.5rem)] font-semibold tracking-[0.12em] text-black uppercase sm:tracking-[0.2em]">
               Un sistema. Una app. Protección total.
             </h2>
           </div>
-          <p className="px-4 mx-auto max-w-xl text-sm font-normal tracking-wide text-center text-black/50 sm:px-0">
+          <p className="mx-auto max-w-xl px-1 text-center text-sm font-normal tracking-wide text-black/50 sm:px-0">
             AJAX es el sistema de seguridad inalámbrico más avanzado. Instalamos, configuramos y monitoreamos todo por vos.
           </p>
         </div>
