@@ -155,7 +155,8 @@ export function CapabilitiesSection() {
                       src={cap.image}
                       alt={cap.title}
                       fill
-                      className="object-cover"
+                      quality={90}
+                      className="object-cover object-center"
                       sizes="(max-width: 768px) 100vw, 50vw"
                     />
                   )}

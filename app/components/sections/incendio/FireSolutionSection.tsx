@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef } from 'react'
-import Image from 'next/image'
+import { InimVisual, type InimVisualKind } from './InimVisual'
 import { Container, Section } from '../../ui/Layout'
 
 const pillars = [
@@ -10,32 +10,28 @@ const pillars = [
     title: 'Proyecto e ingeniería',
     description:
       'Analizamos la obra, definimos la tecnología y la ubicación de los dispositivos, y elaboramos la documentación técnica.',
-    image: '/assets/outdoor.jpg',
-    imageAlt: 'Relevamiento y proyecto de detección de incendio',
+    visual: 'engineering' as InimVisualKind,
   },
   {
     number: '02',
     title: 'Provisión de equipamiento',
     description:
       'Seleccionamos y proveemos centrales, detectores, módulos, avisadores y accesorios adecuados para cada proyecto.',
-    image: '/assets/fire.avif',
-    imageAlt: 'Equipamiento de detección de incendio',
+    visual: 'equipment' as InimVisualKind,
   },
   {
     number: '03',
     title: 'Instalación y programación',
     description:
       'Realizamos la instalación, el conexionado, la configuración y la programación del sistema.',
-    image: '/assets/alarma.jpg',
-    imageAlt: 'Instalación de sistema de alarma e incendio',
+    visual: 'studio' as InimVisualKind,
   },
   {
     number: '04',
     title: 'Puesta en marcha',
     description:
       'Verificamos el funcionamiento eléctrico y operativo, capacitamos al equipo y entregamos el sistema listo para operar.',
-    image: '/assets/camaras.png',
-    imageAlt: 'Puesta en marcha y entrega del sistema',
+    visual: 'app' as InimVisualKind,
   },
 ]
 
@@ -162,7 +158,7 @@ export function FireSolutionSection() {
             className="pointer-events-none absolute top-0 bottom-0 left-3 z-0 w-px bg-[var(--color-border)] md:left-1/2 md:-translate-x-1/2"
             aria-hidden
           >
-            <div className="sol-line-fill absolute inset-0 origin-top scale-y-0 bg-[var(--color-primary-accent)]" />
+            <div className="sol-line-fill absolute inset-0 origin-top scale-y-0 bg-[var(--color-fire-ember)]" />
           </div>
 
           <ol className="relative z-10 flex flex-col gap-14 md:gap-24">
@@ -180,27 +176,17 @@ export function FireSolutionSection() {
                     className="sol-node absolute z-20 top-5 left-3 -translate-x-1/2 md:left-1/2 md:top-1/2 md:-translate-y-1/2 flex h-6 w-6 items-center justify-center"
                     aria-hidden
                   >
-                    <span className="absolute inset-0 rounded-full border border-[var(--color-primary-accent)]/40 bg-[var(--color-background)]" />
-                    <span className="relative h-2 w-2 rounded-full bg-[var(--color-primary-accent)] shadow-[0_0_12px_2px_rgba(255,255,255,0.35)]" />
+                    <span className="absolute inset-0 rounded-full border border-[var(--color-fire-ember)]/45 bg-[var(--color-background)]" />
+                    <span className="relative h-2 w-2 rounded-full bg-[var(--color-fire-ember)] shadow-[0_0_14px_2px_var(--color-fire-ember-glow)]" />
                   </span>
 
                   {/* Media */}
                   <div
-                    className={`sol-media relative overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] aspect-[16/10] md:aspect-[4/3] ${
+                    className={`sol-media relative aspect-[16/10] md:aspect-[4/3] ${item.visual === 'engineering' ? 'overflow-hidden rounded-[var(--radius-lg)]' : ''} ${
                       imageLeft ? 'md:order-1' : 'md:order-2'
                     }`}
                   >
-                    <Image
-                      src={item.image}
-                      alt={item.imageAlt}
-                      fill
-                      className="object-cover transition-transform duration-700 ease-out hover:scale-105"
-                      sizes="(max-width: 768px) 100vw, 42vw"
-                    />
-                    <div
-                      className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent pointer-events-none"
-                      aria-hidden
-                    />
+                    <InimVisual kind={item.visual} />
                   </div>
 
                   {/* Copy */}

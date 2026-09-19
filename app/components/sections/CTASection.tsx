@@ -140,8 +140,21 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                     isFire ? 'min-h-[280px]' : 'aspect-[4/3] min-h-[240px]'
                   }`}
                 >
-                  <div className="w-14 h-14 shrink-0 rounded-full bg-[var(--color-primary-accent-muted)] border border-[var(--color-primary-accent)] flex items-center justify-center">
-                    <CheckCircle size={24} className="text-[var(--color-primary-accent)]" />
+                  <div
+                    className={`w-14 h-14 shrink-0 rounded-full flex items-center justify-center ${
+                      isFire
+                        ? 'bg-[var(--color-fire-ember-muted)] border border-[var(--color-fire-ember)]'
+                        : 'bg-[var(--color-primary-accent-muted)] border border-[var(--color-primary-accent)]'
+                    }`}
+                  >
+                    <CheckCircle
+                      size={24}
+                      className={
+                        isFire
+                          ? 'text-[var(--color-fire-ember)]'
+                          : 'text-[var(--color-primary-accent)]'
+                      }
+                    />
                   </div>
                   <div className="min-w-0 px-1">
                     <h3 className="font-display font-bold text-lg text-[var(--color-text-primary)] mb-2">
@@ -239,7 +252,11 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                     </label>
                     <label
                       htmlFor="fire-planos"
-                      className="flex items-center gap-3 px-4 py-3 rounded-[var(--radius-sm)] border border-dashed border-[var(--color-border)] bg-[var(--color-surface-elevated)] cursor-pointer hover:border-[var(--color-text-muted)] transition-colors"
+                      className={`flex items-center gap-3 px-4 py-3 rounded-[var(--radius-sm)] border border-dashed bg-[var(--color-surface-elevated)] cursor-pointer transition-colors ${
+                        isFire
+                          ? 'border-[var(--color-border)] hover:border-[var(--color-fire-ember)]/60'
+                          : 'border-[var(--color-border)] hover:border-[var(--color-text-muted)]'
+                      }`}
                     >
                       <Paperclip size={16} className="text-[var(--color-text-muted)] shrink-0" />
                       <span className="text-sm text-[var(--color-text-muted)] truncate">
@@ -256,7 +273,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                       />
                     </label>
                   </div>
-                  <Button type="submit" variant="primary" size="lg" className="justify-center w-full group">
+                  <Button type="submit" variant="fire" size="lg" className="justify-center w-full group">
                     Enviar consulta
                     <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                   </Button>

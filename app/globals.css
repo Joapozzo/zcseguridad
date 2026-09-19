@@ -2,7 +2,8 @@
 @config "../tailwind.config.js";
 
 /* Variables primero para que existan antes de cualquier capa */
-/* Paleta: negro/blanco como base. Marca azul/amarillo solo uso secundario. Sin rojo. */
+/* Paleta: negro/blanco como base. Marca azul/amarillo solo uso secundario.
+   Ember (incendio) solo en .page-incendios — no en el sitio general. */
 :root {
   --color-background: #000000;
   --color-surface: #0a0a0a;
@@ -30,6 +31,14 @@
   --radius-md: 12px;
   --radius-lg: 20px;
   --shadow-glow: 0 0 60px rgba(255, 255, 255, 0.04);
+}
+
+/* Acento cobre/ámbar quemado — solo /incendios */
+.page-incendios {
+  --color-fire-ember: #c45c26;
+  --color-fire-ember-soft: rgba(196, 92, 38, 0.72);
+  --color-fire-ember-muted: rgba(196, 92, 38, 0.15);
+  --color-fire-ember-glow: rgba(180, 55, 25, 0.35);
 }
 
 /* Nuestros base styles en @layer base para que ganen sobre el preflight de Tailwind */

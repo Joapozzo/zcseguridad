@@ -3,6 +3,7 @@
 import { useEffect, useRef, useState } from 'react'
 import { LayoutGrid, Radio, GitBranch, Bell } from 'lucide-react'
 import { Container, Section } from '../../ui/Layout'
+import { InimVisual, type InimVisualKind } from './InimVisual'
 
 const systems = [
   {
@@ -12,6 +13,7 @@ const systems = [
     description:
       'Sectorización por zonas cuando la escala del proyecto se resuelve de forma eficiente sin identificación punto a punto.',
     icon: LayoutGrid,
+    visual: 'smartline' as InimVisualKind,
   },
   {
     number: '02',
@@ -20,6 +22,7 @@ const systems = [
     description:
       'Identificación individual de cada dispositivo, mayor capacidad de programación e integración con otros sistemas del edificio.',
     icon: Radio,
+    visual: 'previdia' as InimVisualKind,
   },
   {
     number: '03',
@@ -28,6 +31,7 @@ const systems = [
     description:
       'Intervenimos sobre sistemas en operación para ampliar, modernizar o reemplazar sin interrumpir la protección.',
     icon: GitBranch,
+    visual: 'module' as InimVisualKind,
   },
   {
     number: '04',
@@ -36,6 +40,7 @@ const systems = [
     description:
       'Avisadores, señalización y vínculo con detección, control de acceso u otros sistemas según el proyecto.',
     icon: Bell,
+    visual: 'sounder' as InimVisualKind,
   },
 ]
 
@@ -55,7 +60,6 @@ export function FireSystemsSection() {
   const [previewVisible, setPreviewVisible] = useState(true)
 
   const preview = systems[display]
-  const PreviewIcon = preview.icon
 
   useEffect(() => {
     if (active === display) {
@@ -127,7 +131,7 @@ export function FireSystemsSection() {
 
       // Natural scroll: tall track + sticky panel (no GSAP pin / no brake).
       matchMedia.add(
-        '(prefers-reduced-motion: no-preference) and (min-height: 600px)',
+        '(prefers-reduced-motion: no-preference) and (min-height: 600px) and (min-width: 1024px)',
         () => {
           playIntro()
 
@@ -144,7 +148,7 @@ export function FireSystemsSection() {
       )
 
       matchMedia.add(
-        '(prefers-reduced-motion: reduce), (max-height: 599px)',
+        '(prefers-reduced-motion: reduce), (max-height: 599px), (max-width: 1023px)',
         () => {
           playIntro()
 
@@ -173,11 +177,11 @@ export function FireSystemsSection() {
       {/* Tall track = scroll distance; sticky keeps UI in view without pin spacer jumps. */}
       <div
         ref={trackRef}
-        className="relative min-h-dvh [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)]:min-h-[340vh]"
+        className="relative min-h-dvh [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:1024px)]:min-h-[340vh]"
       >
         <div
           ref={stickyRef}
-          className="flex min-h-dvh flex-col justify-center [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)]:sticky [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)]:top-0"
+          className="flex min-h-dvh flex-col justify-center [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:1024px)]:sticky [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:1024px)]:top-0"
         >
           <Container className="py-20 lg:py-28">
             <div className="grid grid-cols-1 gap-12 lg:grid-cols-[minmax(0,0.9fr)_minmax(0,1.35fr)] lg:gap-14 xl:gap-20 lg:items-stretch">
@@ -198,20 +202,7 @@ export function FireSystemsSection() {
                     previewVisible ? 'opacity-100' : 'opacity-0'
                   }`}
                 >
-                  <span className="font-display text-6xl xl:text-7xl font-semibold tracking-tight text-[var(--color-text-primary)]/15 tabular-nums block leading-none mb-4">
-                    {preview.number}
-                  </span>
-                  <PreviewIcon
-                    size={40}
-                    strokeWidth={1.25}
-                    className="text-[var(--color-text-primary)] mb-4 transition-transform duration-500 ease-in-out"
-                  />
-                  <p className="text-xs uppercase tracking-[0.14em] text-[var(--color-text-muted)] font-display mb-2">
-                    {preview.when}
-                  </p>
-                  <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed max-w-sm">
-                    {preview.description}
-                  </p>
+                  <InimVisual kind={preview.visual} compact />
                 </div>
               </div>
 
@@ -228,10 +219,13 @@ export function FireSystemsSection() {
                           : 'min-h-[6.5rem] md:min-h-[7.5rem] py-8 md:py-10'
                       }`}
                     >
+                      <div className="mb-5 lg:hidden">
+                        <InimVisual kind={item.visual} compact />
+                      </div>
                       <div className="flex gap-6 md:gap-8 items-start">
                         <div
-                          className={`shrink-0 pt-0.5 transition-transform duration-500 ease-in-out ${
-                            isOn ? 'scale-110 text-[var(--color-text-primary)]' : 'text-[var(--color-text-muted)]'
+                          className={`shrink-0 pt-0.5 transition-[transform,color] duration-500 ease-in-out ${
+                            isOn ? 'scale-110 text-[var(--color-fire-ember)]' : 'text-[var(--color-text-muted)]'
                           }`}
                         >
                           <Icon size={isOn ? 40 : 30} strokeWidth={1.35} />
@@ -241,7 +235,7 @@ export function FireSystemsSection() {
                           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
                             <span
                               className={`font-display text-xs tracking-[0.2em] tabular-nums transition-colors duration-500 ease-in-out ${
-                                isOn ? 'text-[var(--color-text-primary)]' : 'text-[var(--color-text-muted)]'
+                                isOn ? 'text-[var(--color-fire-ember)]' : 'text-[var(--color-text-muted)]'
                               }`}
                             >
                               {item.number}
@@ -267,7 +261,7 @@ export function FireSystemsSection() {
 
                           <div
                             className={`grid transition-[grid-template-rows,opacity,margin] duration-500 ease-in-out ${
-                              isOn ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[0fr] opacity-0 mt-0'
+                              isOn ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[1fr] opacity-100 mt-4 lg:grid-rows-[0fr] lg:opacity-0 lg:mt-0'
                             }`}
                           >
                             <div className="overflow-hidden">

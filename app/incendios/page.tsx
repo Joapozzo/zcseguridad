@@ -56,7 +56,7 @@ export const metadata: Metadata = {
 
 export default function IncendiosPage() {
   return (
-    <main className="flex flex-col w-full min-h-screen">
+    <main className="page-incendios flex flex-col w-full min-h-screen">
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

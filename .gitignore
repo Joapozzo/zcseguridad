@@ -43,3 +43,6 @@ coverage/
 
 # Misc
 *.pem
+
+# Local PDF inspection and extracted masters
+/tmp/pdfs/

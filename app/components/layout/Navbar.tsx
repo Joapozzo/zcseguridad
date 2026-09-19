@@ -1,6 +1,6 @@
 'use client'
 
-import { useState, useEffect } from 'react'
+import { useState, useEffect, type MouseEvent } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
 import { usePathname } from 'next/navigation'
@@ -43,6 +43,29 @@ export function Navbar() {
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
+
+  const handleNavClick = (e: MouseEvent<HTMLAnchorElement>, href: string) => {
+    const path = href.split('#')[0] || '/'
+    const isSamePage =
+      href === '/'
+        ? pathname === '/'
+        : Boolean(path) && (pathname === path || pathname.startsWith(`${path}/`))
+
+    if (isSamePage && !href.includes('#')) {
+      e.preventDefault()
+      closeMenu()
+      // Soft-nav a la misma ruta cancela el scroll; forzar subida del documento.
+      const goTop = () => {
+        window.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+        document.documentElement.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+        document.body.scrollTo({ top: 0, left: 0, behavior: 'smooth' })
+      }
+      goTop()
+      requestAnimationFrame(goTop)
+      return
+    }
+    closeMenu()
+  }
 
   const linkClass = (href: string) => {
     const active = isActive(href, pathname)
@@ -91,6 +114,7 @@ export function Navbar() {
                 <Link
                   key={link.href + link.label}
                   href={resolveHref(link.href, pathname)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={linkClass(link.href)}
                 >
                   {link.label}
@@ -174,7 +198,7 @@ export function Navbar() {
               <Link
                 key={link.href + link.label}
                 href={resolveHref(link.href, pathname)}
-                onClick={closeMenu}
+                onClick={(e) => handleNavClick(e, link.href)}
                 className="py-3.5 px-3 rounded-xl text-(--color-text-secondary) hover:text-(--color-text-primary) hover:bg-white/5 font-display font-medium text-base transition-colors"
                 style={{
                   transitionDelay: menuOpen ? `${40 * i}ms` : '0ms',

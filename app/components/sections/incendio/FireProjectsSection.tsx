@@ -3,7 +3,8 @@
 import { useEffect, useRef } from 'react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ArrowUpRight } from 'lucide-react'
+import { ArrowUpRight, Instagram } from 'lucide-react'
+import { CONTACT } from '@/app/constants/contact'
 import { Container, Section } from '../../ui/Layout'
 
 const projects = [
@@ -11,22 +12,31 @@ const projects = [
     title: 'P23 San Jerónimo',
     description:
       'Proyecto e implementación de un sistema direccionable INIM para detección y alarma de incendio.',
-    image: '/assets/fire.avif',
+    image: '/images/incendios/inim/inim-previdia-max-central.webp',
+    imageAlt: 'Central direccionable INIM Previdia Max',
     href: '#contacto',
+    cta: 'Solicitar asesoramiento',
+    external: false,
   },
   {
     title: 'General Deheza',
     description:
       'Instalación y puesta en marcha de un sistema de detección de incendio en un edificio residencial.',
-    image: '/assets/fire.avif',
+    image: '/images/incendios/inim/inim-enea-detector.webp',
+    imageAlt: 'Detector de incendio INIM serie Enea',
     href: '#contacto',
+    cta: 'Solicitar asesoramiento',
+    external: false,
   },
   {
     title: 'Edificio Pringles | General Paz',
     description:
       'Sistema convencional INIM SmartLine para detección y alarma de incendio, distribuido por niveles.',
-    image: '/assets/fire.avif',
-    href: '#contacto',
+    image: '/images/incendios/inim/inim-smartline-central.webp',
+    imageAlt: 'Central convencional INIM SmartLine',
+    href: CONTACT.instagram,
+    cta: 'Ver en Instagram',
+    external: true,
   },
 ]
 
@@ -83,13 +93,15 @@ export function FireProjectsSection() {
         <div className="flex flex-col gap-6 md:gap-8">
           {projects.map((project, i) => {
             const textFirst = i % 2 === 0
+            const linkClass =
+              'mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-text-primary)] transition-opacity hover:opacity-70'
             return (
               <article
                 key={project.title}
-                className="proj-card grid min-h-[280px] grid-cols-1 overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] opacity-0 transition-colors duration-300 hover:border-[var(--color-border-strong)] md:min-h-[320px] md:grid-cols-2"
+                className="proj-card grid min-h-[280px] grid-cols-1 items-stretch overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] opacity-0 transition-colors duration-300 hover:border-[var(--color-border-strong)] md:min-h-[340px] md:grid-cols-2"
               >
                 <div
-                  className={`flex flex-col justify-center p-6 md:p-8 ${
+                  className={`flex flex-col justify-center p-6 md:p-10 ${
                     textFirst ? 'md:order-1' : 'md:order-2'
                   } order-1`}
                 >
@@ -99,27 +111,40 @@ export function FireProjectsSection() {
                   <p className="mb-4 text-sm leading-relaxed text-[var(--color-text-secondary)]">
                     {project.description}
                   </p>
-                  <Link
-                    href={project.href}
-                    className="mt-1 inline-flex items-center gap-1.5 text-sm font-medium text-[var(--color-text-primary)] transition-opacity hover:opacity-70"
-                  >
-                    Ver proyecto
-                    <ArrowUpRight size={16} />
-                  </Link>
+                  {project.external ? (
+                    <a
+                      href={project.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={linkClass}
+                    >
+                      <Instagram size={16} />
+                      {project.cta}
+                      <ArrowUpRight size={16} />
+                    </a>
+                  ) : (
+                    <Link href={project.href} className={linkClass}>
+                      {project.cta}
+                      <ArrowUpRight size={16} />
+                    </Link>
+                  )}
                 </div>
 
                 <div
-                  className={`relative aspect-[4/3] min-h-[200px] w-full md:aspect-auto md:h-full ${
+                  className={`relative aspect-[4/3] min-h-[220px] w-full self-stretch bg-[#f0f0f0] md:aspect-auto md:min-h-0 md:h-full ${
                     textFirst ? 'md:order-2' : 'md:order-1'
                   } order-2`}
                 >
-                  <Image
-                    src={project.image}
-                    alt={project.title}
-                    fill
-                    className="object-cover"
-                    sizes="(max-width: 768px) 100vw, 50vw"
-                  />
+                  <div className="absolute inset-6 md:inset-10">
+                    <Image
+                      src={project.image}
+                      alt={project.imageAlt}
+                      fill
+                      quality={90}
+                      className="object-contain"
+                      sizes="(max-width: 768px) 100vw, 50vw"
+                    />
+                  </div>
                 </div>
               </article>
             )

@@ -1,6 +1,6 @@
 import React from 'react'
 
-type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'whatsapp'
+type ButtonVariant = 'primary' | 'secondary' | 'outline' | 'ghost' | 'whatsapp' | 'fire'
 type ButtonSize = 'sm' | 'md' | 'lg'
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
@@ -18,6 +18,7 @@ const variantStyles: Record<ButtonVariant, string> = {
   outline: 'border border-[var(--color-border-strong)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface)] hover:border-[var(--color-text-muted)]',
   ghost: 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]',
   whatsapp: 'bg-[#25D366] text-white hover:bg-[#1fba58] shadow-lg hover:shadow-[0_0_30px_rgba(37,211,102,0.3)]',
+  fire: 'bg-[var(--color-fire-ember)] text-white hover:bg-[#a84d1f] shadow-lg hover:shadow-[0_0_28px_var(--color-fire-ember-glow)]',
 }
 
 const sizeStyles: Record<ButtonSize, string> = {

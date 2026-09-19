@@ -1,0 +1,236 @@
+{
+  "source": "Catalogo_FireSafety_ES_2026.pdf",
+  "sha256": "dec01d8837ce859b55709e27ab964593c7f105c1dac2e7706e139d15be98fd2c",
+  "assets": [
+    {
+      "file": "inim-arquitectura-previdia.webp",
+      "page": 36,
+      "xref": 1357,
+      "identity": "Fotografía arquitectónica del catálogo; no es una obra atribuida a ZC",
+      "section": "Hero",
+      "originalSize": [
+        1241,
+        680
+      ],
+      "size": [
+        1241,
+        680
+      ],
+      "crop": [
+        0,
+        0,
+        1241,
+        680
+      ],
+      "alpha": false,
+      "bytes": 202422
+    },
+    {
+      "file": "inim-ingenieria-planos.webp",
+      "page": 105,
+      "xref": 3073,
+      "identity": "Fotografía editorial de planificación",
+      "section": "Proyecto e ingeniería",
+      "originalSize": [
+        1075,
+        1521
+      ],
+      "size": [
+        1075,
+        1521
+      ],
+      "crop": [
+        0,
+        0,
+        1075,
+        1521
+      ],
+      "alpha": false,
+      "bytes": 117146
+    },
+    {
+      "file": "inim-enea-detector.webp",
+      "page": 93,
+      "xref": 2725,
+      "identity": "Detector de la serie Enea; imagen de familia sin atribuir un modelo concreto",
+      "section": "Provisión de equipamiento",
+      "originalSize": [
+        501,
+        501
+      ],
+      "size": [
+        480,
+        480
+      ],
+      "crop": [
+        12,
+        12,
+        492,
+        492
+      ],
+      "alpha": true,
+      "bytes": 66934
+    },
+    {
+      "file": "inim-ec0020-pulsador.webp",
+      "page": 99,
+      "xref": 2899,
+      "identity": "EC0020, pulsador manual direccionable",
+      "section": "Provisión de equipamiento",
+      "originalSize": [
+        168,
+        178
+      ],
+      "size": [
+        134,
+        134
+      ],
+      "crop": [
+        17,
+        26,
+        151,
+        160
+      ],
+      "alpha": true,
+      "bytes": 9320
+    },
+    {
+      "file": "inim-previdia-studio.webp",
+      "page": 71,
+      "xref": 2380,
+      "identity": "Previdia/STUDIO, software de configuración para Previdia",
+      "section": "Instalación y programación",
+      "originalSize": [
+        674,
+        451
+      ],
+      "size": [
+        670,
+        439
+      ],
+      "crop": [
+        4,
+        12,
+        674,
+        451
+      ],
+      "alpha": true,
+      "bytes": 88464
+    },
+    {
+      "file": "inim-fire-app.webp",
+      "page": 68,
+      "xref": 2310,
+      "identity": "App Inim Fire; centrales Previdia conectadas a Inim Cloud Fire",
+      "section": "Puesta en marcha",
+      "originalSize": [
+        414,
+        840
+      ],
+      "size": [
+        414,
+        840
+      ],
+      "crop": [
+        0,
+        0,
+        414,
+        840
+      ],
+      "alpha": true,
+      "bytes": 64124
+    },
+    {
+      "file": "inim-smartline-central.webp",
+      "page": 74,
+      "xref": 2517,
+      "identity": "Central de la familia SmartLine",
+      "section": "Sistemas convencionales",
+      "originalSize": [
+        528,
+        521
+      ],
+      "size": [
+        293,
+        295
+      ],
+      "crop": [
+        118,
+        178,
+        411,
+        473
+      ],
+      "alpha": true,
+      "bytes": 22396
+    },
+    {
+      "file": "inim-previdia-max-central.webp",
+      "page": 36,
+      "xref": 1362,
+      "identity": "Central modular Previdia Max",
+      "section": "Sistemas direccionables",
+      "originalSize": [
+        553,
+        553
+      ],
+      "size": [
+        304,
+        400
+      ],
+      "crop": [
+        124,
+        124,
+        428,
+        524
+      ],
+      "alpha": true,
+      "bytes": 36936
+    },
+    {
+      "file": "inim-em411r-modulo.webp",
+      "page": 97,
+      "xref": 2824,
+      "identity": "EM411R, interfaz de zona convencional; render compartido con otros módulos en el catálogo",
+      "section": "Adecuaciones y ampliaciones",
+      "originalSize": [
+        245,
+        194
+      ],
+      "size": [
+        198,
+        109
+      ],
+      "crop": [
+        24,
+        25,
+        222,
+        134
+      ],
+      "alpha": true,
+      "bytes": 12358
+    },
+    {
+      "file": "inim-senalizador-convencional.webp",
+      "page": 143,
+      "xref": 3745,
+      "identity": "Señalizador blanco convencional; imagen de familia sin atribuir variante específica",
+      "section": "Sistemas complementarios",
+      "originalSize": [
+        408,
+        394
+      ],
+      "size": [
+        280,
+        280
+      ],
+      "crop": [
+        68,
+        44,
+        348,
+        324
+      ],
+      "alpha": true,
+      "bytes": 21088
+    }
+  ]
+}
