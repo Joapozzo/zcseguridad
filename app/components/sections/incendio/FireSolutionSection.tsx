@@ -9,7 +9,7 @@ const pillars = [
     number: '01',
     title: 'Proyecto e ingeniería',
     description:
-      'Analizamos la obra, definimos la tecnología y la ubicación de los dispositivos, y elaboramos la documentación técnica.',
+      'Desarrollamos el proyecto de protección contra incendios de acuerdo con las características y necesidades de cada obra, contemplando la documentación técnica y las presentaciones correspondientes ante Bomberos. Definimos la tecnología, los dispositivos y su distribución para la correcta ejecución del sistema de detección y alarma.',
     visual: 'engineering' as InimVisualKind,
   },
   {
@@ -24,14 +24,14 @@ const pillars = [
     title: 'Instalación y programación',
     description:
       'Realizamos la instalación, el conexionado, la configuración y la programación del sistema.',
-    visual: 'studio' as InimVisualKind,
+    visual: 'installation' as InimVisualKind,
   },
   {
     number: '04',
     title: 'Puesta en marcha',
     description:
       'Verificamos el funcionamiento eléctrico y operativo, capacitamos al equipo y entregamos el sistema listo para operar.',
-    visual: 'app' as InimVisualKind,
+    visual: 'commissioning' as InimVisualKind,
   },
 ]
 
@@ -143,9 +143,9 @@ export function FireSolutionSection() {
       <Container ref={sectionRef} className="py-20 lg:py-28">
         <div className="sol-heading opacity-0 mx-auto mb-14 max-w-2xl text-center md:mb-20">
           <h2 className="section-title font-display font-extrabold text-[clamp(1.5rem,2.8vw,2.25rem)] leading-tight text-[var(--color-text-primary)] mb-4">
-            Proyecto e ingeniería
+            De la ingeniería
             <br />
-            <span className="text-[var(--color-text-secondary)]">contra incendios</span>
+            <span className="text-[var(--color-text-secondary)]">a la puesta en marcha</span>
           </h2>
           <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-relaxed">
             Te acompañamos desde el proyecto técnico hasta la puesta en marcha: provisión, instalación y programación adaptadas a cada obra.
@@ -182,7 +182,7 @@ export function FireSolutionSection() {
 
                   {/* Media */}
                   <div
-                    className={`sol-media relative aspect-[16/10] md:aspect-[4/3] ${item.visual === 'engineering' ? 'overflow-hidden rounded-[var(--radius-lg)]' : ''} ${
+                    className={`sol-media relative aspect-[16/10] md:aspect-[4/3] ${['engineering', 'installation', 'commissioning'].includes(item.visual) ? 'overflow-hidden rounded-[var(--radius-lg)]' : ''} ${
                       imageLeft ? 'md:order-1' : 'md:order-2'
                     }`}
                   >

@@ -92,7 +92,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
             `Tipo de obra: ${fireForm.tipoObra}\n` +
             `Localidad: ${fireForm.localidad}\n` +
             `Descripción: ${fireForm.descripcion}` +
-            (fireForm.planos ? `\nPlanos adjuntos (enviar por WhatsApp): ${fireForm.planos}` : '')
+            (fireForm.planos ? `\nPlano seleccionado (pendiente de adjuntar en WhatsApp): ${fireForm.planos}` : '')
         )
       : encodeURIComponent(
           `Hola, quiero solicitar un diagnóstico de seguridad.\n\n` +
@@ -132,8 +132,8 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
             )}
           </div>
 
-          <div className="grid grid-cols-1 gap-8 items-start lg:grid-cols-2 lg:gap-12 mb-12">
-            <div className="opacity-0 cta-reveal order-2 lg:order-1">
+          <div className={isFire ? 'mx-auto mb-12 flex max-w-3xl flex-col gap-6' : 'grid grid-cols-1 gap-8 items-start lg:grid-cols-2 lg:gap-12 mb-12'}>
+            <div className={isFire ? 'w-full opacity-0 cta-reveal' : 'opacity-0 cta-reveal order-2 lg:order-1'}>
               {submitted ? (
                 <div
                   className={`flex w-full flex-col items-center justify-center gap-4 text-center bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6 ${
@@ -162,7 +162,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                     </h3>
                     <p className="text-sm text-[var(--color-text-secondary)]">
                       {isFire
-                        ? 'Tu consulta fue enviada por WhatsApp. Si tenés planos, podés adjuntarlos en la conversación.'
+                        ? 'Continuá en WhatsApp para enviar tu consulta. Si seleccionaste un plano, adjuntalo manualmente en la conversación; el archivo no se transfiere automáticamente.'
                         : 'Tu solicitud fue enviada por WhatsApp. Te responderemos a la brevedad.'}
                     </p>
                   </div>
@@ -248,7 +248,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                       htmlFor="fire-planos"
                       className="text-sm font-medium text-[var(--color-text-secondary)] font-display"
                     >
-                      Adjuntar planos <span className="text-[var(--color-text-muted)]">(opcional)</span>
+                      Seleccionar plano <span className="text-[var(--color-text-muted)]">(opcional)</span>
                     </label>
                     <label
                       htmlFor="fire-planos"
@@ -260,7 +260,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                     >
                       <Paperclip size={16} className="text-[var(--color-text-muted)] shrink-0" />
                       <span className="text-sm text-[var(--color-text-muted)] truncate">
-                        {fireForm.planos || 'PDF, DWG o imagen — se enviará por WhatsApp'}
+                        {fireForm.planos || 'PDF, DWG o imagen'}
                       </span>
                       <input
                         id="fire-planos"
@@ -273,6 +273,9 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                       />
                     </label>
                   </div>
+                  <p className="text-xs text-[var(--color-text-muted)]">
+                    Solo se incluirá el nombre del archivo en la consulta. Deberás adjuntar el plano manualmente en WhatsApp.
+                  </p>
                   <Button type="submit" variant="fire" size="lg" className="justify-center w-full group">
                     Enviar consulta
                     <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
@@ -330,6 +333,12 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
               )}
             </div>
 
+            {isFire ? (
+              <div className="w-full text-center text-xs leading-relaxed text-[var(--color-text-muted)]">
+                <p>{contact.address} · Tel: {contact.phone} · {contact.email}</p>
+                <a href={`https://www.google.com/maps?q=${encodeURIComponent(contact.addressForMap)}`} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block underline underline-offset-4 hover:text-[var(--color-text-primary)]">Cómo llegar</a>
+              </div>
+            ) : (
             <div className="opacity-0 cta-reveal order-1 lg:order-2">
               <div className="rounded-[var(--radius-lg)] overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)] aspect-[4/3] min-h-[240px]">
                 <iframe
@@ -348,6 +357,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                 {contact.address} · Tel: {contact.phone} · {contact.email}
               </p>
             </div>
+            )}
           </div>
 
           {!isFire && (

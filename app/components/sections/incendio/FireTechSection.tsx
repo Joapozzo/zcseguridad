@@ -32,7 +32,7 @@ export function FireTechSection() {
       media = matchMedia
 
       // Sticky track + scrub (no pin) so scroll stays continuous with the page.
-      matchMedia.add('(prefers-reduced-motion: no-preference) and (min-height: 600px)', () => {
+      matchMedia.add('(prefers-reduced-motion: no-preference) and (min-height: 600px) and (min-width: 768px)', () => {
         const stage = el.querySelector<HTMLElement>('.tech-stage')
         const logos = Array.from(el.querySelectorAll<HTMLElement>('.tech-logo'))
         if (!stage || !logos.length) return
@@ -58,9 +58,8 @@ export function FireTechSection() {
         const header = el.querySelector('header')!
         let headerBottom = header.getBoundingClientRect().bottom - el.getBoundingClientRect().top
         const render = () => {
-          const scroll = progress.value
-          // Continuous travel: faster at the edges, slower through the center.
-          // Its slope never reaches zero, so every scroll moves the group.
+          const scroll = Math.min(progress.value, 0.5)
+          // Stop at the aligned midpoint; further scrolling keeps every logo visible.
           const t = scroll + 0.55 * Math.sin(2 * Math.PI * scroll) / (2 * Math.PI)
           const depth = Math.sin(Math.PI * t)
           const fade = Math.min(1, depth / 0.65)
@@ -75,7 +74,7 @@ export function FireTechSection() {
             set.y(height * 0.045 + (centerY - height * 0.045) * depth)
             set.scale(0.55 + 0.45 * depth)
             set.rotation(22 * Math.cos(Math.PI * t))
-            set.opacity(scroll <= 0 || scroll >= 1 ? 0 : opacity)
+            set.opacity(scroll <= 0 ? 0 : opacity)
           })
         }
         const measure = () => {
@@ -122,11 +121,11 @@ export function FireTechSection() {
     <Section variant="dark" id="tecnologia" className="!bg-black p-0">
       <div
         ref={trackRef}
-        className="relative min-h-[100svh] bg-black [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)]:min-h-[170vh]"
+        className="relative min-h-[100svh] bg-black [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:768px)]:min-h-[170vh]"
       >
         <div
           ref={stickyRef}
-          className="relative flex min-h-[100svh] flex-col bg-black [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)]:sticky [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)]:top-0"
+          className="relative flex min-h-[100svh] flex-col bg-black [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:768px)]:sticky [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:768px)]:top-0"
         >
           <Container className="flex flex-col !pt-28 !pb-8 sm:!pt-32">
             <header className="relative z-20 mx-auto max-w-xl shrink-0 bg-black text-center">
@@ -141,12 +140,12 @@ export function FireTechSection() {
           </Container>
 
           <div
-            className="tech-stage relative isolate mt-6 flex min-h-[220px] w-full flex-1 flex-wrap items-center justify-center gap-6 overflow-hidden sm:min-h-[280px]"
+            className="tech-stage relative isolate mt-6 flex min-h-[180px] w-full flex-1 flex-wrap items-center justify-center gap-4 overflow-hidden px-4 sm:min-h-[280px] sm:gap-6 md:px-0"
             role="list"
             aria-label="Fabricantes"
           >
             {brands.map(brand => (
-              <div key={brand.name} role="listitem" className={`${styles.logo} tech-logo flex h-24 w-[clamp(140px,25vw,320px)] items-center justify-center`}>
+              <div key={brand.name} role="listitem" className={`${styles.logo} tech-logo flex h-16 w-[30%] max-w-[160px] items-center justify-center md:h-24 md:w-[clamp(140px,25vw,320px)] md:max-w-none`}>
                 <Image
                   src={brand.src}
                   alt={brand.name}

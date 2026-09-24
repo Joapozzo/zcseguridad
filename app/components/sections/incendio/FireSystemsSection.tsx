@@ -1,7 +1,7 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { LayoutGrid, Radio, GitBranch, Bell } from 'lucide-react'
+import { ConventionalIcon, AddressableIcon, ExistingBuildingIcon } from './FireSystemIcons'
 import { Container, Section } from '../../ui/Layout'
 import { InimVisual, type InimVisualKind } from './InimVisual'
 
@@ -9,47 +9,39 @@ const systems = [
   {
     number: '01',
     title: 'Sistemas convencionales',
-    when: 'Edificios y comercios medianos',
+    when: 'Pequeños edificios, comercios y oficinas',
     description:
-      'Sectorización por zonas cuando la escala del proyecto se resuelve de forma eficiente sin identificación punto a punto.',
-    icon: LayoutGrid,
+      'Sistemas que permiten identificar el sector donde se produce una alarma, mediante la distribución de detectores y avisadores en distintas zonas del edificio.',
+    icon: ConventionalIcon,
     visual: 'smartline' as InimVisualKind,
   },
   {
     number: '02',
     title: 'Sistemas direccionables',
-    when: 'Torres, industria y desarrollos de gran escala',
+    when: 'Edificios, industrias y proyectos de mayor complejidad',
     description:
-      'Identificación individual de cada dispositivo, mayor capacidad de programación e integración con otros sistemas del edificio.',
-    icon: Radio,
+      'Sistemas que permiten identificar individualmente cada dispositivo, con mayores posibilidades de programación e integración con otros sistemas del edificio.',
+    icon: AddressableIcon,
     visual: 'previdia' as InimVisualKind,
   },
   {
     number: '03',
-    title: 'Adecuaciones y ampliaciones',
-    when: 'Instalaciones existentes',
+    title: 'Instalaciones y adecuaciones',
+    when: 'Edificios existentes',
     description:
-      'Intervenimos sobre sistemas en operación para ampliar, modernizar o reemplazar sin interrumpir la protección.',
-    icon: GitBranch,
-    visual: 'module' as InimVisualKind,
+      'Incorporamos sistemas de detección y alarma de incendio en edificios existentes, ya sea mediante nuevas instalaciones o adecuando, ampliando y modernizando sistemas existentes.',
+    icon: ExistingBuildingIcon,
+    visual: 'existing' as InimVisualKind,
   },
-  {
-    number: '04',
-    title: 'Sistemas complementarios',
-    when: 'Señalización, avisadores e integración',
-    description:
-      'Avisadores, señalización y vínculo con detección, control de acceso u otros sistemas según el proyecto.',
-    icon: Bell,
-    visual: 'sounder' as InimVisualKind,
-  },
+
 ]
 
 const PREVIEW_FADE_MS = 280
 
-/** Progress needed to advance INTO step 1/2/3 (holds step 0 longer). */
-const STEP_ENTER = [0, 0.3, 0.55, 0.8] as const
-/** Progress below which we retreat FROM step 1/2/3 (hysteresis band). */
-const STEP_LEAVE = [0, 0.22, 0.47, 0.72] as const
+/** Progress needed to advance INTO step 1/2 (holds step 0 longer). */
+const STEP_ENTER = [0, 0.35, 0.7] as const
+/** Progress below which we retreat FROM step 1/2 (hysteresis band). */
+const STEP_LEAVE = [0, 0.27, 0.62] as const
 
 export function FireSystemsSection() {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -188,9 +180,9 @@ export function FireSystemsSection() {
               <div className="sys-heading opacity-0 lg:flex lg:flex-col lg:h-full lg:min-h-0">
                 <div>
                   <h2 className="section-title font-display font-extrabold text-[clamp(1.5rem,2.8vw,2.25rem)] leading-tight text-[var(--color-text-primary)] mb-4">
-                    Sistemas de detección
+                    Tecnologías y soluciones
                     <br />
-                    <span className="text-[var(--color-text-secondary)]">convencional y direccionable</span>
+                    <span className="text-[var(--color-text-secondary)]">de detección</span>
                   </h2>
                   <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-relaxed max-w-md mb-8 lg:mb-0">
                     Definimos la tecnología según el tipo de proyecto, la normativa aplicable y los requerimientos de cada cliente.

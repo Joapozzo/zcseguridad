@@ -1,5 +1,5 @@
 /* Hide the starting group before GSAP loads, without hiding the static fallback. */
-@media (prefers-reduced-motion: no-preference) and (min-height: 600px) {
+@media (prefers-reduced-motion: no-preference) and (min-height: 600px) and (min-width: 768px) {
   .logo {
     opacity: 0;
   }

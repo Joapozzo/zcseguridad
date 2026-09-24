@@ -35,7 +35,7 @@ export const INCENDIOS_FAQS = [
   {
     question: '¿Cuándo conviene un sistema convencional y cuándo uno direccionable?',
     answer:
-      'Los sistemas convencionales suelen resolverse por zonas en edificios y comercios de escala media. Los direccionables identifican cada dispositivo e integran mejor torres, industria y desarrollos de gran escala.',
+      'Un sistema convencional identifica la zona donde se produce una alarma. Un sistema direccionable permite identificar cada dispositivo de manera individual y ofrece mayores posibilidades de programación e integración. La elección depende de las características del edificio, el alcance del proyecto y sus requerimientos técnicos.',
   },
   {
     question: '¿Trabajan en Córdoba capital y en la provincia?',
@@ -45,7 +45,7 @@ export const INCENDIOS_FAQS = [
   {
     question: '¿Con qué marcas de detección de incendio trabajan?',
     answer:
-      'Seleccionamos la tecnología según escala y requerimientos del proyecto. Trabajamos con fabricantes de primer nivel como INIM, Autocall y Simplex.',
+      'Trabajamos con INIM, AUTOCALL y SIMPLEX. Seleccionamos la tecnología y el equipamiento según las necesidades y los requerimientos de cada proyecto.',
   },
   {
     question: '¿Pueden adecuar o ampliar un sistema existente?',

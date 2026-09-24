@@ -5,26 +5,27 @@ import Image from 'next/image'
 import styles from './InimVisual.module.css'
 
 const base = '/images/incendios/inim/'
+const clientBase = '/images/incendios/cliente/'
 
+type Visual = { src: string; alt: string; width: number; height: number; label: string; note: string; photo?: boolean }
 const visuals = {
-  engineering: { file: 'inim-ingenieria-planos', alt: 'Planificación de una instalación sobre planos, fotografía del catálogo INIM', width: 1075, height: 1521, label: 'Ingeniería desde el plano', note: 'Imagen de referencia · INIM', photo: true },
-  equipment: { file: 'inim-enea-detector', alt: 'Detector de incendio de la serie Enea de INIM', width: 240, height: 240, label: 'Detección y activación manual', note: 'Enea · Pulsador EC0020' },
-  studio: { file: 'inim-previdia-studio', alt: 'Interfaz real del software Previdia/STUDIO en una computadora portátil', width: 370, height: 243, label: 'Previdia/STUDIO', note: 'Configuración de centrales Previdia' },
-  app: { file: 'inim-fire-app', alt: 'Menú de herramientas de instalación de la aplicación Inim Fire', width: 140, height: 284, label: 'Inim Fire', note: 'Para Previdia conectada a Inim Cloud Fire' },
-  smartline: { file: 'inim-smartline-central', alt: 'Central convencional de detección de incendio INIM SmartLine', width: 179, height: 180, label: 'INIM SmartLine', note: 'Detección convencional por zonas' },
-  previdia: { file: 'inim-previdia-max-central', alt: 'Central modular direccionable INIM Previdia Max', width: 137, height: 180, label: 'INIM Previdia Max', note: 'Detección analógica direccionable' },
-  module: { file: 'inim-em411r-modulo', alt: 'Módulo INIM EM411R de interfaz de zona convencional', width: 160, height: 88, label: 'INIM EM411R', note: 'Interfaz de zona convencional para lazo direccionable' },
-  sounder: { file: 'inim-senalizador-convencional', alt: 'Señalizador de alarma convencional INIM de pared, color blanco', width: 160, height: 160, label: 'Señalización INIM', note: 'Avisador convencional de pared' },
-} as const
+  engineering: { src: base + 'inim-ingenieria-planos.webp', alt: 'Planificación de una instalación sobre planos, fotografía del catálogo INIM', width: 1075, height: 1521, label: 'Ingeniería desde el plano', note: 'Imagen de referencia · INIM', photo: true },
+  equipment: { src: base + 'inim-enea-detector.webp', alt: 'Detector de incendio de la serie Enea de INIM', width: 240, height: 240, label: 'Detección y activación manual', note: 'Enea · Pulsador EC0020' },
+  installation: { src: '/images/obra/hero-equipo.jpg', alt: 'Equipo de ZC Seguridad realizando una instalación en obra', width: 1080, height: 810, label: 'Instalación y programación', note: 'Equipo ZC Seguridad en obra', photo: true },
+  commissioning: { src: '/images/obra/prueba-detector.jpg', alt: 'Detector y avisador de alarma instalados en un edificio', width: 1080, height: 810, label: 'Detección y alarma en obra', note: 'Instalación ZC Seguridad', photo: true },
+  smartline: { src: clientBase + 'smartline-roja.png', alt: 'Central convencional INIM SmartLine roja', width: 210, height: 210, label: 'INIM SmartLine', note: 'Detección convencional por zonas' },
+  previdia: { src: clientBase + 'previdia-compact-roja.png', alt: 'Central direccionable INIM Previdia Compact roja', width: 290, height: 290, label: 'INIM Previdia Compact', note: 'Detección direccionable' },
+  existing: { src: clientBase + 'instalaciones-existentes.webp', alt: 'Cañería a la vista, detector y avisadores de incendio en un edificio existente', width: 960, height: 1280, label: 'Instalaciones y adecuaciones', note: 'Detección en edificios existentes', photo: true },
+} satisfies Record<string, Visual>
 
 export type InimVisualKind = keyof typeof visuals
 
 export function InimVisual({ kind, compact = false }: { kind: InimVisualKind; compact?: boolean }) {
-  const item = visuals[kind]
+  const item: Visual = visuals[kind]
   const stageRef = useRef<HTMLElement>(null)
 
   useEffect(() => {
-    if (kind === 'engineering') return
+    if (kind !== 'equipment') return
     let disposed = false
     let media: { revert: () => void } | undefined
     async function animate() {
@@ -48,18 +49,18 @@ export function InimVisual({ kind, compact = false }: { kind: InimVisualKind; co
   }, [kind])
 
   return (
-    <figure ref={stageRef} className={`${styles.stage} ${kind === 'engineering' ? styles.photo : ''} ${kind === 'equipment' ? styles.equipment : ''} ${compact ? styles.compact : ''}`}>
-      {kind === 'engineering' ? (
-        <Image src={`${base}${item.file}.webp`} alt={item.alt} fill sizes="(max-width: 767px) 85vw, 42vw" className="object-cover" />
+    <figure ref={stageRef} className={`${styles.stage} ${item.photo ? styles.photo : ''} ${styles[kind] || ''} ${kind === 'equipment' ? styles.equipment : ''} ${compact ? styles.compact : ''}`}>
+      {item.photo ? (
+        <Image src={item.src} alt={item.alt} fill sizes="(max-width: 767px) 85vw, 42vw" className="object-cover" />
       ) : (
         <div className={styles.product}>
-          <Image src={`${base}${item.file}.webp`} alt={item.alt} width={item.width} height={item.height} sizes={`${item.width}px`} style={{ width: item.width, height: item.height }} />
+          <Image src={item.src} alt={item.alt} width={item.width} height={item.height} sizes={`${item.width}px`} style={{ width: item.width, height: item.height }} />
         </div>
       )}
       {kind === 'equipment' && (
-        <Image src={`${base}inim-ec0020-pulsador.webp`} alt="Pulsador manual de alarma direccionable INIM EC0020" width={67} height={67} sizes="67px" className={styles.callPoint} />
+        <Image src={`${base}inim-ec0020-pulsador.webp`} alt="Pulsador manual de alarma direccionable INIM EC0020" width={120} height={120} sizes="(max-width: 767px) 90px, 120px" className={styles.callPoint} />
       )}
-      {kind !== 'engineering' && <div className={styles.backdrop} aria-hidden="true" />}
+      {!item.photo && <div className={styles.backdrop} aria-hidden="true" />}
       <figcaption className={styles.caption}>
         <strong>{item.label}</strong>
         {item.note}

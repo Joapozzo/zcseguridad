@@ -6,8 +6,6 @@ import { FireSolutionSection } from '../components/sections/incendio/FireSolutio
 import { FireSystemsSection } from '../components/sections/incendio/FireSystemsSection'
 import { FireProjectsSection } from '../components/sections/incendio/FireProjectsSection'
 import { FireTechSection } from '../components/sections/incendio/FireTechSection'
-import { ProcessSection } from '../components/sections/ProcessSection'
-import { fireProcessContent } from '../components/sections/processSteps'
 import { FireFaqSection } from '../components/sections/incendio/FireFaqSection'
 import { CTASection } from '../components/sections/CTASection'
 import { META } from '../constants/contact'
@@ -68,13 +66,10 @@ export default function IncendiosPage() {
         <FireHeroSection />
         <FireSolutionSection />
         <FireSystemsSection />
-        <div className="w-full bg-[#f5f5f5] section-light-block">
+        <div className="w-full bg-[#edf0f3] section-light-block">
           <FireProjectsSection />
         </div>
         <FireTechSection />
-        <div className="w-full bg-[#f5f5f5] section-light-block">
-          <ProcessSection content={fireProcessContent} />
-        </div>
         <FireFaqSection />
         <CTASection variant="fire" />
       </div>
