@@ -9,6 +9,7 @@ const brands = [
   { name: 'INIM Electronics', src: '/assets/brands/inim.svg' },
   { name: 'Autocall', src: '/assets/brands/autocall.svg' },
   { name: 'Simplex', src: '/assets/brands/simplex.svg' },
+  { name: 'Ajax Systems', src: '/assets/brands/ajax.svg' },
 ]
 
 export function FireTechSection() {
@@ -43,7 +44,7 @@ export function FireTechSection() {
         let height = stage.clientHeight
         gsap.set(logos, {
           position: 'absolute', left: 0, top: 0, opacity: 0,
-          width: 'min(25%, 320px)', height: 'clamp(64px, 10vw, 120px)',
+          width: 'min(20%, 260px)', height: 'clamp(56px, 8vw, 100px)',
           xPercent: -50, yPercent: -50,
           transformPerspective: 1800, willChange: 'transform, opacity',
         })
@@ -69,8 +70,9 @@ export function FireTechSection() {
           const spread = 0.55 + 0.45 * depth
 
           setters.forEach((set, index) => {
-            // One group opens into three distinct slots; all face forward together.
-            set.x(groupX - width * 0.06 * depth + (index - 1) * width * 0.3 * spread)
+            // One group opens into distinct slots; all face forward together.
+            const offset = index - (setters.length - 1) / 2
+            set.x(groupX - width * 0.06 * depth + offset * width * 0.23 * spread)
             set.y(height * 0.045 + (centerY - height * 0.045) * depth)
             set.scale(0.55 + 0.45 * depth)
             set.rotation(22 * Math.cos(Math.PI * t))
@@ -130,8 +132,8 @@ export function FireTechSection() {
           <Container className="flex flex-col !pt-28 !pb-8 sm:!pt-32">
             <header className="relative z-20 mx-auto max-w-xl shrink-0 bg-black text-center">
               <h2 className="section-title mb-4 font-display text-[clamp(1.5rem,2.8vw,2.25rem)] font-extrabold leading-tight text-[var(--color-text-primary)]">
-                Tecnología INIM, Autocall<br />
-                <span className="text-[var(--color-text-secondary)]">y Simplex</span>
+                Tecnología INIM, Autocall,<br />
+                <span className="text-[var(--color-text-secondary)]">Simplex y Ajax</span>
               </h2>
               <p className="text-sm leading-relaxed text-[var(--color-text-secondary)] md:text-base">
                 Seleccionamos la tecnología más adecuada según las características, la escala y los requerimientos de cada proyecto de detección de incendio.
@@ -145,7 +147,7 @@ export function FireTechSection() {
             aria-label="Fabricantes"
           >
             {brands.map(brand => (
-              <div key={brand.name} role="listitem" className={`${styles.logo} tech-logo flex h-16 w-[30%] max-w-[160px] items-center justify-center md:h-24 md:w-[clamp(140px,25vw,320px)] md:max-w-none`}>
+              <div key={brand.name} role="listitem" className={`${styles.logo} tech-logo flex h-16 w-[45%] max-w-[160px] items-center justify-center md:h-24 md:w-[clamp(140px,25vw,320px)] md:max-w-none`}>
                 <Image
                   src={brand.src}
                   alt={brand.name}

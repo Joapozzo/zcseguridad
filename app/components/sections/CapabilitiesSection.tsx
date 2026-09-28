@@ -40,7 +40,7 @@ const capabilities = [
     title: 'Detección de incendios',
     description:
       'Proyecto e instalación de sistemas de detección y alarma de incendio en Córdoba: detectores, centrales y puesta en marcha para edificios e industrias.',
-    detail: 'Ingeniería · INIM · Autocall · Simplex',
+    detail: 'Ingeniería · INIM · Autocall · Simplex · Ajax',
     image: '/assets/fire.avif',
     href: '/incendios',
   },

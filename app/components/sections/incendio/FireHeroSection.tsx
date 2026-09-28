@@ -42,12 +42,9 @@ export function FireHeroSection() {
 
       <div
         ref={contentRef}
-        className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-16 mx-auto max-w-3xl text-center"
+        className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-16 mx-auto max-w-5xl text-center"
       >
-        <p className="hero-reveal mb-4 text-xs font-display font-medium tracking-[0.2em] uppercase text-[var(--color-fire-ember-soft)]">
-          ZC SEGURIDAD | INCENDIO
-        </p>
-        <h1 className="hero-reveal font-display font-semibold text-[clamp(1.5rem,4vw,2.75rem)] leading-tight tracking-tight text-white mb-5">
+        <h1 className="hero-reveal font-display font-semibold text-[clamp(2.25rem,6vw,4.75rem)] leading-[1.05] tracking-tight text-white mb-6">
           Ingeniería en <span className="text-[var(--color-fire-ember)]">detección de incendios</span>
         </h1>
         <p className="hero-reveal mb-8 max-w-xl text-sm font-light tracking-wide md:text-base text-white/80">

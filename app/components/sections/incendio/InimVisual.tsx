@@ -7,10 +7,10 @@ import styles from './InimVisual.module.css'
 const base = '/images/incendios/inim/'
 const clientBase = '/images/incendios/cliente/'
 
-type Visual = { src: string; alt: string; width: number; height: number; label: string; note: string; photo?: boolean }
+type Visual = { src: string; alt: string; width: number; height: number; label: string; note?: string; photo?: boolean }
 const visuals = {
-  engineering: { src: base + 'inim-ingenieria-planos.webp', alt: 'Planificación de una instalación sobre planos, fotografía del catálogo INIM', width: 1075, height: 1521, label: 'Ingeniería desde el plano', note: 'Imagen de referencia · INIM', photo: true },
-  equipment: { src: base + 'inim-enea-detector.webp', alt: 'Detector de incendio de la serie Enea de INIM', width: 240, height: 240, label: 'Detección y activación manual', note: 'Enea · Pulsador EC0020' },
+  engineering: { src: base + 'inim-ingenieria-planos.webp', alt: 'Planificación de una instalación sobre planos, fotografía del catálogo INIM', width: 1075, height: 1521, label: 'Ingeniería desde el plano', photo: true },
+  equipment: { src: base + 'inim-enea-detector.webp', alt: 'Detector de incendio de la serie Enea de INIM', width: 240, height: 240, label: 'Detección y activación manual' },
   installation: { src: '/images/obra/hero-equipo.jpg', alt: 'Equipo de ZC Seguridad realizando una instalación en obra', width: 1080, height: 810, label: 'Instalación y programación', note: 'Equipo ZC Seguridad en obra', photo: true },
   commissioning: { src: '/images/obra/puesta-en-marcha.png', alt: 'Técnico de ZC Seguridad realizando la puesta en marcha de una central de incendio', width: 576, height: 1024, label: 'Puesta en marcha en obra', note: 'Equipo ZC Seguridad', photo: true },
   smartline: { src: clientBase + 'smartline-roja.png', alt: 'Central convencional INIM SmartLine roja', width: 210, height: 210, label: 'INIM SmartLine', note: 'Detección convencional por zonas' },
@@ -58,7 +58,7 @@ export function InimVisual({ kind, compact = false }: { kind: InimVisualKind; co
         </div>
       )}
       {kind === 'equipment' && (
-        <Image src={`${base}inim-ec0020-pulsador.webp`} alt="Pulsador manual de alarma direccionable INIM EC0020" width={120} height={120} sizes="(max-width: 767px) 90px, 120px" className={styles.callPoint} />
+        <Image src={`${base}inim-ec0020-pulsador.webp`} alt="Pulsador manual de alarma direccionable INIM EC0020" width={200} height={200} sizes="(max-width: 767px) 130px, 200px" className={styles.callPoint} />
       )}
       {!item.photo && <div className={styles.backdrop} aria-hidden="true" />}
       <figcaption className={styles.caption}>

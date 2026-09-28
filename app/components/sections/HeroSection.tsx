@@ -83,7 +83,7 @@ export function HeroSection() {
 
       {/* Contenido centrado — minimalista, el video es protagonista */}
       <div ref={contentRef} className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center">
-        <h1 className="hero-reveal font-display font-semibold text-[clamp(1.25rem,3.5vw,1.75rem)] tracking-[0.25em] uppercase text-white mb-4 max-w-xl">
+        <h1 className="hero-reveal font-display font-semibold text-[clamp(1.75rem,4.5vw,3.25rem)] leading-tight tracking-[0.12em] uppercase text-white mb-5 max-w-5xl">
           Alarmas y seguridad inteligente para tu casa, empresa o negocio
         </h1>
         <p className="hero-reveal mb-8 max-w-md text-sm font-light tracking-wide md:text-base text-white/80">

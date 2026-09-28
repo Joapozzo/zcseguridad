@@ -146,7 +146,7 @@ export function getIncendiosStructuredData() {
           'Adecuaciones y ampliaciones',
           'Proyecto, provisión, instalación y puesta en marcha',
         ],
-        brand: [{ '@type': 'Brand', name: 'INIM' }, { '@type': 'Brand', name: 'Autocall' }, { '@type': 'Brand', name: 'Simplex' }],
+        brand: [{ '@type': 'Brand', name: 'INIM' }, { '@type': 'Brand', name: 'Autocall' }, { '@type': 'Brand', name: 'Simplex' }, { '@type': 'Brand', name: 'Ajax' }],
         image: absoluteUrl(INCENDIOS_SEO.ogImage),
       },
       {

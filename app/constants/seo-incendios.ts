@@ -4,7 +4,7 @@ import { META } from './contact'
 export const INCENDIOS_SEO = {
   title: 'Detección de incendios en Córdoba',
   description:
-    'Proyecto, provisión, instalación y puesta en marcha de sistemas de detección y alarma de incendio en Córdoba. Ingeniería con tecnología INIM, Autocall y Simplex.',
+    'Proyecto, provisión, instalación y puesta en marcha de sistemas de detección y alarma de incendio en Córdoba. Ingeniería con tecnología INIM, Autocall, Simplex y Ajax.',
   ogTitle: `Detección de incendios en Córdoba | ${META.brandName}`,
   ogDescription:
     'Sistemas de detección y alarma de incendio para edificios, industrias y desarrollos. Proyecto llave en mano en Córdoba y provincia.',
@@ -45,7 +45,7 @@ export const INCENDIOS_FAQS = [
   {
     question: '¿Con qué marcas de detección de incendio trabajan?',
     answer:
-      'Trabajamos con INIM, AUTOCALL y SIMPLEX. Seleccionamos la tecnología y el equipamiento según las necesidades y los requerimientos de cada proyecto.',
+      'Trabajamos con INIM, AUTOCALL, SIMPLEX y AJAX. Seleccionamos la tecnología y el equipamiento según las necesidades y los requerimientos de cada proyecto.',
   },
   {
     question: '¿Pueden adecuar o ampliar un sistema existente?',
