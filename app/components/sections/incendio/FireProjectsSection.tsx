@@ -6,12 +6,12 @@ import Image from 'next/image'
 import { ArrowUpRight } from 'lucide-react'
 import { Container, Section } from '../../ui/Layout'
 
-type Project = { title: string; description: string; status: string; image?: string; alt?: string; position?: string; contain?: boolean; zoom?: number }
+type Project = { title: string; description: string; status: string; image?: string; alt?: string; position?: string; zoom?: number }
 const projects: Project[] = [
   { title: 'P23 · PILAY', description: 'Sistema convencional INIM instalado desde cero.', status: 'Finalizado', image: '/images/incendios/cliente/p23.webp', alt: 'Vista aérea del edificio P23 de PILAY', position: '50% 50%' },
   { title: 'Colegio PROA · La Carlota', description: 'Sistema direccionable SIMPLEX instalado desde cero.', status: 'Finalizado', image: '/images/incendios/cliente/proa-la-carlota.webp', alt: 'Vista aérea del Colegio PROA de La Carlota', position: '50% 50%' },
   { title: 'Crisol 65', description: 'Sistema direccionable INIM incorporado en un edificio existente de más de 30 años.', status: 'Finalizado', image: '/images/incendios/cliente/crisol-65.webp', alt: 'Avisador manual nuevo junto a la escalera y terminaciones originales de Crisol 65', position: '45% 50%' },
-  { title: 'Edificio General Deheza', description: 'Sistema direccionable INIM instalado desde cero en obra nueva.', status: 'En ejecución', image: '/images/incendios/cliente/general-deheza.webp', alt: 'Fachada del edificio General Deheza en construcción', position: '50% 50%', contain: true },
+  { title: 'Edificio General Deheza', description: 'Sistema direccionable INIM instalado desde cero en obra nueva.', status: 'En ejecución', image: '/images/incendios/cliente/general-deheza.webp', alt: 'Fachada del edificio General Deheza en construcción', position: '50% 35%' },
   { title: 'Edificio Revello · Barrio General Paz', description: 'Instalación de sistema de detección y alarma en edificio existente.', status: 'En ejecución', image: '/images/incendios/cliente/revello.webp', alt: 'Ejecución de cañerías en el edificio Revello de barrio General Paz', position: '50% 22%' },
   { title: 'Edificio P24', description: 'Sistema direccionable INIM instalado desde cero, actualmente en etapa de cableado.', status: 'En ejecución', image: '/images/incendios/cliente/p24-cableado.webp', alt: 'Equipo de ZC realizando trabajos de instalación y cableado en el edificio P24', position: '50% 50%', zoom: 1.06 },
 ]
@@ -71,7 +71,7 @@ export function FireProjectsSection() {
                 <article key={project.title} className="proj-card overflow-hidden rounded-[var(--radius-lg)] border border-[#dce1e6] bg-white opacity-0">
                   {project.image ? (
                     <div className="relative aspect-[4/3] overflow-hidden bg-[#e3e7eb]">
-                      <Image src={project.image} alt={project.alt!} fill sizes="(max-width: 767px) 100vw, 33vw" className={project.contain ? 'object-contain' : 'object-cover'} style={{ objectPosition: project.position, transform: project.zoom ? `scale(${project.zoom})` : undefined }} />
+                      <Image src={project.image} alt={project.alt!} fill sizes="(max-width: 767px) 100vw, 33vw" className="object-cover" style={{ objectPosition: project.position, transform: project.zoom ? `scale(${project.zoom})` : undefined }} />
                     </div>
                   ) : (
                     <div className="flex aspect-[4/3] items-end bg-[#e3e7eb] p-6" aria-hidden="true">
