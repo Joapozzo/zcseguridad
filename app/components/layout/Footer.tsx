@@ -88,7 +88,7 @@ export function Footer() {
 
           <div className="flex min-w-0 flex-col items-center md:items-start">
             <Image
-              src="/ajax_auth.png"
+              src="/ajax_auth.webp"
               alt="Autorización electrónica AJAX Systems"
               width={400}
               height={80}
@@ -115,7 +115,12 @@ export function Footer() {
           className="w-full mx-auto px-6 lg:px-8 py-3 flex flex-col md:flex-row flex-wrap justify-center md:justify-between items-center gap-x-4 gap-y-1 text-[11px] text-[var(--color-text-muted)] text-center md:text-left"
           style={{ maxWidth: 'var(--container-max)' }}
         >
-          <span>© {new Date().getFullYear()} ZC Seguridad. Todos los derechos reservados.</span>
+          <span>
+            © {new Date().getFullYear()} ZC Seguridad. Todos los derechos reservados. ·{' '}
+            <Link href="/privacidad" className="hover:text-[var(--color-text-primary)] transition-colors">
+              Política de privacidad
+            </Link>
+          </span>
           <a
             href="https://gentiomkt.com"
             target="_blank"

@@ -24,7 +24,7 @@ function isActive(href: string, pathname: string) {
   return path !== '/' && pathname.startsWith(path)
 }
 
-export function Navbar() {
+export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolean }) {
   const [scrolled, setScrolled] = useState(false)
   const [menuOpen, setMenuOpen] = useState(false)
   const contact = useContact()
@@ -32,6 +32,7 @@ export function Navbar() {
 
   useEffect(() => {
     const handler = () => setScrolled(window.scrollY > 24)
+    handler()
     window.addEventListener('scroll', handler)
     return () => window.removeEventListener('scroll', handler)
   }, [])
@@ -84,7 +85,9 @@ export function Navbar() {
         <div
           className={`pointer-events-auto mx-auto max-w-xl rounded-2xl transition-all duration-300 lg:max-w-7xl lg:px-5 ${scrolled
               ? 'border shadow-lg backdrop-blur-xl border-white/10 bg-white/10 lg:bg-white lg:border-neutral-200 lg:shadow-md'
-              : 'border backdrop-blur-md border-white/5 bg-white/5 lg:border-transparent lg:bg-transparent'
+              : transparentAtTop
+                ? 'border border-transparent bg-transparent'
+                : 'border backdrop-blur-md border-white/5 bg-white/5 lg:border-transparent lg:bg-transparent'
             }`}
         >
           <div className="flex items-center gap-4 px-4 h-16 sm:h-[4.5rem] sm:px-5 lg:gap-6 lg:px-2">

@@ -1,0 +1,192 @@
+[
+  {
+    "file": "hub.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fire_hub_jeweller_black_aad29a325c.png"
+  },
+  {
+    "file": "rex.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fire_rex_black_77febbb915.png"
+  },
+  {
+    "file": "smoke.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fire_protect_smoke_white_c8d28ca376.png"
+  },
+  {
+    "file": "heat.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fp_heat_white_ec025732ad.png"
+  },
+  {
+    "file": "sounder.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fire_protect_sounder_vad_red_4af12181f2.png"
+  },
+  {
+    "file": "vad.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fire_protect_vad_red_94251663b0.png"
+  },
+  {
+    "file": "module.png",
+    "source": "https://ajax.systems/cdn/upload/io_module_2_X2_jeweller_black_a1de11934d.png"
+  },
+  {
+    "file": "callpoint.png",
+    "source": "https://ajax.systems/cdn/upload/mcp_red_e4a6066cd4.png"
+  },
+  {
+    "file": "battery.png",
+    "source": "https://ajax.systems/cdn/upload/en54_internal_battery_24h_black_a9162df906.png"
+  },
+  {
+    "file": "glandbox.png",
+    "source": "https://ajax.systems/cdn/upload/glandbox_black_07dce492cf.png"
+  },
+  {
+    "file": "hero.webp",
+    "source": "https://ajax.systems/cdn/upload/fire_en54_xl_44b833f4a7.jpg"
+  },
+  {
+    "file": "architecture.webp",
+    "source": "Brochure ES EN54, página 3",
+    "crop": [
+      1485,
+      900,
+      2375,
+      1436
+    ]
+  },
+  {
+    "file": "heritage.webp",
+    "source": "Brochure ES EN54, página 3",
+    "crop": [
+      1485,
+      1680,
+      2375,
+      2340
+    ]
+  },
+  {
+    "file": "hub-installed.webp",
+    "source": "Brochure ES EN54, página 3",
+    "crop": [
+      181,
+      2460,
+      1267,
+      3440
+    ]
+  },
+  {
+    "file": "sounder-installed.webp",
+    "source": "Brochure ES EN54, página 3",
+    "crop": [
+      1290,
+      2460,
+      2375,
+      3440
+    ]
+  },
+  {
+    "file": "hero-mobile.webp",
+    "source": "https://ajax.systems/cdn/upload/fire_en54_sm_5331f908da.jpg"
+  },
+  {
+    "file": "line.webp",
+    "source": "en54.jpg.jpeg suministrado por el cliente"
+  },
+  {
+    "file": "hub-hd.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fire_hub_black_3d32d5ce5c.png",
+    "resolution": [
+      1082,
+      778
+    ],
+    "alpha": true
+  },
+  {
+    "file": "smoke-hd.png",
+    "source": "https://ajax.systems/cdn/upload/fp_en54_s_white_48babdc8cb.png",
+    "resolution": [
+      1082,
+      564
+    ],
+    "alpha": true
+  },
+  {
+    "file": "heat-hd.png",
+    "source": "https://ajax.systems/cdn/upload/fp_en54_h_white_52c1869976.png",
+    "resolution": [
+      1082,
+      564
+    ],
+    "alpha": true
+  },
+  {
+    "file": "sounder-hd.png",
+    "source": "https://ajax.systems/cdn/upload/fp_en54_sv_red_e4fbdd9434.png",
+    "resolution": [
+      1082,
+      564
+    ],
+    "alpha": true
+  },
+  {
+    "file": "vad-hd.png",
+    "source": "https://ajax.systems/cdn/upload/fp_en54_v_red_13988b94f9.png",
+    "resolution": [
+      1082,
+      564
+    ],
+    "alpha": true
+  },
+  {
+    "file": "module-hd.png",
+    "source": "https://ajax.systems/cdn/upload/en54_io_2x2_black_017c6e56e4.png",
+    "resolution": [
+      1082,
+      564
+    ],
+    "alpha": true
+  },
+  {
+    "file": "callpoint-hd.png",
+    "source": "https://ajax.systems/cdn/upload/manualcallpoint_red_jeweller_b785d46fe5.png",
+    "resolution": [
+      1082,
+      494
+    ],
+    "alpha": true
+  },
+  {
+    "file": "battery-hd.png",
+    "source": "https://ajax.systems/cdn/upload/en54_internal_battery_black_f4da6ac7c3.png",
+    "resolution": [
+      1082,
+      564
+    ],
+    "alpha": true
+  },
+  {
+    "file": "glandbox-hd.png",
+    "source": "https://ajax.systems/cdn/upload/glandbox_black_aff8fde112.png",
+    "resolution": [
+      1082,
+      564
+    ],
+    "alpha": true
+  },
+  {
+    "file": "rex-hd.png",
+    "source": "https://ajax.systems/cdn/upload/en54_fire_rex_black_fc2e88b53f.png",
+    "resolution": [
+      541,
+      334
+    ],
+    "alpha": true
+  },
+  {
+    "file": "commercial-hd.webp",
+    "source": "https://ajax.systems/cdn/upload/coworking_051d93b44d.jpg",
+    "resolution": [
+      972,
+      1200
+    ]
+  }
+]

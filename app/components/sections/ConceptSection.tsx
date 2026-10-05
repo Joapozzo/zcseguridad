@@ -5,17 +5,17 @@ import { Section } from '../ui/Layout'
 
 const pillars = [
   {
-    image: '/assets/alarma.png',
+    image: '/assets/alarma.webp',
     title: 'Alarmas',
     subtitle: 'Sensores inalámbricos de última generación.',
   },
   {
-    image: '/assets/camaras.png',
+    image: '/assets/camaras.webp',
     title: 'Cámaras',
     subtitle: 'Videovigilancia HD integrada al sistema.',
   },
   {
-    image: '/assets/app.jpg',
+    image: '/assets/app.webp',
     title: 'Control desde la app',
     subtitle: 'Gestión total desde tu celular.',
   },

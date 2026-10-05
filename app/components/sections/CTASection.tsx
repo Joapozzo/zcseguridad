@@ -1,10 +1,12 @@
 'use client'
 import { useEffect, useRef, useState } from 'react'
+import Link from 'next/link'
 import { ArrowRight, CheckCircle, Paperclip } from 'lucide-react'
 import { Container, Section } from '../ui/Layout'
 import { Button } from '../ui/Button'
 import { Input, Select, Textarea } from '../ui/Form'
 import { useContact } from '@/app/hooks/useContact'
+import { trackEvent } from '@/app/lib/analytics'
 
 const propertyOptions = [
   { value: 'casa', label: 'Casa' },
@@ -34,7 +36,19 @@ const SECURITY_BADGES = [
 
 type CTAVariant = 'security' | 'fire'
 
-export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
+function PrivacyNote() {
+  return (
+    <p className="text-xs text-center text-[var(--color-text-muted)]">
+      Al enviar, serás redirigido a WhatsApp con tu consulta. Ver{' '}
+      <Link href="/privacidad" className="underline underline-offset-4 hover:text-[var(--color-text-primary)]">
+        política de privacidad
+      </Link>
+      .
+    </p>
+  )
+}
+
+export function CTASection({ variant = 'security', reversibleAnimations = false }: { variant?: CTAVariant; reversibleAnimations?: boolean }) {
   const contact = useContact()
   const sectionRef = useRef<HTMLDivElement>(null)
   const [submitted, setSubmitted] = useState(false)
@@ -60,11 +74,18 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
   const mapSrc = `https://www.google.com/maps?q=${encodeURIComponent(contact.addressForMap)}&output=embed`
 
   useEffect(() => {
+    let disposed = false
+    let context: { revert: () => void } | undefined
     const init = async () => {
       const { gsap } = await import('gsap')
       const { ScrollTrigger } = await import('gsap/ScrollTrigger')
+      if (disposed || !sectionRef.current) return
       gsap.registerPlugin(ScrollTrigger)
-
+      context = gsap.context(() => {
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+        gsap.set(sectionRef.current!.querySelectorAll('.cta-reveal'), { opacity: 1 })
+        return
+      }
       gsap.fromTo(
         sectionRef.current!.querySelectorAll('.cta-reveal'),
         { opacity: 0, y: 30 },
@@ -73,12 +94,14 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
           y: 0,
           duration: 0.8,
           stagger: 0.1,
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%' },
+          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', toggleActions: reversibleAnimations ? 'play reverse play reverse' : 'play none none none' },
         }
       )
+      }, sectionRef.current)
     }
     init()
-  }, [])
+    return () => { disposed = true; context?.revert() }
+  }, [reversibleAnimations])
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault()
@@ -101,6 +124,11 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
             `Tipo de propiedad: ${securityForm.propiedad}\n` +
             `Ubicación: ${securityForm.ubicacion}`
         )
+    trackEvent('generate_lead', {
+      form: variant,
+      property_type: isFire ? fireForm.tipoObra : securityForm.propiedad,
+      page_path: window.location.pathname,
+    })
     window.open(`https://wa.me/${contact.whatsappNumber}?text=${message}`, '_blank')
     setSubmitted(true)
   }
@@ -280,9 +308,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                     Enviar consulta
                     <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                   </Button>
-                  <p className="text-xs text-center text-[var(--color-text-muted)]">
-                    Al enviar, serás redirigido a WhatsApp con tu consulta.
-                  </p>
+                  <PrivacyNote />
                 </form>
               ) : (
                 <form
@@ -326,9 +352,7 @@ export function CTASection({ variant = 'security' }: { variant?: CTAVariant }) {
                     Solicitar diagnóstico
                     <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
                   </Button>
-                  <p className="text-xs text-center text-[var(--color-text-muted)]">
-                    Al enviar, serás redirigido a WhatsApp con tu consulta.
-                  </p>
+                  <PrivacyNote />
                 </form>
               )}
             </div>

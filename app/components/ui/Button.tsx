@@ -42,7 +42,7 @@ export function Button({
 
   if (href || as === 'a') {
     return (
-      <a href={href} target={target} className={styles}>
+      <a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} className={styles}>
         {children}
       </a>
     )

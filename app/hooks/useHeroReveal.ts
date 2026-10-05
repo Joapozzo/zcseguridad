@@ -12,6 +12,7 @@ export function useHeroReveal(contentRef: RefObject<HTMLElement | null>) {
       const { gsap } = await import('gsap')
       const content = contentRef.current
       if (!content || !mounted) return
+      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) return
 
       const els = content.querySelectorAll('.hero-reveal')
       if (!els.length) return

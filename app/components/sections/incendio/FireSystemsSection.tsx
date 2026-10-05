@@ -1,11 +1,23 @@
 'use client'
 
 import { useEffect, useRef, useState } from 'react'
-import { ConventionalIcon, AddressableIcon, ExistingBuildingIcon } from './FireSystemIcons'
+import type { ComponentType } from 'react'
+import { ConventionalIcon, AddressableIcon, WirelessIcon, ExistingBuildingIcon } from './FireSystemIcons'
 import { Container, Section } from '../../ui/Layout'
 import { InimVisual, type InimVisualKind } from './InimVisual'
 
-const systems = [
+type System = {
+  number: string
+  title: string
+  badge?: string
+  when: string
+  description: string
+  link?: { label: string; href: string }
+  icon: ComponentType<{ size?: number; strokeWidth?: number }>
+  visual: InimVisualKind
+}
+
+const systems: System[] = [
   {
     number: '01',
     title: 'Sistemas convencionales',
@@ -13,7 +25,7 @@ const systems = [
     description:
       'Sistemas que permiten identificar el sector donde se produce una alarma, mediante la distribución de detectores y avisadores en distintas zonas del edificio.',
     icon: ConventionalIcon,
-    visual: 'smartline' as InimVisualKind,
+    visual: 'smartline',
   },
   {
     number: '02',
@@ -22,26 +34,36 @@ const systems = [
     description:
       'Sistemas que permiten identificar individualmente cada dispositivo, con mayores posibilidades de programación e integración con otros sistemas del edificio.',
     icon: AddressableIcon,
-    visual: 'previdia' as InimVisualKind,
+    visual: 'previdia',
   },
   {
     number: '03',
+    title: 'Sistemas inalámbricos EN54',
+    badge: 'Nuevo · Próximamente',
+    when: 'Tecnología Ajax para edificios y espacios comerciales',
+    description:
+      'Sistema direccionable de detección y alarma de incendios totalmente inalámbrico. Reduce la necesidad de cableado, simplifica la instalación y permite configurar, supervisar y ampliar el sistema de forma flexible.',
+    link: { label: 'Conocer AJAX EN54', href: '/EN54' },
+    icon: WirelessIcon,
+    visual: 'ajaxEn54',
+  },
+  {
+    number: '04',
     title: 'Instalaciones y adecuaciones',
     when: 'Edificios existentes',
     description:
       'Incorporamos sistemas de detección y alarma de incendio en edificios existentes, ya sea mediante nuevas instalaciones o adecuando, ampliando y modernizando sistemas existentes.',
     icon: ExistingBuildingIcon,
-    visual: 'existing' as InimVisualKind,
+    visual: 'existing',
   },
-
 ]
 
 const PREVIEW_FADE_MS = 280
 
-/** Progress needed to advance INTO step 1/2 (holds step 0 longer). */
-const STEP_ENTER = [0, 0.35, 0.7] as const
-/** Progress below which we retreat FROM step 1/2 (hysteresis band). */
-const STEP_LEAVE = [0, 0.27, 0.62] as const
+/** Progress needed to advance INTO each step (holds step 0 longer). */
+const STEP_ENTER = [0, 0.26, 0.52, 0.78] as const
+/** Progress below which we retreat FROM each step (hysteresis band). */
+const STEP_LEAVE = [0, 0.2, 0.46, 0.72] as const
 
 export function FireSystemsSection() {
   const trackRef = useRef<HTMLDivElement>(null)
@@ -169,7 +191,7 @@ export function FireSystemsSection() {
       {/* Tall track = scroll distance; sticky keeps UI in view without pin spacer jumps. */}
       <div
         ref={trackRef}
-        className="relative min-h-dvh [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:1024px)]:min-h-[340vh]"
+        className="relative min-h-dvh [@media(prefers-reduced-motion:no-preference)_and_(min-height:600px)_and_(min-width:1024px)]:min-h-[440vh]"
       >
         <div
           ref={stickyRef}
@@ -241,6 +263,11 @@ export function FireSystemsSection() {
                             >
                               {item.title}
                             </h3>
+                            {item.badge && (
+                              <span className="self-center rounded-full bg-[var(--color-fire-ember)] px-2.5 py-1 font-display text-[9px] font-bold uppercase leading-none tracking-[0.16em] text-white md:text-[10px]">
+                                {item.badge}
+                              </span>
+                            )}
                           </div>
 
                           <p
@@ -260,6 +287,14 @@ export function FireSystemsSection() {
                               <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-relaxed max-w-xl pb-1">
                                 {item.description}
                               </p>
+                              {item.link && (
+                                <a
+                                  href={item.link.href}
+                                  className="mt-3 inline-flex items-center gap-1.5 font-display text-xs uppercase tracking-[0.14em] text-[var(--color-fire-ember)] transition-opacity hover:opacity-80"
+                                >
+                                  {item.link.label} <span aria-hidden="true">→</span>
+                                </a>
+                              )}
                             </div>
                           </div>
                         </div>

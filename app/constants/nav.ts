@@ -7,6 +7,7 @@ export type NavLink = {
 export const MAIN_NAV: NavLink[] = [
   { label: 'Intrusión', href: '/' },
   { label: 'Incendio', href: '/incendios' },
+  { label: 'AJAX EN54', href: '/EN54' },
   { label: 'Nosotros', href: '/#capacidades' },
   { label: 'Proyectos', href: '/incendios#proyectos' },
   { label: 'Contacto', href: '#contacto' },
@@ -16,6 +17,7 @@ export const MAIN_NAV: NavLink[] = [
 export const FOOTER_SERVICES: NavLink[] = [
   { label: 'Alarmas AJAX Córdoba', href: '/' },
   { label: 'Detección de incendios Córdoba', href: '/incendios' },
+  { label: 'Sistemas inalámbricos AJAX EN54', href: '/EN54' },
   { label: 'Sistemas direccionables', href: '/incendios#sistemas' },
   { label: 'Proyectos de incendio', href: '/incendios#proyectos' },
 ]

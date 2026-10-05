@@ -1,74 +1,41 @@
 'use client'
 
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import { ChevronDown } from 'lucide-react'
 import { Container, Section } from '../../ui/Layout'
+import { useScrollReveal } from '@/app/hooks/useScrollReveal'
 import { INCENDIOS_FAQS } from '@/app/constants/seo-incendios'
 
-export function FireFaqSection() {
+type Faq = { question: string; answer: string }
+
+export function FireFaqSection({ faqs = INCENDIOS_FAQS, subject = 'detección de incendios', subtitle = 'Respuestas claras sobre proyecto, tecnología y cobertura en Córdoba y provincia.', showServiceArea = true }: { faqs?: readonly Faq[]; subject?: string; subtitle?: string; showServiceArea?: boolean }) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
-  useEffect(() => {
-    let ctx: { revert: () => void } | undefined
-
-    const init = async () => {
-      const el = sectionRef.current
-      if (!el) return
-      const { gsap } = await import('gsap')
-      const { ScrollTrigger } = await import('gsap/ScrollTrigger')
-      gsap.registerPlugin(ScrollTrigger)
-
-      ctx = gsap.context(() => {
-        gsap.fromTo(
-          el.querySelector('.faq-heading'),
-          { opacity: 0, y: 20 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.6,
-            scrollTrigger: { trigger: el, start: 'top 78%' },
-          }
-        )
-        gsap.fromTo(
-          el.querySelectorAll('.faq-item'),
-          { opacity: 0, y: 16 },
-          {
-            opacity: 1,
-            y: 0,
-            duration: 0.5,
-            stagger: 0.06,
-            scrollTrigger: { trigger: el.querySelector('.faq-list'), start: 'top 82%' },
-          }
-        )
-      }, el)
-    }
-
-    init()
-    return () => ctx?.revert()
-  }, [])
+  useScrollReveal(sectionRef)
 
   return (
     <Section variant="dark" id="preguntas-frecuentes">
       <Container ref={sectionRef} className="py-20 lg:py-28">
-        <div className="faq-heading mx-auto mb-10 max-w-2xl text-center opacity-0 md:mb-14">
+        <div data-reveal className="faq-heading mx-auto mb-10 max-w-2xl text-center  md:mb-14">
           <h2 className="section-title mb-4 font-display text-[clamp(1.5rem,2.8vw,2.25rem)] font-extrabold leading-tight text-[var(--color-text-primary)]">
             Preguntas frecuentes sobre
             <br />
-            <span className="text-[var(--color-text-secondary)]">detección de incendios</span>
+            <span className="text-[var(--color-text-secondary)]">{subject}</span>
           </h2>
           <p className="text-sm leading-relaxed text-[var(--color-text-secondary)] md:text-base">
-            Respuestas claras sobre proyecto, tecnología y cobertura en Córdoba y provincia.
+            {subtitle}
           </p>
         </div>
 
         <div className="faq-list mx-auto flex max-w-3xl flex-col gap-3">
-          {INCENDIOS_FAQS.map((faq, index) => {
+          {faqs.map((faq, index) => {
             const isOpen = openIndex === index
             return (
               <div
+                data-reveal
                 key={faq.question}
-                className="faq-item overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] opacity-0"
+                className="faq-item overflow-hidden rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] "
               >
                 <button
                   type="button"
@@ -103,10 +70,10 @@ export function FireFaqSection() {
           })}
         </div>
 
-        <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-12">
+        {showServiceArea && <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-12">
           Zona de servicio: Córdoba capital y provincia. Proyectos para edificios, industrias, comercios y desarrollos
           que requieren detección y alarma de incendio con ingeniería, provisión e instalación profesional.
-        </p>
+        </p>}
       </Container>
     </Section>
   )

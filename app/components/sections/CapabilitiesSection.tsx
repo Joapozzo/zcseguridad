@@ -26,7 +26,7 @@ const capabilities = [
     title: 'Protección contra intrusiones',
     description: 'Sensores de movimiento, apertura y vibración de alta precisión. Detección perimetral e interior con zonas configurables para máxima cobertura.',
     detail: 'Sensores inalámbricos · Cifrado AES-128 · Anti-jamming',
-    image: '/assets/intrusion.png',
+    image: '/assets/intrusion.webp',
   },
   {
     icon: <Cctv size={28} />,

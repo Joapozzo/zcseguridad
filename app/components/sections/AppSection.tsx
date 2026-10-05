@@ -49,7 +49,7 @@ export function AppSection() {
       {/* Asset de fondo + overlay en degradado para que no se corte de golpe — solo desktop */}
       <div className="absolute inset-0 z-0 pointer-events-none hidden md:block">
         <Image
-          src="/assets/1.png"
+          src="/assets/1.webp"
           alt=""
           fill
           className="object-cover object-right"
@@ -125,7 +125,7 @@ export function AppSection() {
           <div className="flex justify-center min-w-0 opacity-0 app-visual sm:justify-start">
             <div className="relative aspect-[9/16] h-[62vh] min-h-[280px] sm:h-[68vh] sm:min-h-[360px]">
               <Image
-                src="/assets/app2.png"
+                src="/assets/app2.webp"
                 alt="App Ajax Security System en smartphone"
                 fill
                 className="object-contain object-center"

@@ -102,6 +102,9 @@
 
 .installation img { object-position: center 45%; filter: brightness(1.15); }
 .commissioning img { object-position: center 60%; filter: brightness(1.1); }
+.ajaxEn54 .product { inset: 20px 16px 70px; }
+/* Inline size from next/image would distort the group when max-width shrinks it. */
+.ajaxEn54 .product img { height: auto !important; }
 .existing { border-radius: var(--radius-lg); background: #171717; }
 .existing img { object-fit: cover; object-position: center 35%; }
 .smartline .product, .previdia .product { background: transparent; }

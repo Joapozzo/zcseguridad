@@ -14,6 +14,10 @@ export function AddressableIcon(props: IconProps) {
   return <Frame {...props}><circle cx="16" cy="5" r="3" /><circle cx="16" cy="16" r="6" /><circle cx="16" cy="16" r="2" fill="currentColor" stroke="none" /><circle cx="16" cy="27" r="3" /></Frame>
 }
 
+export function WirelessIcon(props: IconProps) {
+  return <Frame {...props}><rect x="9" y="15" width="14" height="14" rx="3" /><circle cx="16" cy="22" r="2" fill="currentColor" stroke="none" /><path d="M11.5 10.5a6.5 6.5 0 0 1 9 0M8 7a11.5 11.5 0 0 1 16 0" /></Frame>
+}
+
 export function ExistingBuildingIcon(props: IconProps) {
   return <Frame {...props}><path d="M4 29V6l15-3v26H4ZM9 9v3m5-4v3M9 16v3m5-4v3M9 23v3m5-4v3" /><circle cx="25" cy="24" r="6" fill="var(--color-background)" /><path d="M22 24h6m-3-3v6" /></Frame>
 }

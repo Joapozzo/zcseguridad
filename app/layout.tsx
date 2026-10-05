@@ -3,6 +3,7 @@ import { Poppins } from 'next/font/google'
 import './globals.css'
 import { CONTACT, META } from './constants/contact'
 import { getStructuredDataGraph } from './lib/structured-data'
+import { Analytics } from './components/Analytics'
 
 const poppins = Poppins({
   subsets: ['latin', 'latin-ext'],
@@ -11,6 +12,13 @@ const poppins = Poppins({
 })
 
 const structuredData = getStructuredDataGraph()
+
+/** Elementos que arrancan ocultos hasta que GSAP los anima; sin JS deben verse igual. */
+const NO_JS_REVEAL_SELECTORS = [
+  '.hero-reveal', '[data-reveal]', '.cta-reveal', '.app-text', '.app-visual', '.benefit-item',
+  '.cap-heading', '.cap-card', '.concept-title', '.pillar-item', '.success-heading', '.success-card',
+  '.sol-heading', '.sys-heading', '.sys-panel', '.proj-heading', '.proj-card',
+].join(',')
 
 export const viewport: Viewport = {
   themeColor: [
@@ -103,7 +111,13 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             __html: JSON.stringify(structuredData),
           }}
         />
+        <noscript
+          dangerouslySetInnerHTML={{
+            __html: `<style>${NO_JS_REVEAL_SELECTORS}{opacity:1!important;transform:none!important}</style>`,
+          }}
+        />
         {children}
+        <Analytics />
       </body>
     </html>
   )

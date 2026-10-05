@@ -30,12 +30,13 @@ export function getStructuredDataGraph() {
           streetAddress: 'Maestro Vidal 998',
           addressLocality: 'Córdoba',
           addressRegion: 'Córdoba',
+          postalCode: 'X5002',
           addressCountry: 'AR',
         },
         geo: {
           '@type': 'GeoCoordinates',
-          latitude: -31.4201,
-          longitude: -64.1888,
+          latitude: -31.41746,
+          longitude: -64.22686,
         },
         areaServed: [
           {
