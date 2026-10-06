@@ -442,7 +442,7 @@ export function En54Content() {
           ],
           [
             '¿El sistema necesita alimentación eléctrica?',
-            'Los detectores, sirenas y dispositivos visuales funcionan con baterías. El hub y el repetidor tienen alimentación de 240 V y pueden incorporar baterías de reserva de 24 o 72 horas. El sistema reduce el cableado entre dispositivos.',
+            'Los detectores, sirenas y dispositivos visuales funcionan con baterías. El hub y el repetidor tienen alimentación de 220VAC y pueden incorporar baterías de reserva de 24 o 72 horas. El sistema reduce el cableado entre dispositivos.',
           ],
           [
             '¿Qué certificaciones tiene?',
