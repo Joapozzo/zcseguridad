@@ -13,11 +13,16 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
 }
 
 const variantStyles: Record<ButtonVariant, string> = {
-  primary: 'bg-[var(--color-primary-accent)] text-[var(--color-text-inverse)] hover:bg-[var(--color-primary-accent-hover)] shadow-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.12)]',
-  secondary: 'bg-[var(--color-surface-elevated)] text-[var(--color-text-primary)] border border-[var(--color-border-strong)] hover:border-[var(--color-text-muted)]',
-  outline: 'border border-[var(--color-border-strong)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface)] hover:border-[var(--color-text-muted)]',
-  ghost: 'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]',
-  whatsapp: 'bg-[#25D366] text-white hover:bg-[#1fba58] shadow-lg hover:shadow-[0_0_30px_rgba(37,211,102,0.3)]',
+  primary:
+    'bg-[var(--color-primary-accent)] text-[var(--color-text-inverse)] hover:bg-[var(--color-primary-accent-hover)] shadow-lg hover:shadow-[0_0_30px_rgba(255,255,255,0.12)]',
+  secondary:
+    'bg-[var(--color-surface-elevated)] text-[var(--color-text-primary)] border border-[var(--color-border-strong)] hover:border-[var(--color-text-muted)]',
+  outline:
+    'border border-[var(--color-border-strong)] text-[var(--color-text-primary)] hover:bg-[var(--color-surface)] hover:border-[var(--color-text-muted)]',
+  ghost:
+    'text-[var(--color-text-secondary)] hover:text-[var(--color-text-primary)] hover:bg-[var(--color-surface)]',
+  whatsapp:
+    'bg-[#25D366] text-white hover:bg-[#1fba58] shadow-lg hover:shadow-[0_0_30px_rgba(37,211,102,0.3)]',
   fire: 'bg-[var(--color-fire-ember)] text-white hover:bg-[#a84d1f] shadow-lg hover:shadow-[0_0_28px_var(--color-fire-ember-glow)]',
 }
 
@@ -42,7 +47,12 @@ export function Button({
 
   if (href || as === 'a') {
     return (
-      <a href={href} target={target} rel={target === '_blank' ? 'noopener noreferrer' : undefined} className={styles}>
+      <a
+        href={href}
+        target={target}
+        rel={target === '_blank' ? 'noopener noreferrer' : undefined}
+        className={styles}
+      >
         {children}
       </a>
     )

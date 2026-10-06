@@ -18,7 +18,7 @@ export function ProcessSection({ content = securityProcessContent }: { content?:
       gsap.fromTo(
         heading,
         { opacity: 0, y: 20 },
-        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' }
+        { opacity: 1, y: 0, duration: 0.6, ease: 'power2.out' },
       )
     }
     init()

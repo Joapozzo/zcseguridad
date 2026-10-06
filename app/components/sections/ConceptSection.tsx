@@ -45,7 +45,7 @@ export function ConceptSection() {
             y: 0,
             duration: 0.7,
             scrollTrigger: { trigger: el, start: 'top 75%' },
-          }
+          },
         )
       }
 
@@ -58,7 +58,7 @@ export function ConceptSection() {
           duration: 0.6,
           stagger: 0.12,
           scrollTrigger: { trigger: el, start: 'top 65%' },
-        }
+        },
       )
     }
     init()
@@ -75,13 +75,14 @@ export function ConceptSection() {
             </h2>
           </div>
           <p className="mx-auto max-w-xl px-1 text-center text-sm font-normal tracking-wide text-black/50 sm:px-0">
-            AJAX es el sistema de seguridad inalámbrico más avanzado. Instalamos, configuramos y monitoreamos todo por vos.
+            AJAX es el sistema de seguridad inalámbrico más avanzado. Instalamos, configuramos y
+            monitoreamos todo por vos.
           </p>
         </div>
 
         {/* 3 columnas: row desktop, col mobile — ocupa el resto del 100vh */}
         <div className="flex flex-col flex-1 w-full min-h-0 md:flex-row">
-          {pillars.map((pillar) => (
+          {pillars.map(pillar => (
             <a
               key={pillar.title}
               href="#sistema"
@@ -100,9 +101,7 @@ export function ConceptSection() {
                 <h3 className="mb-1 text-xl font-bold tracking-tight font-display lg:text-2xl">
                   {pillar.title}
                 </h3>
-                <p className="text-xs font-normal lg:text-sm text-white/80">
-                  {pillar.subtitle}
-                </p>
+                <p className="text-xs font-normal lg:text-sm text-white/80">{pillar.subtitle}</p>
               </div>
             </a>
           ))}

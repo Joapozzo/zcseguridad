@@ -24,14 +24,16 @@ const capabilities = [
   {
     icon: <ShieldAlert size={28} />,
     title: 'Protección contra intrusiones',
-    description: 'Sensores de movimiento, apertura y vibración de alta precisión. Detección perimetral e interior con zonas configurables para máxima cobertura.',
+    description:
+      'Sensores de movimiento, apertura y vibración de alta precisión. Detección perimetral e interior con zonas configurables para máxima cobertura.',
     detail: 'Sensores inalámbricos · Cifrado AES-128 · Anti-jamming',
     image: '/assets/intrusion.webp',
   },
   {
     icon: <Cctv size={28} />,
     title: 'Videovigilancia',
-    description: 'Cámaras integradas con visión nocturna, detección de movimiento inteligente y almacenamiento en la nube o local. Acceso remoto desde la app.',
+    description:
+      'Cámaras integradas con visión nocturna, detección de movimiento inteligente y almacenamiento en la nube o local. Acceso remoto desde la app.',
     detail: 'Full HD · Visión nocturna · Detección IA',
     image: '/assets/video.avif',
   },
@@ -47,7 +49,8 @@ const capabilities = [
   {
     icon: <Zap size={28} />,
     title: 'Automatización y control',
-    description: 'Integración con dispositivos inteligentes para automatizar acciones ante eventos de seguridad. Luces, cerraduras y más desde la misma app.',
+    description:
+      'Integración con dispositivos inteligentes para automatizar acciones ante eventos de seguridad. Luces, cerraduras y más desde la misma app.',
     detail: 'Smart home · Cerraduras · Iluminación',
     image: '/assets/mobile.jpg',
     video: { path: VIDEO_PATHS.mobile },
@@ -68,7 +71,7 @@ export function CapabilitiesSection() {
       gsap.fromTo(
         el.querySelector('.cap-heading'),
         { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: el, start: 'top 78%' } }
+        { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: el, start: 'top 78%' } },
       )
       el.querySelectorAll('.cap-card').forEach((card, i) => {
         gsap.fromTo(
@@ -80,7 +83,7 @@ export function CapabilitiesSection() {
             duration: 0.65,
             delay: i * 0.08,
             scrollTrigger: { trigger: card, start: 'top 85%' },
-          }
+          },
         )
       })
     }
@@ -122,7 +125,7 @@ export function CapabilitiesSection() {
                     {cap.description}
                   </p>
                   <div className="flex flex-wrap gap-2">
-                    {cap.detail.split(' · ').map((tag) => (
+                    {cap.detail.split(' · ').map(tag => (
                       <span
                         key={tag}
                         className="text-xs px-2.5 py-1 rounded-full border border-[var(--color-border)] text-[var(--color-text-muted)] font-display"

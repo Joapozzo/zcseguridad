@@ -14,17 +14,14 @@ export type ResolvedSuccessVideo = {
 /** Borde luminoso: capa inferior gira; el contenido queda encima con recorte. */
 function LuminousVideoFrame({ children }: { children: ReactNode }) {
   return (
-    <div
-      className="relative w-full overflow-hidden rounded-[var(--radius-lg)] p-[3px] shadow-[0_0_8px_1px_rgba(255,255,255,0.45),0_0_16px_3px_rgba(147,197,253,0.22)] md:shadow-[0_0_16px_3px_rgba(255,255,255,0.55),0_0_32px_6px_rgba(186,230,253,0.5),0_0_48px_10px_rgba(56,189,248,0.35),0_0_72px_16px_rgba(253,224,71,0.28)]"
-    >
-      <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]" aria-hidden>
+    <div className="relative w-full overflow-hidden rounded-[var(--radius-lg)] p-[3px] shadow-[0_0_8px_1px_rgba(255,255,255,0.45),0_0_16px_3px_rgba(147,197,253,0.22)] md:shadow-[0_0_16px_3px_rgba(255,255,255,0.55),0_0_32px_6px_rgba(186,230,253,0.5),0_0_48px_10px_rgba(56,189,248,0.35),0_0_72px_16px_rgba(253,224,71,0.28)]">
+      <div
+        className="pointer-events-none absolute inset-0 z-0 overflow-hidden rounded-[inherit]"
+        aria-hidden
+      >
         {/* Halo difuso: contenido en desktop; en mobile más chico para que no “mancha” alrededor */}
-        <div
-          className="absolute left-1/2 top-1/2 aspect-square w-[200%] max-w-none -translate-x-1/2 -translate-y-1/2 animate-success-video-border-spin bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(255,255,255,0.55)_25deg,transparent_65deg,rgba(96,165,250,0.45)_120deg,transparent_175deg,rgba(253,224,71,0.4)_235deg,transparent_300deg,transparent_360deg)] opacity-50 blur-sm md:w-[260%] md:opacity-80 md:blur-md"
-        />
-        <div
-          className="absolute left-1/2 top-1/2 aspect-square w-[210%] max-w-none -translate-x-1/2 -translate-y-1/2 animate-success-video-border-spin bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(255,255,255,1)_22deg,rgba(224,242,254,1)_38deg,transparent_62deg,rgba(56,189,248,0.95)_108deg,rgba(37,99,235,0.85)_138deg,transparent_168deg,rgba(254,252,232,1)_218deg,rgba(250,204,21,1)_248deg,rgba(253,224,71,0.95)_268deg,transparent_298deg,transparent_360deg)] brightness-110 saturate-150 contrast-[1.06] blur-[0.5px] md:w-[240%]"
-        />
+        <div className="absolute left-1/2 top-1/2 aspect-square w-[200%] max-w-none -translate-x-1/2 -translate-y-1/2 animate-success-video-border-spin bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(255,255,255,0.55)_25deg,transparent_65deg,rgba(96,165,250,0.45)_120deg,transparent_175deg,rgba(253,224,71,0.4)_235deg,transparent_300deg,transparent_360deg)] opacity-50 blur-sm md:w-[260%] md:opacity-80 md:blur-md" />
+        <div className="absolute left-1/2 top-1/2 aspect-square w-[210%] max-w-none -translate-x-1/2 -translate-y-1/2 animate-success-video-border-spin bg-[conic-gradient(from_0deg_at_50%_50%,transparent_0deg,rgba(255,255,255,1)_22deg,rgba(224,242,254,1)_38deg,transparent_62deg,rgba(56,189,248,0.95)_108deg,rgba(37,99,235,0.85)_138deg,transparent_168deg,rgba(254,252,232,1)_218deg,rgba(250,204,21,1)_248deg,rgba(253,224,71,0.95)_268deg,transparent_298deg,transparent_360deg)] brightness-110 saturate-150 contrast-[1.06] blur-[0.5px] md:w-[240%]" />
       </div>
       {children}
     </div>
@@ -100,7 +97,7 @@ export function SuccessVideosSectionClient({ videos }: { videos: ResolvedSuccess
       gsap.fromTo(
         el.querySelector('.success-heading'),
         { opacity: 0, y: 24 },
-        { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: el, start: 'top 78%' } }
+        { opacity: 1, y: 0, duration: 0.7, scrollTrigger: { trigger: el, start: 'top 78%' } },
       )
       el.querySelectorAll('.success-card').forEach((card, i) => {
         gsap.fromTo(
@@ -112,7 +109,7 @@ export function SuccessVideosSectionClient({ videos }: { videos: ResolvedSuccess
             duration: 0.65,
             delay: i * 0.08,
             scrollTrigger: { trigger: card, start: 'top 85%' },
-          }
+          },
         )
       })
     }
@@ -132,7 +129,7 @@ export function SuccessVideosSectionClient({ videos }: { videos: ResolvedSuccess
         </div>
 
         <ul className="mx-auto flex max-w-6xl flex-col gap-8 md:flex-row md:gap-6 lg:gap-8">
-          {videos.map((item) => (
+          {videos.map(item => (
             <li key={item.youtubeId} className="min-w-0 flex-1">
               <article className="success-card opacity-0">
                 <VideoCard {...item} />

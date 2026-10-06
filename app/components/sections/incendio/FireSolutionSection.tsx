@@ -57,7 +57,7 @@ export function FireSolutionSection() {
             y: 0,
             duration: 0.65,
             scrollTrigger: { trigger: el, start: 'top 75%' },
-          }
+          },
         )
 
         const timeline = el.querySelector('.sol-timeline')
@@ -76,11 +76,11 @@ export function FireSolutionSection() {
                 end: 'bottom 30%',
                 scrub: 0.6,
               },
-            }
+            },
           )
         }
 
-        el.querySelectorAll('.sol-step').forEach((step) => {
+        el.querySelectorAll('.sol-step').forEach(step => {
           const media = step.querySelector('.sol-media')
           const copy = step.querySelector('.sol-copy')
           const node = step.querySelector('.sol-node')
@@ -97,7 +97,7 @@ export function FireSolutionSection() {
                 duration: 0.75,
                 ease: 'power2.out',
                 scrollTrigger: { trigger: step, start: 'top 82%' },
-              }
+              },
             )
           }
 
@@ -113,7 +113,7 @@ export function FireSolutionSection() {
                 delay: 0.08,
                 ease: 'power2.out',
                 scrollTrigger: { trigger: step, start: 'top 82%' },
-              }
+              },
             )
           }
 
@@ -127,7 +127,7 @@ export function FireSolutionSection() {
                 duration: 0.45,
                 ease: 'back.out(1.6)',
                 scrollTrigger: { trigger: step, start: 'top 78%' },
-              }
+              },
             )
           }
         })
@@ -148,7 +148,8 @@ export function FireSolutionSection() {
             <span className="text-[var(--color-text-secondary)]">a la puesta en marcha</span>
           </h2>
           <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-relaxed">
-            Te acompañamos desde el proyecto técnico hasta la puesta en marcha: provisión, instalación y programación adaptadas a cada obra.
+            Te acompañamos desde el proyecto técnico hasta la puesta en marcha: provisión,
+            instalación y programación adaptadas a cada obra.
           </p>
         </div>
 

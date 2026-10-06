@@ -40,7 +40,9 @@ export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolea
   useEffect(() => {
     if (menuOpen) document.body.style.overflow = 'hidden'
     else document.body.style.overflow = ''
-    return () => { document.body.style.overflow = '' }
+    return () => {
+      document.body.style.overflow = ''
+    }
   }, [menuOpen])
 
   const closeMenu = () => setMenuOpen(false)
@@ -70,7 +72,8 @@ export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolea
 
   const linkClass = (href: string) => {
     const active = isActive(href, pathname)
-    const base = 'text-[15px] font-medium tracking-wide transition-colors font-display whitespace-nowrap'
+    const base =
+      'text-[15px] font-medium tracking-wide transition-colors font-display whitespace-nowrap'
     if (scrolled) {
       return `${base} ${active ? 'text-neutral-900' : 'text-neutral-600 hover:text-neutral-900'}`
     }
@@ -79,16 +82,15 @@ export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolea
 
   return (
     <>
-      <header
-        className="fixed top-0 right-0 left-0 z-50 px-4 pt-3 transition-all duration-300 pointer-events-none sm:pt-4 lg:px-6"
-      >
+      <header className="fixed top-0 right-0 left-0 z-50 px-4 pt-3 transition-all duration-300 pointer-events-none sm:pt-4 lg:px-6">
         <div
-          className={`pointer-events-auto mx-auto max-w-xl rounded-2xl transition-all duration-300 lg:max-w-7xl lg:px-5 ${scrolled
+          className={`pointer-events-auto mx-auto max-w-xl rounded-2xl transition-all duration-300 lg:max-w-7xl lg:px-5 ${
+            scrolled
               ? 'border shadow-lg backdrop-blur-xl border-white/10 bg-white/10 lg:bg-white lg:border-neutral-200 lg:shadow-md'
               : transparentAtTop
                 ? 'border border-transparent bg-transparent'
                 : 'border backdrop-blur-md border-white/5 bg-white/5 lg:border-transparent lg:bg-transparent'
-            }`}
+          }`}
         >
           <div className="flex items-center gap-4 px-4 h-16 sm:h-[4.5rem] sm:px-5 lg:gap-6 lg:px-2">
             {/* Logo izquierda */}
@@ -113,11 +115,11 @@ export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolea
 
             {/* Nav centro — solo desktop ancho */}
             <nav className="hidden flex-1 justify-center items-center gap-7 xl:gap-9 lg:flex">
-              {MAIN_NAV.map((link) => (
+              {MAIN_NAV.map(link => (
                 <Link
                   key={link.href + link.label}
                   href={resolveHref(link.href, pathname)}
-                  onClick={(e) => handleNavClick(e, link.href)}
+                  onClick={e => handleNavClick(e, link.href)}
                   className={linkClass(link.href)}
                 >
                   {link.label}
@@ -142,7 +144,9 @@ export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolea
                   size="md"
                   href={contact.whatsappLink}
                   target="_blank"
-                  className={scrolled ? 'border-neutral-300 text-neutral-700 hover:bg-neutral-100' : ''}
+                  className={
+                    scrolled ? 'border-neutral-300 text-neutral-700 hover:bg-neutral-100' : ''
+                  }
                 >
                   <FaWhatsapp size={20} />
                 </Button>
@@ -165,17 +169,19 @@ export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolea
         tabIndex={-1}
         aria-label="Cerrar menú"
         onClick={closeMenu}
-        onKeyDown={(e) => e.key === 'Escape' && closeMenu()}
-        className={`fixed inset-0 z-60 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
-          }`}
+        onKeyDown={e => e.key === 'Escape' && closeMenu()}
+        className={`fixed inset-0 z-60 bg-black/50 backdrop-blur-sm transition-opacity duration-300 ${
+          menuOpen ? 'opacity-100' : 'opacity-0 pointer-events-none'
+        }`}
         style={{ touchAction: 'none' }}
       />
 
       <aside
         aria-hidden={!menuOpen}
         aria-modal="true"
-        className={`fixed top-0 right-0 z-70 h-full w-[min(100vw,320px)] flex flex-col transition-[transform,opacity] duration-300 ease-out ${menuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'
-          }`}
+        className={`fixed top-0 right-0 z-70 h-full w-[min(100vw,320px)] flex flex-col transition-[transform,opacity] duration-300 ease-out ${
+          menuOpen ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-full pointer-events-none'
+        }`}
       >
         <div className="flex h-full flex-col border-l border-white/10 bg-white/8 shadow-2xl backdrop-blur-xl">
           <div className="flex h-16 items-center justify-between border-b border-white/5 px-4 sm:h-[4.5rem] sm:px-5">
@@ -201,7 +207,7 @@ export function Navbar({ transparentAtTop = false }: { transparentAtTop?: boolea
               <Link
                 key={link.href + link.label}
                 href={resolveHref(link.href, pathname)}
-                onClick={(e) => handleNavClick(e, link.href)}
+                onClick={e => handleNavClick(e, link.href)}
                 className="py-3.5 px-3 rounded-xl text-(--color-text-secondary) hover:text-(--color-text-primary) hover:bg-white/5 font-display font-medium text-base transition-colors"
                 style={{
                   transitionDelay: menuOpen ? `${40 * i}ms` : '0ms',

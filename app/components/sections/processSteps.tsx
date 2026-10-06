@@ -132,13 +132,19 @@ export function addStepActiveTweens(
   icon: HTMLElement,
   _number: HTMLElement,
   _title: HTMLElement,
-  position: number
+  position: number,
 ) {
   tl.to(item, { opacity: OPACITY_ACTIVE, duration: STATE_DURATION, ease: EASE }, position)
   tl.to(
     icon,
-    { scale: 1, borderColor: BORDER_ACCENT, boxShadow: ACCENT_GLOW, duration: STATE_DURATION, ease: EASE },
-    position
+    {
+      scale: 1,
+      borderColor: BORDER_ACCENT,
+      boxShadow: ACCENT_GLOW,
+      duration: STATE_DURATION,
+      ease: EASE,
+    },
+    position,
   )
 }
 
@@ -148,17 +154,28 @@ export function addStepCompletedTweens(
   icon: HTMLElement,
   _number: HTMLElement,
   _title: HTMLElement,
-  position: number
+  position: number,
 ) {
   tl.to(item, { opacity: OPACITY_COMPLETED, duration: STATE_DURATION, ease: EASE }, position)
   tl.to(
     icon,
-    { scale: 1, borderColor: BORDER_DEFAULT, boxShadow: 'none', duration: STATE_DURATION, ease: EASE },
-    position
+    {
+      scale: 1,
+      borderColor: BORDER_DEFAULT,
+      boxShadow: 'none',
+      duration: STATE_DURATION,
+      ease: EASE,
+    },
+    position,
   )
 }
 
-export function addStepDotTweens(tl: GSAPTimeline, dot: HTMLElement, active: boolean, position: number) {
+export function addStepDotTweens(
+  tl: GSAPTimeline,
+  dot: HTMLElement,
+  active: boolean,
+  position: number,
+) {
   tl.to(
     dot,
     {
@@ -166,6 +183,6 @@ export function addStepDotTweens(tl: GSAPTimeline, dot: HTMLElement, active: boo
       duration: STATE_DURATION,
       ease: EASE,
     },
-    position
+    position,
   )
 }

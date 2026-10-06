@@ -47,7 +47,7 @@ export function HeroSection() {
           ease: 'power2.out',
           onUpdate: () => {
             if (!mounted) return
-            setDisplayValues((prev) => {
+            setDisplayValues(prev => {
               const next = [...prev]
               next[i] = Math.round(obj.val)
               return next
@@ -82,7 +82,10 @@ export function HeroSection() {
       <div className="absolute inset-0 bg-black/55" aria-hidden />
 
       {/* Contenido centrado — minimalista, el video es protagonista */}
-      <div ref={contentRef} className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center">
+      <div
+        ref={contentRef}
+        className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-20 text-center"
+      >
         <h1 className="hero-reveal font-display font-semibold text-[clamp(1.75rem,4.5vw,3.25rem)] leading-tight tracking-[0.12em] uppercase text-white mb-5 max-w-5xl">
           Alarmas y seguridad inteligente para tu casa, empresa o negocio
         </h1>
@@ -112,16 +115,25 @@ export function HeroSection() {
       </div>
 
       {/* Stats — pie del hero con count-up */}
-      <div ref={statsRef} className="flex absolute right-0 left-0 bottom-6 z-10 flex-row gap-4 justify-center items-center text-center md:gap-16">
+      <div
+        ref={statsRef}
+        className="flex absolute right-0 left-0 bottom-6 z-10 flex-row gap-4 justify-center items-center text-center md:gap-16"
+      >
         {heroStats.map((stat, i) => {
           const Icon = stat.icon
-          const value =
-            (stat.prefix ?? '') + displayValues[i] + (stat.suffix ?? '')
+          const value = (stat.prefix ?? '') + displayValues[i] + (stat.suffix ?? '')
           return (
             <div key={stat.label} className="flex flex-col gap-1 items-center text-center">
-              <Icon strokeWidth={1.5} className="w-4 h-4 shrink-0 text-white/50 md:w-5 md:h-5" aria-hidden />
+              <Icon
+                strokeWidth={1.5}
+                className="w-4 h-4 shrink-0 text-white/50 md:w-5 md:h-5"
+                aria-hidden
+              />
               <div className="flex flex-col items-center text-center">
-                <span data-stat-value className="text-xs font-medium tracking-wide font-display text-white/90 md:text-sm min-w-[2ch] tabular-nums">
+                <span
+                  data-stat-value
+                  className="text-xs font-medium tracking-wide font-display text-white/90 md:text-sm min-w-[2ch] tabular-nums"
+                >
                   {value}
                 </span>
                 <span className="text-[9px] text-white/50 uppercase tracking-[0.12em] md:text-[10px] md:tracking-[0.15em]">

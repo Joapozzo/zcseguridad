@@ -2,7 +2,12 @@
 
 import { useEffect, useRef, useState } from 'react'
 import type { ComponentType } from 'react'
-import { ConventionalIcon, AddressableIcon, WirelessIcon, ExistingBuildingIcon } from './FireSystemIcons'
+import {
+  ConventionalIcon,
+  AddressableIcon,
+  WirelessIcon,
+  ExistingBuildingIcon,
+} from './FireSystemIcons'
 import { Container, Section } from '../../ui/Layout'
 import { InimVisual, type InimVisualKind } from './InimVisual'
 
@@ -115,7 +120,7 @@ export function FireSystemsSection() {
             y: 0,
             duration: 0.65,
             scrollTrigger: { trigger: track, start: 'top 78%' },
-          }
+          },
         )
 
         sticky.querySelectorAll('.sys-panel').forEach((panel, i) => {
@@ -129,7 +134,7 @@ export function FireSystemsSection() {
               delay: i * 0.05,
               ease: 'power2.out',
               scrollTrigger: { trigger: track, start: 'top 78%' },
-            }
+            },
           )
         })
       }
@@ -155,10 +160,10 @@ export function FireSystemsSection() {
             end: 'bottom bottom',
             scrub: 0.55,
             invalidateOnRefresh: true,
-            onUpdate: (self) => setStepFromProgress(self.progress),
-            onRefresh: (self) => setStepFromProgress(self.progress),
+            onUpdate: self => setStepFromProgress(self.progress),
+            onRefresh: self => setStepFromProgress(self.progress),
           })
-        }
+        },
       )
 
       matchMedia.add(
@@ -175,7 +180,7 @@ export function FireSystemsSection() {
               onEnterBack: () => setActive(i),
             })
           })
-        }
+        },
       )
     }
 
@@ -207,7 +212,8 @@ export function FireSystemsSection() {
                     <span className="text-[var(--color-text-secondary)]">de detección</span>
                   </h2>
                   <p className="text-sm md:text-base text-[var(--color-text-secondary)] leading-relaxed max-w-md mb-8 lg:mb-0">
-                    Definimos la tecnología según el tipo de proyecto, la normativa aplicable y los requerimientos de cada cliente.
+                    Definimos la tecnología según el tipo de proyecto, la normativa aplicable y los
+                    requerimientos de cada cliente.
                   </p>
                 </div>
 
@@ -239,7 +245,9 @@ export function FireSystemsSection() {
                       <div className="flex gap-6 md:gap-8 items-start">
                         <div
                           className={`shrink-0 pt-0.5 transition-[transform,color] duration-500 ease-in-out ${
-                            isOn ? 'scale-110 text-[var(--color-fire-ember)]' : 'text-[var(--color-text-muted)]'
+                            isOn
+                              ? 'scale-110 text-[var(--color-fire-ember)]'
+                              : 'text-[var(--color-text-muted)]'
                           }`}
                         >
                           <Icon size={isOn ? 40 : 30} strokeWidth={1.35} />
@@ -249,7 +257,9 @@ export function FireSystemsSection() {
                           <div className="flex flex-wrap items-baseline gap-x-3 gap-y-1 mb-2">
                             <span
                               className={`font-display text-xs tracking-[0.2em] tabular-nums transition-colors duration-500 ease-in-out ${
-                                isOn ? 'text-[var(--color-fire-ember)]' : 'text-[var(--color-text-muted)]'
+                                isOn
+                                  ? 'text-[var(--color-fire-ember)]'
+                                  : 'text-[var(--color-text-muted)]'
                               }`}
                             >
                               {item.number}
@@ -272,7 +282,9 @@ export function FireSystemsSection() {
 
                           <p
                             className={`text-[10px] md:text-xs uppercase tracking-[0.12em] font-display transition-colors duration-500 ease-in-out ${
-                              isOn ? 'text-[var(--color-text-muted)]' : 'text-[var(--color-text-muted)]/70'
+                              isOn
+                                ? 'text-[var(--color-text-muted)]'
+                                : 'text-[var(--color-text-muted)]/70'
                             }`}
                           >
                             {item.when}
@@ -280,7 +292,9 @@ export function FireSystemsSection() {
 
                           <div
                             className={`grid transition-[grid-template-rows,opacity,margin] duration-500 ease-in-out ${
-                              isOn ? 'grid-rows-[1fr] opacity-100 mt-4' : 'grid-rows-[1fr] opacity-100 mt-4 lg:grid-rows-[0fr] lg:opacity-0 lg:mt-0'
+                              isOn
+                                ? 'grid-rows-[1fr] opacity-100 mt-4'
+                                : 'grid-rows-[1fr] opacity-100 mt-4 lg:grid-rows-[0fr] lg:opacity-0 lg:mt-0'
                             }`}
                           >
                             <div className="overflow-hidden">

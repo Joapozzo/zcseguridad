@@ -81,17 +81,77 @@ export function ProcessSectionDesktop({
         tl.to(
           [line, lineGlow].filter(Boolean),
           { scaleX: 1, duration: LINE_DURATION, ease: 'none', transformOrigin: 'left center' },
-          0
+          0,
         )
-        addStepActiveTweens(tl, stepItems[0], stepIcons[0], stepNumbers[0], stepTitles[0], STEP_ACTIVATE_TIMES[0])
-        addStepCompletedTweens(tl, stepItems[0], stepIcons[0], stepNumbers[0], stepTitles[0], STEP_ACTIVATE_TIMES[1])
-        addStepActiveTweens(tl, stepItems[1], stepIcons[1], stepNumbers[1], stepTitles[1], STEP_ACTIVATE_TIMES[1])
-        addStepCompletedTweens(tl, stepItems[1], stepIcons[1], stepNumbers[1], stepTitles[1], STEP_ACTIVATE_TIMES[2])
-        addStepActiveTweens(tl, stepItems[2], stepIcons[2], stepNumbers[2], stepTitles[2], STEP_ACTIVATE_TIMES[2])
-        addStepCompletedTweens(tl, stepItems[2], stepIcons[2], stepNumbers[2], stepTitles[2], STEP_ACTIVATE_TIMES[3])
-        addStepActiveTweens(tl, stepItems[3], stepIcons[3], stepNumbers[3], stepTitles[3], STEP_ACTIVATE_TIMES[3])
-        addStepCompletedTweens(tl, stepItems[3], stepIcons[3], stepNumbers[3], stepTitles[3], LINE_DURATION)
-        tl.set([line, lineGlow].filter(Boolean), { scaleX: 0, transformOrigin: 'left center' }, '>-0.01')
+        addStepActiveTweens(
+          tl,
+          stepItems[0],
+          stepIcons[0],
+          stepNumbers[0],
+          stepTitles[0],
+          STEP_ACTIVATE_TIMES[0],
+        )
+        addStepCompletedTweens(
+          tl,
+          stepItems[0],
+          stepIcons[0],
+          stepNumbers[0],
+          stepTitles[0],
+          STEP_ACTIVATE_TIMES[1],
+        )
+        addStepActiveTweens(
+          tl,
+          stepItems[1],
+          stepIcons[1],
+          stepNumbers[1],
+          stepTitles[1],
+          STEP_ACTIVATE_TIMES[1],
+        )
+        addStepCompletedTweens(
+          tl,
+          stepItems[1],
+          stepIcons[1],
+          stepNumbers[1],
+          stepTitles[1],
+          STEP_ACTIVATE_TIMES[2],
+        )
+        addStepActiveTweens(
+          tl,
+          stepItems[2],
+          stepIcons[2],
+          stepNumbers[2],
+          stepTitles[2],
+          STEP_ACTIVATE_TIMES[2],
+        )
+        addStepCompletedTweens(
+          tl,
+          stepItems[2],
+          stepIcons[2],
+          stepNumbers[2],
+          stepTitles[2],
+          STEP_ACTIVATE_TIMES[3],
+        )
+        addStepActiveTweens(
+          tl,
+          stepItems[3],
+          stepIcons[3],
+          stepNumbers[3],
+          stepTitles[3],
+          STEP_ACTIVATE_TIMES[3],
+        )
+        addStepCompletedTweens(
+          tl,
+          stepItems[3],
+          stepIcons[3],
+          stepNumbers[3],
+          stepTitles[3],
+          LINE_DURATION,
+        )
+        tl.set(
+          [line, lineGlow].filter(Boolean),
+          { scaleX: 0, transformOrigin: 'left center' },
+          '>-0.01',
+        )
         tl.set(stepItems, { opacity: OPACITY_COMPLETED }, '>-0.01')
         tl.set(stepIcons, { scale: 1, borderColor: BORDER_DEFAULT, boxShadow: 'none' }, '>-0.01')
       }
@@ -136,7 +196,9 @@ export function ProcessSectionDesktop({
               <h3 className="step-title section-title font-display font-bold text-base mb-3 tracking-widest text-[var(--color-text-primary)]">
                 {step.title}
               </h3>
-              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">{step.description}</p>
+              <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">
+                {step.description}
+              </p>
             </div>
           ))}
         </div>

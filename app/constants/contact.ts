@@ -18,8 +18,7 @@ export const CONTACT = {
 export const META = {
   brandName: 'ZC Seguridad',
   /** Título por defecto (~50–60 caracteres; incluye marca + intención + geo) */
-  titleDefault:
-    'ZC Seguridad | Alarmas y seguridad AJAX en Córdoba — instalación profesional',
+  titleDefault: 'ZC Seguridad | Alarmas y seguridad AJAX en Córdoba — instalación profesional',
   /** Subpáginas futuras: "Servicios | ZC Seguridad" */
   titleTemplate: '%s | ZC Seguridad',
   /**
@@ -48,8 +47,7 @@ export const META = {
   ] as const,
   /** 1200×630 JPG/PNG en /public (previews en WhatsApp, Meta, LinkedIn) */
   ogImage: '/og-image.jpg',
-  ogImageAlt:
-    'ZC Seguridad — sistemas de alarma y videovigilancia AJAX en Córdoba',
+  ogImageAlt: 'ZC Seguridad — sistemas de alarma y videovigilancia AJAX en Córdoba',
   logo: '/logo-positivo.png',
   siteUrl: 'https://zcseguridad.com',
   locale: 'es_AR',

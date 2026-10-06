@@ -15,9 +15,23 @@ const structuredData = getStructuredDataGraph()
 
 /** Elementos que arrancan ocultos hasta que GSAP los anima; sin JS deben verse igual. */
 const NO_JS_REVEAL_SELECTORS = [
-  '.hero-reveal', '[data-reveal]', '.cta-reveal', '.app-text', '.app-visual', '.benefit-item',
-  '.cap-heading', '.cap-card', '.concept-title', '.pillar-item', '.success-heading', '.success-card',
-  '.sol-heading', '.sys-heading', '.sys-panel', '.proj-heading', '.proj-card',
+  '.hero-reveal',
+  '[data-reveal]',
+  '.cta-reveal',
+  '.app-text',
+  '.app-visual',
+  '.benefit-item',
+  '.cap-heading',
+  '.cap-card',
+  '.concept-title',
+  '.pillar-item',
+  '.success-heading',
+  '.success-card',
+  '.sol-heading',
+  '.sys-heading',
+  '.sys-panel',
+  '.proj-heading',
+  '.proj-card',
 ].join(',')
 
 export const viewport: Viewport = {

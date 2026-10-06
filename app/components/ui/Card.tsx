@@ -30,7 +30,13 @@ interface IconBlockProps {
   accent?: boolean
 }
 
-export function IconBlock({ icon, title, description, className = '', accent = false }: IconBlockProps) {
+export function IconBlock({
+  icon,
+  title,
+  description,
+  className = '',
+  accent = false,
+}: IconBlockProps) {
   return (
     <div className={`flex flex-col gap-4 ${className}`}>
       <div
@@ -43,7 +49,9 @@ export function IconBlock({ icon, title, description, className = '', accent = f
         {icon}
       </div>
       <div>
-        <h3 className="font-display font-semibold text-[var(--color-text-primary)] mb-1.5">{title}</h3>
+        <h3 className="font-display font-semibold text-[var(--color-text-primary)] mb-1.5">
+          {title}
+        </h3>
         <p className="text-sm text-[var(--color-text-secondary)] leading-relaxed">{description}</p>
       </div>
     </div>

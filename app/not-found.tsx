@@ -30,17 +30,21 @@ export default function NotFound() {
             No encontramos esta página
           </h1>
           <p className="mb-10 text-[var(--color-text-secondary)]">
-            Puede que el enlace esté desactualizado o que la dirección tenga un error. Estas secciones te pueden servir:
+            Puede que el enlace esté desactualizado o que la dirección tenga un error. Estas
+            secciones te pueden servir:
           </p>
           <div className="mb-10 flex flex-col gap-2">
-            {SUGGESTIONS.map((item) => (
+            {SUGGESTIONS.map(item => (
               <Link
                 key={item.href}
                 href={item.href}
                 className="group flex items-center justify-between rounded-[var(--radius-sm)] border border-[var(--color-border)] bg-[var(--color-surface)] px-5 py-4 text-left text-[var(--color-text-primary)] transition-colors hover:border-[var(--color-border-strong)]"
               >
                 {item.label}
-                <ArrowRight size={18} className="text-[var(--color-text-muted)] transition-transform group-hover:translate-x-1" />
+                <ArrowRight
+                  size={18}
+                  className="text-[var(--color-text-muted)] transition-transform group-hover:translate-x-1"
+                />
               </Link>
             ))}
           </div>

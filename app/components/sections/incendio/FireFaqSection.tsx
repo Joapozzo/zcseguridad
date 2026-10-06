@@ -8,7 +8,17 @@ import { INCENDIOS_FAQS } from '@/app/constants/seo-incendios'
 
 type Faq = { question: string; answer: string }
 
-export function FireFaqSection({ faqs = INCENDIOS_FAQS, subject = 'detección de incendios', subtitle = 'Respuestas claras sobre proyecto, tecnología y cobertura en Córdoba y provincia.', showServiceArea = true }: { faqs?: readonly Faq[]; subject?: string; subtitle?: string; showServiceArea?: boolean }) {
+export function FireFaqSection({
+  faqs = INCENDIOS_FAQS,
+  subject = 'detección de incendios',
+  subtitle = 'Respuestas claras sobre proyecto, tecnología y cobertura en Córdoba y provincia.',
+  showServiceArea = true,
+}: {
+  faqs?: readonly Faq[]
+  subject?: string
+  subtitle?: string
+  showServiceArea?: boolean
+}) {
   const sectionRef = useRef<HTMLDivElement>(null)
   const [openIndex, setOpenIndex] = useState<number | null>(0)
 
@@ -70,10 +80,13 @@ export function FireFaqSection({ faqs = INCENDIOS_FAQS, subject = 'detección de
           })}
         </div>
 
-        {showServiceArea && <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-12">
-          Zona de servicio: Córdoba capital y provincia. Proyectos para edificios, industrias, comercios y desarrollos
-          que requieren detección y alarma de incendio con ingeniería, provisión e instalación profesional.
-        </p>}
+        {showServiceArea && (
+          <p className="mx-auto mt-10 max-w-2xl text-center text-sm leading-relaxed text-[var(--color-text-muted)] md:mt-12">
+            Zona de servicio: Córdoba capital y provincia. Proyectos para edificios, industrias,
+            comercios y desarrollos que requieren detección y alarma de incendio con ingeniería,
+            provisión e instalación profesional.
+          </p>
+        )}
       </Container>
     </Section>
   )

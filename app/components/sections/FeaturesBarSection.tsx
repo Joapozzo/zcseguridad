@@ -30,13 +30,10 @@ export function FeaturesBarSection() {
     <Section variant="transparent" className="w-full bg-[#f7f7f7]">
       <div className="w-full px-6 lg:px-8 py-10 lg:py-12">
         <div className="grid grid-cols-2 md:grid-cols-4 gap-y-8 md:gap-y-0 md:divide-x divide-[var(--color-border)]">
-          {features.map((item) => {
+          {features.map(item => {
             const Icon = item.icon
             return (
-              <div
-                key={item.title}
-                className="flex flex-col items-center text-center"
-              >
+              <div key={item.title} className="flex flex-col items-center text-center">
                 <div className="w-12 h-12 rounded-full border border-[var(--color-border)] flex items-center justify-center text-[var(--color-primary-accent)] mb-4 shrink-0">
                   <Icon size={22} strokeWidth={1.8} />
                 </div>

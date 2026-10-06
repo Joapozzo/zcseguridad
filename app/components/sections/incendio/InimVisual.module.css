@@ -34,9 +34,14 @@
   filter: drop-shadow(0 18px 16px rgb(0 0 0 / 45%));
 }
 
-.equipment .product { inset: 8% 35% 20% 4%; }
+.equipment .product {
+  inset: 8% 35% 20% 4%;
+}
 
-.equipment .product img { max-width: 240px; width: 100%; }
+.equipment .product img {
+  max-width: 240px;
+  width: 100%;
+}
 
 .callPoint {
   position: absolute;
@@ -56,7 +61,7 @@
   color: #b7b3af;
   font-size: 10px;
   line-height: 1.6;
-  letter-spacing: .06em;
+  letter-spacing: 0.06em;
   text-align: center;
   z-index: 4;
 }
@@ -66,15 +71,24 @@
   position: absolute;
   z-index: 1;
   inset: 36% 10% 12%;
-  background: radial-gradient(ellipse at 50% 45%, rgb(222 228 239 / 12%) 0%, rgb(184 192 206 / 5%) 35%, transparent 72%);
+  background: radial-gradient(
+    ellipse at 50% 45%,
+    rgb(222 228 239 / 12%) 0%,
+    rgb(184 192 206 / 5%) 35%,
+    transparent 72%
+  );
   border-radius: 50%;
   filter: blur(22px);
   pointer-events: none;
 }
 
 @media (hover: hover) and (prefers-reduced-motion: no-preference) {
-  .product img { transition: transform 600ms ease; }
-  .stage:hover .product img { transform: translateY(-6px); }
+  .product img {
+    transition: transform 600ms ease;
+  }
+  .stage:hover .product img {
+    transform: translateY(-6px);
+  }
 }
 
 .caption strong {
@@ -83,8 +97,12 @@
   font-weight: 500;
 }
 
-.photo::before { display: none; }
-.photo img { object-position: center 35%; }
+.photo::before {
+  display: none;
+}
+.photo img {
+  object-position: center 35%;
+}
 .photo::after {
   content: '';
   position: absolute;
@@ -93,26 +111,69 @@
   z-index: 1;
   pointer-events: none;
 }
-.photo .caption { z-index: 2; }
+.photo .caption {
+  z-index: 2;
+}
 
-.compact { height: 340px; min-height: 0; }
-.compact .product { inset: 12px 16px 56px; }
-.compact .product img { max-height: 280px; }
-.compact .caption { bottom: 12px; }
+.compact {
+  height: 340px;
+  min-height: 0;
+}
+.compact .product {
+  inset: 12px 16px 56px;
+}
+.compact .product img {
+  max-height: 280px;
+}
+.compact .caption {
+  bottom: 12px;
+}
 
-.installation img { object-position: center 45%; filter: brightness(1.15); }
-.commissioning img { object-position: center 60%; filter: brightness(1.1); }
-.ajaxEn54 .product { inset: 20px 16px 70px; }
+.installation img {
+  object-position: center 45%;
+  filter: brightness(1.15);
+}
+.commissioning img {
+  object-position: center 60%;
+  filter: brightness(1.1);
+}
+.ajaxEn54 .product {
+  inset: 20px 16px 70px;
+}
 /* Inline size from next/image would distort the group when max-width shrinks it. */
-.ajaxEn54 .product img { height: auto !important; }
-.existing { border-radius: var(--radius-lg); background: #171717; }
-.existing img { object-fit: cover; object-position: center 35%; }
-.smartline .product, .previdia .product { background: transparent; }
-.smartline .product { inset: 25px max(16px, calc((100% - 230px) / 2)) 85px; }
-.previdia .product { inset: 0 max(16px, calc((100% - 300px) / 2)) 50px; }
+.ajaxEn54 .product img {
+  height: auto !important;
+}
+.existing {
+  border-radius: var(--radius-lg);
+  background: #171717;
+}
+.existing img {
+  object-fit: cover;
+  object-position: center 35%;
+}
+.smartline .product,
+.previdia .product {
+  background: transparent;
+}
+.smartline .product {
+  inset: 25px max(16px, calc((100% - 230px) / 2)) 85px;
+}
+.previdia .product {
+  inset: 0 max(16px, calc((100% - 300px) / 2)) 50px;
+}
 
 @media (max-width: 767px) {
-  .equipment .product img { max-width: 180px; }
-  .callPoint { right: 5%; bottom: 22%; width: 130px; }
-  .caption { font-size: 9px; bottom: 10px; }
+  .equipment .product img {
+    max-width: 180px;
+  }
+  .callPoint {
+    right: 5%;
+    bottom: 22%;
+    width: 130px;
+  }
+  .caption {
+    font-size: 9px;
+    bottom: 10px;
+  }
 }

@@ -33,83 +33,101 @@ export function FireTechSection() {
       media = matchMedia
 
       // Sticky track + scrub (no pin) so scroll stays continuous with the page.
-      matchMedia.add('(prefers-reduced-motion: no-preference) and (min-height: 600px) and (min-width: 768px)', () => {
-        const stage = el.querySelector<HTMLElement>('.tech-stage')
-        const logos = Array.from(el.querySelectorAll<HTMLElement>('.tech-logo'))
-        if (!stage || !logos.length) return
+      matchMedia.add(
+        '(prefers-reduced-motion: no-preference) and (min-height: 600px) and (min-width: 768px)',
+        () => {
+          const stage = el.querySelector<HTMLElement>('.tech-stage')
+          const logos = Array.from(el.querySelectorAll<HTMLElement>('.tech-logo'))
+          if (!stage || !logos.length) return
 
-        const progress = { value: 0 }
-        gsap.set(stage, { position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', margin: 0, minHeight: 0 })
-        let width = stage.clientWidth
-        let height = stage.clientHeight
-        gsap.set(logos, {
-          position: 'absolute', left: 0, top: 0, opacity: 0,
-          width: 'min(20%, 260px)', height: 'clamp(56px, 8vw, 100px)',
-          xPercent: -50, yPercent: -50,
-          transformPerspective: 1800, willChange: 'transform, opacity',
-        })
-        const setters = logos.map(logo => ({
-          x: gsap.quickSetter(logo, 'x', 'px'),
-          y: gsap.quickSetter(logo, 'y', 'px'),
-          scale: gsap.quickSetter(logo, 'scale'),
-          rotation: gsap.quickSetter(logo, 'rotationY', 'deg'),
-          opacity: gsap.quickSetter(logo, 'opacity'),
-        }))
-
-        const header = el.querySelector('header')!
-        let headerBottom = header.getBoundingClientRect().bottom - el.getBoundingClientRect().top
-        const render = () => {
-          const scroll = Math.min(progress.value, 0.5)
-          // Stop at the aligned midpoint; further scrolling keeps every logo visible.
-          const t = scroll + 0.55 * Math.sin(2 * Math.PI * scroll) / (2 * Math.PI)
-          const depth = Math.sin(Math.PI * t)
-          const fade = Math.min(1, depth / 0.65)
-          const opacity = fade * fade * (3 - 2 * fade)
-          const centerY = headerBottom + (height - headerBottom) * 0.5
-          const groupX = width * (0.04 + 1.04 * (0.5 - 0.5 * Math.cos(Math.PI * t)))
-          const spread = 0.55 + 0.45 * depth
-
-          setters.forEach((set, index) => {
-            // One group opens into distinct slots; all face forward together.
-            const offset = index - (setters.length - 1) / 2
-            set.x(groupX - width * 0.06 * depth + offset * width * 0.23 * spread)
-            set.y(height * 0.045 + (centerY - height * 0.045) * depth)
-            set.scale(0.55 + 0.45 * depth)
-            set.rotation(22 * Math.cos(Math.PI * t))
-            set.opacity(scroll <= 0 ? 0 : opacity)
+          const progress = { value: 0 }
+          gsap.set(stage, {
+            position: 'absolute',
+            top: 0,
+            left: 0,
+            width: '100%',
+            height: '100%',
+            margin: 0,
+            minHeight: 0,
           })
-        }
-        const measure = () => {
-          width = stage.clientWidth
-          height = stage.clientHeight
-          headerBottom = header.getBoundingClientRect().bottom - el.getBoundingClientRect().top
-          render()
-        }
+          let width = stage.clientWidth
+          let height = stage.clientHeight
+          gsap.set(logos, {
+            position: 'absolute',
+            left: 0,
+            top: 0,
+            opacity: 0,
+            width: 'min(20%, 260px)',
+            height: 'clamp(56px, 8vw, 100px)',
+            xPercent: -50,
+            yPercent: -50,
+            transformPerspective: 1800,
+            willChange: 'transform, opacity',
+          })
+          const setters = logos.map(logo => ({
+            x: gsap.quickSetter(logo, 'x', 'px'),
+            y: gsap.quickSetter(logo, 'y', 'px'),
+            scale: gsap.quickSetter(logo, 'scale'),
+            rotation: gsap.quickSetter(logo, 'rotationY', 'deg'),
+            opacity: gsap.quickSetter(logo, 'opacity'),
+          }))
 
-        render()
-        const tween = gsap.to(progress, {
-          value: 1,
-          ease: 'none',
-          onUpdate: render,
-          scrollTrigger: {
-            trigger: track,
-            start: 'top top',
-            end: 'bottom bottom',
-            scrub: 0.45,
-            invalidateOnRefresh: true,
-            onRefresh: measure,
-          },
-        })
-        const resize = new ResizeObserver(measure)
-        resize.observe(stage)
-        return () => {
-          resize.disconnect()
-          tween.scrollTrigger?.kill()
-          tween.kill()
-          gsap.set(logos, { clearProps: 'all' })
-          gsap.set(stage, { clearProps: 'all' })
-        }
-      }, track)
+          const header = el.querySelector('header')!
+          let headerBottom = header.getBoundingClientRect().bottom - el.getBoundingClientRect().top
+          const render = () => {
+            const scroll = Math.min(progress.value, 0.5)
+            // Stop at the aligned midpoint; further scrolling keeps every logo visible.
+            const t = scroll + (0.55 * Math.sin(2 * Math.PI * scroll)) / (2 * Math.PI)
+            const depth = Math.sin(Math.PI * t)
+            const fade = Math.min(1, depth / 0.65)
+            const opacity = fade * fade * (3 - 2 * fade)
+            const centerY = headerBottom + (height - headerBottom) * 0.5
+            const groupX = width * (0.04 + 1.04 * (0.5 - 0.5 * Math.cos(Math.PI * t)))
+            const spread = 0.55 + 0.45 * depth
+
+            setters.forEach((set, index) => {
+              // One group opens into distinct slots; all face forward together.
+              const offset = index - (setters.length - 1) / 2
+              set.x(groupX - width * 0.06 * depth + offset * width * 0.23 * spread)
+              set.y(height * 0.045 + (centerY - height * 0.045) * depth)
+              set.scale(0.55 + 0.45 * depth)
+              set.rotation(22 * Math.cos(Math.PI * t))
+              set.opacity(scroll <= 0 ? 0 : opacity)
+            })
+          }
+          const measure = () => {
+            width = stage.clientWidth
+            height = stage.clientHeight
+            headerBottom = header.getBoundingClientRect().bottom - el.getBoundingClientRect().top
+            render()
+          }
+
+          render()
+          const tween = gsap.to(progress, {
+            value: 1,
+            ease: 'none',
+            onUpdate: render,
+            scrollTrigger: {
+              trigger: track,
+              start: 'top top',
+              end: 'bottom bottom',
+              scrub: 0.45,
+              invalidateOnRefresh: true,
+              onRefresh: measure,
+            },
+          })
+          const resize = new ResizeObserver(measure)
+          resize.observe(stage)
+          return () => {
+            resize.disconnect()
+            tween.scrollTrigger?.kill()
+            tween.kill()
+            gsap.set(logos, { clearProps: 'all' })
+            gsap.set(stage, { clearProps: 'all' })
+          }
+        },
+        track,
+      )
     }
 
     void init()
@@ -132,11 +150,13 @@ export function FireTechSection() {
           <Container className="flex flex-col !pt-28 !pb-8 sm:!pt-32">
             <header className="relative z-20 mx-auto max-w-xl shrink-0 bg-black text-center">
               <h2 className="section-title mb-4 font-display text-[clamp(1.5rem,2.8vw,2.25rem)] font-extrabold leading-tight text-[var(--color-text-primary)]">
-                Tecnología INIM, Autocall,<br />
+                Tecnología INIM, Autocall,
+                <br />
                 <span className="text-[var(--color-text-secondary)]">Simplex y Ajax</span>
               </h2>
               <p className="text-sm leading-relaxed text-[var(--color-text-secondary)] md:text-base">
-                Seleccionamos la tecnología más adecuada según las características, la escala y los requerimientos de cada proyecto de detección de incendio.
+                Seleccionamos la tecnología más adecuada según las características, la escala y los
+                requerimientos de cada proyecto de detección de incendio.
               </p>
             </header>
           </Container>
@@ -147,7 +167,11 @@ export function FireTechSection() {
             aria-label="Fabricantes"
           >
             {brands.map(brand => (
-              <div key={brand.name} role="listitem" className={`${styles.logo} tech-logo flex h-16 w-[45%] max-w-[160px] items-center justify-center md:h-24 md:w-[clamp(140px,25vw,320px)] md:max-w-none`}>
+              <div
+                key={brand.name}
+                role="listitem"
+                className={`${styles.logo} tech-logo flex h-16 w-[45%] max-w-[160px] items-center justify-center md:h-24 md:w-[clamp(140px,25vw,320px)] md:max-w-none`}
+              >
                 <Image
                   src={brand.src}
                   alt={brand.name}

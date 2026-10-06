@@ -26,7 +26,10 @@ export function FireHeroSection() {
         />
       </div>
       <div className="absolute inset-0 bg-black/20" aria-hidden />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/35" aria-hidden />
+      <div
+        className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/25 to-black/35"
+        aria-hidden
+      />
       <div
         className="pointer-events-none absolute inset-x-0 bottom-0 h-40 bg-gradient-to-t from-black via-black/70 to-transparent sm:h-48"
         aria-hidden
@@ -45,10 +48,12 @@ export function FireHeroSection() {
         className="flex relative z-10 flex-col justify-center items-center px-4 pt-16 pb-16 mx-auto max-w-5xl text-center"
       >
         <h1 className="hero-reveal font-display font-semibold text-[clamp(2.25rem,6vw,4.75rem)] leading-[1.05] tracking-tight text-white mb-6">
-          Ingeniería en <span className="text-[var(--color-fire-ember)]">detección de incendios</span>
+          Ingeniería en{' '}
+          <span className="text-[var(--color-fire-ember)]">detección de incendios</span>
         </h1>
         <p className="hero-reveal mb-8 max-w-xl text-sm font-light tracking-wide md:text-base text-white/80">
-          Diseñamos, ejecutamos y ponemos en marcha sistemas de detección y alarma de incendio para edificios, industrias y desarrollos.
+          Diseñamos, ejecutamos y ponemos en marcha sistemas de detección y alarma de incendio para
+          edificios, industrias y desarrollos.
         </p>
         <div className="hero-reveal flex flex-col gap-3 items-center w-full max-w-sm sm:flex-row sm:w-auto sm:max-w-none">
           <Button

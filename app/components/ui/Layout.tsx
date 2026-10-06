@@ -16,12 +16,13 @@ export const Container = React.forwardRef<HTMLDivElement, ContainerProps>(
     >
       {children}
     </div>
-  )
+  ),
 )
 Container.displayName = 'Container'
 
 // Section
-type SectionVariant = 'dark' | 'light' | 'surface' | 'transparent' | 'gradient-dark' | 'gradient-light'
+type SectionVariant =
+  'dark' | 'light' | 'surface' | 'transparent' | 'gradient-dark' | 'gradient-light'
 
 interface SectionProps {
   children: React.ReactNode
@@ -39,16 +40,12 @@ const sectionVariants: Record<SectionVariant, string> = {
   'gradient-dark':
     'bg-[var(--color-background)] bg-gradient-to-b from-[#0c0c0c] via-[#080808] to-[#000000]',
   /** Blanco con degradé sutil minimalista, estilo iPhone light */
-  'gradient-light':
-    'bg-gradient-to-b from-[#fafafa] via-[#f5f5f5] to-[#f0f0f0]',
+  'gradient-light': 'bg-gradient-to-b from-[#fafafa] via-[#f5f5f5] to-[#f0f0f0]',
 }
 
 export function Section({ children, variant = 'dark', className = '', id }: SectionProps) {
   return (
-    <section
-      id={id}
-      className={`w-full ${sectionVariants[variant]} ${className}`}
-    >
+    <section id={id} className={`w-full ${sectionVariants[variant]} ${className}`}>
       {children}
     </section>
   )

@@ -40,7 +40,10 @@ function PrivacyNote() {
   return (
     <p className="text-xs text-center text-[var(--color-text-muted)]">
       Al enviar, serás redirigido a WhatsApp con tu consulta. Ver{' '}
-      <Link href="/privacidad" className="underline underline-offset-4 hover:text-[var(--color-text-primary)]">
+      <Link
+        href="/privacidad"
+        className="underline underline-offset-4 hover:text-[var(--color-text-primary)]"
+      >
         política de privacidad
       </Link>
       .
@@ -48,7 +51,13 @@ function PrivacyNote() {
   )
 }
 
-export function CTASection({ variant = 'security', reversibleAnimations = false }: { variant?: CTAVariant; reversibleAnimations?: boolean }) {
+export function CTASection({
+  variant = 'security',
+  reversibleAnimations = false,
+}: {
+  variant?: CTAVariant
+  reversibleAnimations?: boolean
+}) {
   const contact = useContact()
   const sectionRef = useRef<HTMLDivElement>(null)
   const [submitted, setSubmitted] = useState(false)
@@ -82,25 +91,34 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
       if (disposed || !sectionRef.current) return
       gsap.registerPlugin(ScrollTrigger)
       context = gsap.context(() => {
-      if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-        gsap.set(sectionRef.current!.querySelectorAll('.cta-reveal'), { opacity: 1 })
-        return
-      }
-      gsap.fromTo(
-        sectionRef.current!.querySelectorAll('.cta-reveal'),
-        { opacity: 0, y: 30 },
-        {
-          opacity: 1,
-          y: 0,
-          duration: 0.8,
-          stagger: 0.1,
-          scrollTrigger: { trigger: sectionRef.current, start: 'top 70%', toggleActions: reversibleAnimations ? 'play reverse play reverse' : 'play none none none' },
+        if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+          gsap.set(sectionRef.current!.querySelectorAll('.cta-reveal'), { opacity: 1 })
+          return
         }
-      )
+        gsap.fromTo(
+          sectionRef.current!.querySelectorAll('.cta-reveal'),
+          { opacity: 0, y: 30 },
+          {
+            opacity: 1,
+            y: 0,
+            duration: 0.8,
+            stagger: 0.1,
+            scrollTrigger: {
+              trigger: sectionRef.current,
+              start: 'top 70%',
+              toggleActions: reversibleAnimations
+                ? 'play reverse play reverse'
+                : 'play none none none',
+            },
+          },
+        )
       }, sectionRef.current)
     }
     init()
-    return () => { disposed = true; context?.revert() }
+    return () => {
+      disposed = true
+      context?.revert()
+    }
   }, [reversibleAnimations])
 
   const handleSubmit = (e: React.FormEvent) => {
@@ -115,14 +133,16 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
             `Tipo de obra: ${fireForm.tipoObra}\n` +
             `Localidad: ${fireForm.localidad}\n` +
             `Descripción: ${fireForm.descripcion}` +
-            (fireForm.planos ? `\nPlano seleccionado (pendiente de adjuntar en WhatsApp): ${fireForm.planos}` : '')
+            (fireForm.planos
+              ? `\nPlano seleccionado (pendiente de adjuntar en WhatsApp): ${fireForm.planos}`
+              : ''),
         )
       : encodeURIComponent(
           `Hola, quiero solicitar un diagnóstico de seguridad.\n\n` +
             `Nombre: ${securityForm.nombre}\n` +
             `Teléfono: ${securityForm.telefono}\n` +
             `Tipo de propiedad: ${securityForm.propiedad}\n` +
-            `Ubicación: ${securityForm.ubicacion}`
+            `Ubicación: ${securityForm.ubicacion}`,
         )
     trackEvent('generate_lead', {
       form: variant,
@@ -154,14 +174,23 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
               </>
             ) : (
               <h2 className="font-display font-extrabold text-[clamp(1.8rem,3.5vw,3rem)] leading-tight tracking-tight text-[var(--color-text-primary)]">
-                Solicitá tu diagnóstico{' '}
-                <span className="text-cta-security">de seguridad</span>
+                Solicitá tu diagnóstico <span className="text-cta-security">de seguridad</span>
               </h2>
             )}
           </div>
 
-          <div className={isFire ? 'mx-auto mb-12 flex max-w-3xl flex-col gap-6' : 'grid grid-cols-1 gap-8 items-start lg:grid-cols-2 lg:gap-12 mb-12'}>
-            <div className={isFire ? 'w-full opacity-0 cta-reveal' : 'opacity-0 cta-reveal order-2 lg:order-1'}>
+          <div
+            className={
+              isFire
+                ? 'mx-auto mb-12 flex max-w-3xl flex-col gap-6'
+                : 'grid grid-cols-1 gap-8 items-start lg:grid-cols-2 lg:gap-12 mb-12'
+            }
+          >
+            <div
+              className={
+                isFire ? 'w-full opacity-0 cta-reveal' : 'opacity-0 cta-reveal order-2 lg:order-1'
+              }
+            >
               {submitted ? (
                 <div
                   className={`flex w-full flex-col items-center justify-center gap-4 text-center bg-[var(--color-surface)] border border-[var(--color-border)] rounded-[var(--radius-lg)] p-6 ${
@@ -216,7 +245,7 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                       placeholder="Ej: Juan Pérez"
                       required
                       value={fireForm.nombre}
-                      onChange={(e) => setFireForm({ ...fireForm, nombre: e.target.value })}
+                      onChange={e => setFireForm({ ...fireForm, nombre: e.target.value })}
                     />
                     <Input
                       id="fire-empresa"
@@ -224,7 +253,7 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                       placeholder="Ej: Constructora Norte"
                       required
                       value={fireForm.empresa}
-                      onChange={(e) => setFireForm({ ...fireForm, empresa: e.target.value })}
+                      onChange={e => setFireForm({ ...fireForm, empresa: e.target.value })}
                     />
                   </div>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -235,7 +264,7 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                       type="tel"
                       required
                       value={fireForm.telefono}
-                      onChange={(e) => setFireForm({ ...fireForm, telefono: e.target.value })}
+                      onChange={e => setFireForm({ ...fireForm, telefono: e.target.value })}
                     />
                     <Input
                       id="fire-email"
@@ -244,7 +273,7 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                       type="email"
                       required
                       value={fireForm.email}
-                      onChange={(e) => setFireForm({ ...fireForm, email: e.target.value })}
+                      onChange={e => setFireForm({ ...fireForm, email: e.target.value })}
                     />
                   </div>
                   <div className="grid grid-cols-1 gap-4 sm:grid-cols-2">
@@ -254,14 +283,14 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                       options={obraOptions}
                       required
                       value={fireForm.tipoObra}
-                      onChange={(e) => setFireForm({ ...fireForm, tipoObra: e.target.value })}
+                      onChange={e => setFireForm({ ...fireForm, tipoObra: e.target.value })}
                     />
                     <Input
                       id="fire-localidad"
                       label="Localidad"
                       placeholder="Ej: Córdoba Capital"
                       value={fireForm.localidad}
-                      onChange={(e) => setFireForm({ ...fireForm, localidad: e.target.value })}
+                      onChange={e => setFireForm({ ...fireForm, localidad: e.target.value })}
                     />
                   </div>
                   <Textarea
@@ -269,14 +298,15 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                     label="Breve descripción del proyecto"
                     placeholder="Contanos superficie, uso del edificio, si hay sistema existente..."
                     value={fireForm.descripcion}
-                    onChange={(e) => setFireForm({ ...fireForm, descripcion: e.target.value })}
+                    onChange={e => setFireForm({ ...fireForm, descripcion: e.target.value })}
                   />
                   <div className="flex flex-col gap-1.5">
                     <label
                       htmlFor="fire-planos"
                       className="text-sm font-medium text-[var(--color-text-secondary)] font-display"
                     >
-                      Seleccionar plano <span className="text-[var(--color-text-muted)]">(opcional)</span>
+                      Seleccionar plano{' '}
+                      <span className="text-[var(--color-text-muted)]">(opcional)</span>
                     </label>
                     <label
                       htmlFor="fire-planos"
@@ -295,18 +325,27 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                         type="file"
                         accept=".pdf,.dwg,.dxf,image/*"
                         className="sr-only"
-                        onChange={(e) =>
+                        onChange={e =>
                           setFireForm({ ...fireForm, planos: e.target.files?.[0]?.name ?? '' })
                         }
                       />
                     </label>
                   </div>
                   <p className="text-xs text-[var(--color-text-muted)]">
-                    Solo se incluirá el nombre del archivo en la consulta. Deberás adjuntar el plano manualmente en WhatsApp.
+                    Solo se incluirá el nombre del archivo en la consulta. Deberás adjuntar el plano
+                    manualmente en WhatsApp.
                   </p>
-                  <Button type="submit" variant="fire" size="lg" className="justify-center w-full group">
+                  <Button
+                    type="submit"
+                    variant="fire"
+                    size="lg"
+                    className="justify-center w-full group"
+                  >
                     Enviar consulta
-                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                    <ArrowRight
+                      size={18}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
                   </Button>
                   <PrivacyNote />
                 </form>
@@ -321,7 +360,7 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                     placeholder="Ej: Juan Pérez"
                     required
                     value={securityForm.nombre}
-                    onChange={(e) => setSecurityForm({ ...securityForm, nombre: e.target.value })}
+                    onChange={e => setSecurityForm({ ...securityForm, nombre: e.target.value })}
                   />
                   <Input
                     id="telefono"
@@ -330,7 +369,7 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                     type="tel"
                     required
                     value={securityForm.telefono}
-                    onChange={(e) => setSecurityForm({ ...securityForm, telefono: e.target.value })}
+                    onChange={e => setSecurityForm({ ...securityForm, telefono: e.target.value })}
                   />
                   <Select
                     id="propiedad"
@@ -338,7 +377,7 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                     options={propertyOptions}
                     required
                     value={securityForm.propiedad}
-                    onChange={(e) => setSecurityForm({ ...securityForm, propiedad: e.target.value })}
+                    onChange={e => setSecurityForm({ ...securityForm, propiedad: e.target.value })}
                   />
                   <Input
                     id="ubicacion"
@@ -346,11 +385,19 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
                     placeholder="Ej: Nueva Córdoba, Córdoba"
                     required
                     value={securityForm.ubicacion}
-                    onChange={(e) => setSecurityForm({ ...securityForm, ubicacion: e.target.value })}
+                    onChange={e => setSecurityForm({ ...securityForm, ubicacion: e.target.value })}
                   />
-                  <Button type="submit" variant="primary" size="lg" className="justify-center w-full group">
+                  <Button
+                    type="submit"
+                    variant="primary"
+                    size="lg"
+                    className="justify-center w-full group"
+                  >
                     Solicitar diagnóstico
-                    <ArrowRight size={18} className="transition-transform group-hover:translate-x-1" />
+                    <ArrowRight
+                      size={18}
+                      className="transition-transform group-hover:translate-x-1"
+                    />
                   </Button>
                   <PrivacyNote />
                 </form>
@@ -359,34 +406,43 @@ export function CTASection({ variant = 'security', reversibleAnimations = false 
 
             {isFire ? (
               <div className="w-full text-center text-xs leading-relaxed text-[var(--color-text-muted)]">
-                <p>{contact.address} · Tel: {contact.phone} · {contact.email}</p>
-                <a href={`https://www.google.com/maps?q=${encodeURIComponent(contact.addressForMap)}`} target="_blank" rel="noopener noreferrer" className="mt-2 inline-block underline underline-offset-4 hover:text-[var(--color-text-primary)]">Cómo llegar</a>
+                <p>
+                  {contact.address} · Tel: {contact.phone} · {contact.email}
+                </p>
+                <a
+                  href={`https://www.google.com/maps?q=${encodeURIComponent(contact.addressForMap)}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-block underline underline-offset-4 hover:text-[var(--color-text-primary)]"
+                >
+                  Cómo llegar
+                </a>
               </div>
             ) : (
-            <div className="opacity-0 cta-reveal order-1 lg:order-2">
-              <div className="rounded-[var(--radius-lg)] overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)] aspect-[4/3] min-h-[240px]">
-                <iframe
-                  title="Ubicación ZC Ingeniería"
-                  src={mapSrc}
-                  width="100%"
-                  height="100%"
-                  style={{ border: 0 }}
-                  allowFullScreen
-                  loading="lazy"
-                  referrerPolicy="no-referrer-when-downgrade"
-                  className="w-full h-full min-h-[240px]"
-                />
+              <div className="opacity-0 cta-reveal order-1 lg:order-2">
+                <div className="rounded-[var(--radius-lg)] overflow-hidden border border-[var(--color-border)] bg-[var(--color-surface)] aspect-[4/3] min-h-[240px]">
+                  <iframe
+                    title="Ubicación ZC Ingeniería"
+                    src={mapSrc}
+                    width="100%"
+                    height="100%"
+                    style={{ border: 0 }}
+                    allowFullScreen
+                    loading="lazy"
+                    referrerPolicy="no-referrer-when-downgrade"
+                    className="w-full h-full min-h-[240px]"
+                  />
+                </div>
+                <p className="mt-3 text-xs text-[var(--color-text-muted)]">
+                  {contact.address} · Tel: {contact.phone} · {contact.email}
+                </p>
               </div>
-              <p className="mt-3 text-xs text-[var(--color-text-muted)]">
-                {contact.address} · Tel: {contact.phone} · {contact.email}
-              </p>
-            </div>
             )}
           </div>
 
           {!isFire && (
             <div className="flex flex-wrap justify-center gap-2 opacity-0 cta-reveal">
-              {SECURITY_BADGES.map((item) => (
+              {SECURITY_BADGES.map(item => (
                 <span
                   key={item}
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 text-xs text-[var(--color-text-secondary)] border border-[var(--color-border)] rounded-full bg-[var(--color-surface)]"

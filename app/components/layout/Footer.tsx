@@ -39,9 +39,11 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 font-display text-xs font-semibold tracking-widest uppercase text-[var(--color-text-muted)]">Navegación</p>
+            <p className="mb-4 font-display text-xs font-semibold tracking-widest uppercase text-[var(--color-text-muted)]">
+              Navegación
+            </p>
             <div className="flex flex-col items-center gap-3 md:items-start">
-              {MAIN_NAV.map((item) => (
+              {MAIN_NAV.map(item => (
                 <Link
                   key={item.href + item.label}
                   href={resolveHref(item.href)}
@@ -54,9 +56,11 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 font-display text-xs font-semibold tracking-widest uppercase text-[var(--color-text-muted)]">Servicios</p>
+            <p className="mb-4 font-display text-xs font-semibold tracking-widest uppercase text-[var(--color-text-muted)]">
+              Servicios
+            </p>
             <div className="flex flex-col items-center gap-3 md:items-start">
-              {FOOTER_SERVICES.map((item) => (
+              {FOOTER_SERVICES.map(item => (
                 <Link
                   key={item.href + item.label}
                   href={item.href}
@@ -69,17 +73,30 @@ export function Footer() {
           </div>
 
           <div>
-            <p className="mb-4 font-display text-xs font-semibold tracking-widest uppercase text-[var(--color-text-muted)]">Contacto</p>
+            <p className="mb-4 font-display text-xs font-semibold tracking-widest uppercase text-[var(--color-text-muted)]">
+              Contacto
+            </p>
             <div className="flex flex-col items-center gap-3 md:items-start">
-              <a href={`tel:${CONTACT.phoneRaw}`} className="flex items-center justify-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] md:justify-start">
+              <a
+                href={`tel:${CONTACT.phoneRaw}`}
+                className="flex items-center justify-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] md:justify-start"
+              >
                 <Phone size={14} />
                 {CONTACT.phone}
               </a>
-              <a href={`mailto:${CONTACT.email}`} className="flex items-center justify-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] md:justify-start">
+              <a
+                href={`mailto:${CONTACT.email}`}
+                className="flex items-center justify-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] md:justify-start"
+              >
                 <Mail size={14} />
                 {CONTACT.email}
               </a>
-              <a href={CONTACT.instagram} target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] md:justify-start">
+              <a
+                href={CONTACT.instagram}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex items-center justify-center gap-2 text-sm text-[var(--color-text-secondary)] transition-colors hover:text-[var(--color-text-primary)] md:justify-start"
+              >
                 <Instagram size={14} />
                 {CONTACT.instagramHandle}
               </a>
@@ -117,7 +134,10 @@ export function Footer() {
         >
           <span>
             © {new Date().getFullYear()} ZC Seguridad. Todos los derechos reservados. ·{' '}
-            <Link href="/privacidad" className="hover:text-[var(--color-text-primary)] transition-colors">
+            <Link
+              href="/privacidad"
+              className="hover:text-[var(--color-text-primary)] transition-colors"
+            >
               Política de privacidad
             </Link>
           </span>

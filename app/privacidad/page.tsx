@@ -17,8 +17,9 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
     title: 'Responsable de los datos',
     body: (
       <p>
-        {META.brandName}, con domicilio en {CONTACT.address}, Argentina, es responsable del tratamiento de los datos
-        personales recopilados a través de {META.siteUrl.replace(/^https?:\/\//, '')}. Podés contactarnos en{' '}
+        {META.brandName}, con domicilio en {CONTACT.address}, Argentina, es responsable del
+        tratamiento de los datos personales recopilados a través de{' '}
+        {META.siteUrl.replace(/^https?:\/\//, '')}. Podés contactarnos en{' '}
         <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a> o al {CONTACT.phone}.
       </p>
     ),
@@ -33,8 +34,9 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
           <li>Tipo de propiedad u obra, localidad y la descripción de tu proyecto.</li>
         </ul>
         <p>
-          Además, si están habilitadas, herramientas de medición como Google Analytics registran datos de navegación
-          anónimos o seudónimos (páginas visitadas, dispositivo, ubicación aproximada) mediante cookies.
+          Además, si están habilitadas, herramientas de medición como Google Analytics registran
+          datos de navegación anónimos o seudónimos (páginas visitadas, dispositivo, ubicación
+          aproximada) mediante cookies.
         </p>
       </>
     ),
@@ -43,9 +45,10 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
     title: 'Cómo se envían tus datos',
     body: (
       <p>
-        Los formularios no almacenan información en este sitio: al enviarlos se abre WhatsApp con tu consulta ya
-        redactada, y el mensaje solo llega a nosotros si vos lo enviás. Desde ese momento, el tratamiento también queda
-        sujeto a las políticas de WhatsApp (Meta). Los archivos de planos no se transfieren automáticamente.
+        Los formularios no almacenan información en este sitio: al enviarlos se abre WhatsApp con tu
+        consulta ya redactada, y el mensaje solo llega a nosotros si vos lo enviás. Desde ese
+        momento, el tratamiento también queda sujeto a las políticas de WhatsApp (Meta). Los
+        archivos de planos no se transfieren automáticamente.
       </p>
     ),
   },
@@ -63,9 +66,9 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
     title: 'Con quién los compartimos',
     body: (
       <p>
-        No vendemos ni cedemos tus datos. Solo intervienen los proveedores necesarios para operar el sitio y la
-        comunicación (alojamiento web, WhatsApp y, si corresponde, herramientas de medición), o las autoridades cuando
-        la ley lo exija.
+        No vendemos ni cedemos tus datos. Solo intervienen los proveedores necesarios para operar el
+        sitio y la comunicación (alojamiento web, WhatsApp y, si corresponde, herramientas de
+        medición), o las autoridades cuando la ley lo exija.
       </p>
     ),
   },
@@ -73,8 +76,8 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
     title: 'Conservación',
     body: (
       <p>
-        Conservamos los datos mientras sean necesarios para atender tu consulta o la relación comercial, y luego por los
-        plazos que exija la normativa aplicable.
+        Conservamos los datos mientras sean necesarios para atender tu consulta o la relación
+        comercial, y luego por los plazos que exija la normativa aplicable.
       </p>
     ),
   },
@@ -83,14 +86,14 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
     body: (
       <>
         <p>
-          Conforme a la Ley 25.326 de Protección de los Datos Personales, podés solicitar en forma gratuita el acceso,
-          la rectificación, la actualización o la supresión de tus datos escribiendo a{' '}
-          <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
+          Conforme a la Ley 25.326 de Protección de los Datos Personales, podés solicitar en forma
+          gratuita el acceso, la rectificación, la actualización o la supresión de tus datos
+          escribiendo a <a href={`mailto:${CONTACT.email}`}>{CONTACT.email}</a>.
         </p>
         <p>
-          La Agencia de Acceso a la Información Pública, órgano de control de la Ley 25.326, atiende las denuncias y
-          reclamos de quienes resulten afectados en sus derechos por incumplimiento de las normas vigentes en materia de
-          protección de datos personales.
+          La Agencia de Acceso a la Información Pública, órgano de control de la Ley 25.326, atiende
+          las denuncias y reclamos de quienes resulten afectados en sus derechos por incumplimiento
+          de las normas vigentes en materia de protección de datos personales.
         </p>
       </>
     ),
@@ -99,14 +102,18 @@ const SECTIONS: { title: string; body: React.ReactNode }[] = [
     title: 'Cookies',
     body: (
       <p>
-        Podés bloquear o eliminar las cookies desde la configuración de tu navegador. El sitio sigue funcionando sin
-        ellas; solo dejamos de recibir estadísticas de tu visita.
+        Podés bloquear o eliminar las cookies desde la configuración de tu navegador. El sitio sigue
+        funcionando sin ellas; solo dejamos de recibir estadísticas de tu visita.
       </p>
     ),
   },
   {
     title: 'Cambios en esta política',
-    body: <p>Podemos actualizar esta política. La versión vigente es siempre la publicada en esta página.</p>,
+    body: (
+      <p>
+        Podemos actualizar esta política. La versión vigente es siempre la publicada en esta página.
+      </p>
+    ),
   },
 ]
 
@@ -121,12 +128,16 @@ export default function PrivacidadPage() {
         <h1 className="mb-3 font-display font-extrabold text-[clamp(1.8rem,4vw,2.75rem)] leading-tight text-[var(--color-text-primary)]">
           Política de privacidad
         </h1>
-        <p className="mb-12 text-sm text-[var(--color-text-muted)]">Última actualización: {LAST_UPDATED}</p>
+        <p className="mb-12 text-sm text-[var(--color-text-muted)]">
+          Última actualización: {LAST_UPDATED}
+        </p>
 
         <div className="flex flex-col gap-10 text-[var(--color-text-secondary)] leading-relaxed [&_a]:text-[var(--color-text-primary)] [&_a]:underline [&_a]:underline-offset-4 [&_p+p]:mt-3 [&_ul]:mt-3 [&_ul]:list-disc [&_ul]:space-y-1.5 [&_ul]:pl-5">
-          {SECTIONS.map((section) => (
+          {SECTIONS.map(section => (
             <section key={section.title}>
-              <h2 className="mb-3 font-display text-lg font-semibold text-[var(--color-text-primary)]">{section.title}</h2>
+              <h2 className="mb-3 font-display text-lg font-semibold text-[var(--color-text-primary)]">
+                {section.title}
+              </h2>
               {section.body}
             </section>
           ))}
@@ -137,7 +148,10 @@ export default function PrivacidadPage() {
           className="mt-14 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 text-sm text-[var(--color-text-secondary)]"
         >
           ¿Dudas sobre tus datos? Escribinos a{' '}
-          <a href={`mailto:${CONTACT.email}`} className="text-[var(--color-text-primary)] underline underline-offset-4">
+          <a
+            href={`mailto:${CONTACT.email}`}
+            className="text-[var(--color-text-primary)] underline underline-offset-4"
+          >
             {CONTACT.email}
           </a>{' '}
           o por{' '}

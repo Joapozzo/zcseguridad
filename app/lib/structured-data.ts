@@ -147,7 +147,12 @@ export function getIncendiosStructuredData() {
           'Adecuaciones y ampliaciones',
           'Proyecto, provisión, instalación y puesta en marcha',
         ],
-        brand: [{ '@type': 'Brand', name: 'INIM' }, { '@type': 'Brand', name: 'Autocall' }, { '@type': 'Brand', name: 'Simplex' }, { '@type': 'Brand', name: 'Ajax' }],
+        brand: [
+          { '@type': 'Brand', name: 'INIM' },
+          { '@type': 'Brand', name: 'Autocall' },
+          { '@type': 'Brand', name: 'Simplex' },
+          { '@type': 'Brand', name: 'Ajax' },
+        ],
         image: absoluteUrl(INCENDIOS_SEO.ogImage),
       },
       {
@@ -171,7 +176,7 @@ export function getIncendiosStructuredData() {
       {
         '@type': 'FAQPage',
         '@id': `${pageUrl}#faq`,
-        mainEntity: INCENDIOS_FAQS.map((faq) => ({
+        mainEntity: INCENDIOS_FAQS.map(faq => ({
           '@type': 'Question',
           name: faq.question,
           acceptedAnswer: {

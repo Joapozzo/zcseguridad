@@ -1,4 +1,4 @@
-@import "tailwindcss";
+@import 'tailwindcss';
 @config "../tailwind.config.js";
 
 /* Variables primero para que existan antes de cualquier capa */
@@ -22,8 +22,8 @@
   /* Marca: uso muy secundario */
   --color-brand-primary: #0053a8;
   --color-brand-secondary: #ffb900;
-  --font-display: var(--font-poppins, "Poppins"), sans-serif;
-  --font-body: var(--font-poppins, "Poppins"), sans-serif;
+  --font-display: var(--font-poppins, 'Poppins'), sans-serif;
+  --font-body: var(--font-poppins, 'Poppins'), sans-serif;
   --section-padding-y: 6rem;
   --container-max: 1200px;
   --container-padding: 1.5rem;
@@ -146,7 +146,7 @@
 
 /* Noise texture overlay */
 .noise::after {
-  content: "";
+  content: '';
   position: absolute;
   inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.035'/%3E%3C/svg%3E");

@@ -8,7 +8,10 @@ export function Input({ label, className = '', id, ...props }: InputProps) {
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium text-[var(--color-text-secondary)] font-display">
+        <label
+          htmlFor={id}
+          className="text-sm font-medium text-[var(--color-text-secondary)] font-display"
+        >
           {label}
         </label>
       )}
@@ -37,7 +40,10 @@ export function Select({ label, options, className = '', id, ...props }: SelectP
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium text-[var(--color-text-secondary)] font-display">
+        <label
+          htmlFor={id}
+          className="text-sm font-medium text-[var(--color-text-secondary)] font-display"
+        >
           {label}
         </label>
       )}
@@ -54,7 +60,7 @@ export function Select({ label, options, className = '', id, ...props }: SelectP
         {...props}
       >
         <option value="">Seleccionar...</option>
-        {options.map((opt) => (
+        {options.map(opt => (
           <option key={opt.value} value={opt.value}>
             {opt.label}
           </option>
@@ -72,7 +78,10 @@ export function Textarea({ label, className = '', id, ...props }: TextareaProps)
   return (
     <div className="flex flex-col gap-1.5">
       {label && (
-        <label htmlFor={id} className="text-sm font-medium text-[var(--color-text-secondary)] font-display">
+        <label
+          htmlFor={id}
+          className="text-sm font-medium text-[var(--color-text-secondary)] font-display"
+        >
           {label}
         </label>
       )}

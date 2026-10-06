@@ -1,0 +1,9 @@
+.next
+node_modules
+public
+tmp
+docs
+.cursor
+pnpm-lock.yaml
+tsconfig.tsbuildinfo
+next-env.d.ts

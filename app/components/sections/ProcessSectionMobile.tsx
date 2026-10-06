@@ -43,9 +43,11 @@ export function ProcessSectionMobile({
       if (!lineMobile || stepItems.length !== 4 || stepDots.length !== 4) return
 
       gsap.set(lineMobile, { scaleY: 0, transformOrigin: 'top center' })
-      stepItems.forEach((el) => gsap.set(el, { opacity: OPACITY_COMPLETED }))
-      stepIcons.forEach((el) => gsap.set(el, { scale: 1, borderColor: 'var(--color-border)', boxShadow: 'none' }))
-      stepDots.forEach((el) => gsap.set(el, { backgroundColor: 'transparent' }))
+      stepItems.forEach(el => gsap.set(el, { opacity: OPACITY_COMPLETED }))
+      stepIcons.forEach(el =>
+        gsap.set(el, { scale: 1, borderColor: 'var(--color-border)', boxShadow: 'none' }),
+      )
+      stepDots.forEach(el => gsap.set(el, { backgroundColor: 'transparent' }))
 
       const tl = gsap.timeline({
         scrollTrigger: {
@@ -56,7 +58,11 @@ export function ProcessSectionMobile({
         },
       })
 
-      tl.to(lineMobile, { scaleY: 1, duration: DURATION, ease: 'none', transformOrigin: 'top center' }, 0)
+      tl.to(
+        lineMobile,
+        { scaleY: 1, duration: DURATION, ease: 'none', transformOrigin: 'top center' },
+        0,
+      )
 
       const [a, b, c, d] = STEP_ACTIVATE_FRACTIONS
       addStepActiveTweens(tl, stepItems[0], stepIcons[0], stepNumbers[0], stepTitles[0], a)

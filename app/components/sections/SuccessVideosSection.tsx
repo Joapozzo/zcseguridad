@@ -1,8 +1,5 @@
 import { Suspense } from 'react'
-import {
-  SuccessVideosSectionClient,
-  type ResolvedSuccessVideo,
-} from './SuccessVideosSectionClient'
+import { SuccessVideosSectionClient, type ResolvedSuccessVideo } from './SuccessVideosSectionClient'
 
 /** Solo IDs; título y miniatura vienen del proveedor vía oEmbed en el servidor. */
 const SUCCESS_VIDEO_IDS: string[] = ['Jigutkpe19Y', 'XTg_ulHTP6k']
@@ -26,13 +23,13 @@ async function fetchVideoMeta(youtubeId: string): Promise<OEmbedPayload | null> 
 
 async function resolveVideos(ids: string[]): Promise<ResolvedSuccessVideo[]> {
   const settled = await Promise.all(
-    ids.map(async (youtubeId) => {
+    ids.map(async youtubeId => {
       const meta = await fetchVideoMeta(youtubeId)
       const thumbnailUrl =
         meta?.thumbnail_url ?? `https://i.ytimg.com/vi/${youtubeId}/hqdefault.jpg`
       const title = meta?.title?.trim() || 'Video'
       return { youtubeId, title, thumbnailUrl }
-    })
+    }),
   )
   return settled
 }
@@ -40,7 +37,12 @@ async function resolveVideos(ids: string[]): Promise<ResolvedSuccessVideo[]> {
 export function SuccessVideosSectionSkeleton() {
   const n = SUCCESS_VIDEO_IDS.length
   return (
-    <section className="w-full bg-transparent" id="casos-exito" aria-busy="true" aria-label="Cargando videos">
+    <section
+      className="w-full bg-transparent"
+      id="casos-exito"
+      aria-busy="true"
+      aria-label="Cargando videos"
+    >
       <div
         className="mx-auto w-full px-6 py-16 lg:px-8 lg:py-20"
         style={{ maxWidth: 'var(--container-max)' }}
